@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DVes.Basar.Client.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="DVes_Basar_Client_IBasarCom_BasarCom" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://de6-nb-pe002:1353/DVes.Basar.Integrator/IBasarCom</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>

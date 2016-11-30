@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd0" filename="IBasarCom.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd1" filename="IBasarCom0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd2" filename="IBasarCom1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd3" filename="IBasarCom2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://127.0.0.1:1353/DeVes.Bazaar.Integrator/IBasarCom?wsdl" filename="BasarCom.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>
