@@ -1,0 +1,11 @@
+C:\Users\sreichert\Documents\GitHub\Bazaar\BIN\DVes.Barsar.ClientExt.exe.config
+C:\Users\sreichert\Documents\GitHub\Bazaar\BIN\DVes.Barsar.ClientExt.exe
+C:\Users\sreichert\Documents\GitHub\Bazaar\BIN\DVes.Barsar.ClientExt.pdb
+C:\Users\sreichert\Documents\GitHub\Bazaar\DVes.Barsar.ClientExt\obj\Debug\DVes.Barsar.ClientExt.csprojResolveAssemblyReference.cache
+C:\Users\sreichert\Documents\GitHub\Bazaar\DVes.Barsar.ClientExt\obj\Debug\DVes.Barsar.ClientExt.CustControls.TitelBarCtrl.resources
+C:\Users\sreichert\Documents\GitHub\Bazaar\DVes.Barsar.ClientExt\obj\Debug\DVes.Barsar.ClientExt.Forms.BaseToolForm.resources
+C:\Users\sreichert\Documents\GitHub\Bazaar\DVes.Barsar.ClientExt\obj\Debug\DVes.Barsar.ClientExt.Forms.MaterialInputForm.resources
+C:\Users\sreichert\Documents\GitHub\Bazaar\DVes.Barsar.ClientExt\obj\Debug\DVes.Barsar.ClientExt.Properties.Resources.resources
+C:\Users\sreichert\Documents\GitHub\Bazaar\DVes.Barsar.ClientExt\obj\Debug\DVes.Barsar.ClientExt.csproj.GenerateResource.Cache
+C:\Users\sreichert\Documents\GitHub\Bazaar\DVes.Barsar.ClientExt\obj\Debug\DVes.Barsar.ClientExt.exe
+C:\Users\sreichert\Documents\GitHub\Bazaar\DVes.Barsar.ClientExt\obj\Debug\DVes.Barsar.ClientExt.pdb

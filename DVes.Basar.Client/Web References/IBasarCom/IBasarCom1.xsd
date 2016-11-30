@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://de6-nb-pe002:1353/DVes.Basar.Integrator/IBasarCom?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfBizPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizPosition" nillable="true" type="tns:BizPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizPosition" nillable="true" type="tns:ArrayOfBizPosition" />
+  <xs:complexType name="BizPosition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastChange" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Manufacturer" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Material" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PositionNo" type="xs:int" />
+          <xs:element minOccurs="0" name="PriceMax" type="xs:double" />
+          <xs:element minOccurs="0" name="PriceMin" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="ReturnedToSupplierAt" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SoldAt" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SoldFor" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="SupplierId" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizPosition" nillable="true" type="tns:BizPosition" />
+  <xs:complexType name="BizBase">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="BizBase" nillable="true" type="tns:BizBase" />
+  <xs:complexType name="BizSupplierer">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EMail01" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone01" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ReturnedToSupplier" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Salutation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SupplierID" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="SupplierNo" type="xs:int" />
+          <xs:element minOccurs="0" name="Town" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ZIPCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizSupplierer" nillable="true" type="tns:BizSupplierer" />
+  <xs:complexType name="BizMaterialCategory">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Designation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizMaterialCategory" nillable="true" type="tns:BizMaterialCategory" />
+  <xs:complexType name="ArrayOfBizMaterialCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizMaterialCategory" nillable="true" type="tns:BizMaterialCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizMaterialCategory" nillable="true" type="tns:ArrayOfBizMaterialCategory" />
+  <xs:complexType name="BizManufacturer">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Designation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizManufacturer" nillable="true" type="tns:BizManufacturer" />
+  <xs:complexType name="ArrayOfBizManufacturer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizManufacturer" nillable="true" type="tns:BizManufacturer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizManufacturer" nillable="true" type="tns:ArrayOfBizManufacturer" />
+  <xs:complexType name="ArrayOfBizSupplierer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizSupplierer" nillable="true" type="tns:BizSupplierer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizSupplierer" nillable="true" type="tns:ArrayOfBizSupplierer" />
+</xs:schema>

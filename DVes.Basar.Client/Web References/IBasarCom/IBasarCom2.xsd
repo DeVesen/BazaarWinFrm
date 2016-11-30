@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.DataObjekts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.DataObjekts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://de6-nb-pe002:1353/DVes.Basar.Integrator/IBasarCom?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" />
+  <xs:complexType name="ArrayOfAllPositionResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AllPositionResult" nillable="true" type="tns:AllPositionResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAllPositionResult" nillable="true" type="tns:ArrayOfAllPositionResult" />
+  <xs:complexType name="AllPositionResult">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" minOccurs="0" name="Positions" nillable="true" type="q1:ArrayOfBizPosition" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" minOccurs="0" name="Supplier" nillable="true" type="q2:BizSupplierer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AllPositionResult" nillable="true" type="tns:AllPositionResult" />
+  <xs:complexType name="ParameterResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrintPev" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProzSoldGewein" type="xs:double" />
+      <xs:element minOccurs="0" name="SellerInfoText" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ParameterResult" nillable="true" type="tns:ParameterResult" />
+  <xs:complexType name="PositionSellResult">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" minOccurs="0" name="NotPossibleToSell" nillable="true" type="q3:ArrayOfBizPosition" />
+      <xs:element minOccurs="0" name="NotSoldPosReason" nillable="true" type="tns:ArrayOfPositionSellResult.NotSoldPosReasonTypes" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" minOccurs="0" name="SoldPositions" nillable="true" type="q4:ArrayOfBizPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PositionSellResult" nillable="true" type="tns:PositionSellResult" />
+  <xs:complexType name="ArrayOfPositionSellResult.NotSoldPosReasonTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PositionSellResult.NotSoldPosReasonTypes" type="tns:PositionSellResult.NotSoldPosReasonTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPositionSellResult.NotSoldPosReasonTypes" nillable="true" type="tns:ArrayOfPositionSellResult.NotSoldPosReasonTypes" />
+  <xs:simpleType name="PositionSellResult.NotSoldPosReasonTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MeanTimeChanged" />
+      <xs:enumeration value="MeanTimeSold" />
+      <xs:enumeration value="MeanTimeReturned" />
+      <xs:enumeration value="NotFound" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PositionSellResult.NotSoldPosReasonTypes" nillable="true" type="tns:PositionSellResult.NotSoldPosReasonTypes" />
+  <xs:complexType name="PositionReturnedResult">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" minOccurs="0" name="AlreadyReturnedPositions" nillable="true" type="q5:ArrayOfBizPosition" />
+      <xs:element minOccurs="0" name="HadDifferences" type="xs:boolean" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" minOccurs="0" name="NotSoldPositions" nillable="true" type="q6:ArrayOfBizPosition" />
+      <xs:element minOccurs="0" name="PositionsCountTotal" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionsToReturnCountTotal" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionsToReturnMoney" type="xs:double" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DVes.Basar.Data.Biz" minOccurs="0" name="SoldPositions" nillable="true" type="q7:ArrayOfBizPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PositionReturnedResult" nillable="true" type="tns:PositionReturnedResult" />
+</xs:schema>
