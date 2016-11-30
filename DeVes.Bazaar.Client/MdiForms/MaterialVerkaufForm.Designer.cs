@@ -37,7 +37,7 @@
             this.m_cancelPositionBtn = new System.Windows.Forms.Button();
             this.m_sellMinPriceBtn = new System.Windows.Forms.Button();
             this.m_sellMaxPriceBtn = new System.Windows.Forms.Button();
-            this.m_positonNoTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_positonNoTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.m_confirmSellBtn = new System.Windows.Forms.Button();
             this.m_clearCellPositonsBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -186,7 +186,7 @@
             this.m_positonNoTb.IsMargin = false;
             this.m_positonNoTb.Location = new System.Drawing.Point(12, 21);
             this.m_positonNoTb.Name = "m_positonNoTb";
-            this.m_positonNoTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Int32;
+            this.m_positonNoTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Int32;
             this.m_positonNoTb.Size = new System.Drawing.Size(732, 53);
             this.m_positonNoTb.TabIndex = 0;
             this.m_positonNoTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -294,7 +294,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private CustControls.BkGroupBox bkGroupBox1;
-        private CustControls.DVTextBox m_positonNoTb;
+        private CustControls.DvTextBox m_positonNoTb;
         private System.Windows.Forms.Button m_confirmSellBtn;
         private System.Windows.Forms.Button m_clearCellPositonsBtn;
         private System.Windows.Forms.PictureBox pictureBox1;

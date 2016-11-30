@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace DeVes.Bazaar.Data.Tables
@@ -37,8 +34,8 @@ namespace DeVes.Bazaar.Data.Tables
         {
             if (lineNo > 0)
             {
-                DataRow[] _rows = this.Select("PositionNo = " + lineNo.ToString());
-                if (_rows != null && _rows.Length == 1)
+                var _rows = this.Select("PositionNo = " + lineNo);
+                if (_rows.Length == 1)
                     return _rows[0];
             }
             return null;

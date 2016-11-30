@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DeVes.Bazaar.Data.Biz;
 using DeVes.Bazaar.Data.Tables;
 using System.Drawing;
 
@@ -10,21 +6,21 @@ namespace DeVes.Bazaar.Data
 {
     public class GParams
     {
-        private static GParams m_instance = null;
+        private static GParams _instance;
         public static GParams Instance
         {
             get
             {
-                if (GParams.m_instance == null)
+                if (GParams._instance == null)
                 {
-                    GParams.m_instance = new GParams();
+                    GParams._instance = new GParams();
                 }
-                return GParams.m_instance;
+                return GParams._instance;
             }
         }
 
 
-        private object m_comLockObj = null;
+        private object m_comLockObj;
         public object ComLockObj
         {
             get
@@ -37,7 +33,7 @@ namespace DeVes.Bazaar.Data
             }
         }
 
-        private string m_applicationPath = null;
+        private string m_applicationPath;
         public string ApplicationPath
         {
             get
@@ -46,7 +42,7 @@ namespace DeVes.Bazaar.Data
             }
         }
 
-        private string m_applicationDataPath = null;
+        private string m_applicationDataPath;
         public string ApplicationDataPath
         {
             get
@@ -56,8 +52,8 @@ namespace DeVes.Bazaar.Data
         }
 
 
-        private DeVes.Bazaar.Data.Working.MasterData m_masterData = null;
-        public DeVes.Bazaar.Data.Working.MasterData MasterData
+        private Working.MasterData m_masterData;
+        public Working.MasterData MasterData
         {
             get
             {
@@ -65,8 +61,8 @@ namespace DeVes.Bazaar.Data
             }
         }
 
-        private DeVes.Bazaar.Data.Working.Supplier m_supplier = null;
-        public DeVes.Bazaar.Data.Working.Supplier Supplier
+        private Working.Supplier m_supplier;
+        public Working.Supplier Supplier
         {
             get
             {
@@ -74,8 +70,8 @@ namespace DeVes.Bazaar.Data
             }
         }
 
-        private DeVes.Bazaar.Data.Working.Positions m_position = null;
-        public DeVes.Bazaar.Data.Working.Positions Position
+        private Working.Positions m_position;
+        public Working.Positions Position
         {
             get
             {
@@ -87,7 +83,7 @@ namespace DeVes.Bazaar.Data
 
         #region . for Dll Internal .
 
-        private MaterialCategoryTable m_materialCategoryTable = null;
+        private MaterialCategoryTable m_materialCategoryTable;
         internal MaterialCategoryTable MaterialCategoryTable
         {
             get
@@ -96,7 +92,7 @@ namespace DeVes.Bazaar.Data
             }
         }
 
-        private ManufacturerTable m_manufacturerTable = null;
+        private ManufacturerTable m_manufacturerTable;
         internal ManufacturerTable ManufacturerTable
         {
             get
@@ -105,7 +101,7 @@ namespace DeVes.Bazaar.Data
             }
         }
 
-        private SupplierTable m_supplierTable = null;
+        private SupplierTable m_supplierTable;
         internal SupplierTable SupplierTable
         {
             get
@@ -114,7 +110,7 @@ namespace DeVes.Bazaar.Data
             }
         }
 
-        private PositionsTable m_positionsTable = null;
+        private PositionsTable m_positionsTable;
         internal PositionsTable PositionsTable
         {
             get
@@ -141,10 +137,10 @@ namespace DeVes.Bazaar.Data
             this.m_supplier = new Working.Supplier();
             this.m_position = new Working.Positions();
 
-            this.m_materialCategoryTable = MaterialCategoryTable.OpenDataTable<MaterialCategoryTable>(applicationDataPath);
-            this.m_manufacturerTable = ManufacturerTable.OpenDataTable<ManufacturerTable>(applicationDataPath);
-            this.m_supplierTable = SupplierTable.OpenDataTable<SupplierTable>(applicationDataPath);
-            this.m_positionsTable = PositionsTable.OpenDataTable<PositionsTable>(applicationDataPath);
+            this.m_materialCategoryTable = BasicTable.OpenDataTable<MaterialCategoryTable>(applicationDataPath);
+            this.m_manufacturerTable = BasicTable.OpenDataTable<ManufacturerTable>(applicationDataPath);
+            this.m_supplierTable = BasicTable.OpenDataTable<SupplierTable>(applicationDataPath);
+            this.m_positionsTable = BasicTable.OpenDataTable<PositionsTable>(applicationDataPath);
         }
 
 
@@ -158,7 +154,7 @@ namespace DeVes.Bazaar.Data
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -170,7 +166,7 @@ namespace DeVes.Bazaar.Data
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -182,7 +178,7 @@ namespace DeVes.Bazaar.Data
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -194,7 +190,7 @@ namespace DeVes.Bazaar.Data
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -206,7 +202,7 @@ namespace DeVes.Bazaar.Data
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -218,7 +214,7 @@ namespace DeVes.Bazaar.Data
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -229,7 +225,7 @@ namespace DeVes.Bazaar.Data
         }
         public static RectangleF ToRectangle(Rectangle rectF)
         {
-            return new RectangleF((float)rectF.X, (float)rectF.Y, (float)rectF.Width, (float)rectF.Height);
+            return new RectangleF(rectF.X, rectF.Y, rectF.Width, rectF.Height);
         }
     }
 }

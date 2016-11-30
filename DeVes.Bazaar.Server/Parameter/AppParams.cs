@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Text;
+using System.Globalization;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Linq;
 
 namespace DeVes.Bazaar.Server.Parameter
 {
@@ -19,12 +19,12 @@ namespace DeVes.Bazaar.Server.Parameter
         /// <summary>
         /// Inhalt der Datei
         /// </summary>
-        private List<String> lines = new List<string>();
+        private readonly List<string> m_lines = new List<string>();
 
         /// <summary>
         /// Voller Pfad und Name der Datei
         /// </summary>
-        private String FileName = "";
+        private string m_fileName = "";
 
         /// <summary>
         /// Gibt an, welche Zeichen als Kommentarbeginn
@@ -32,31 +32,26 @@ namespace DeVes.Bazaar.Server.Parameter
         /// Zeichen defaultmäßig für neue Kommentare
         /// verwendet.
         /// </summary>
-        private String CommentCharacters = "#;";
-
-        /// <summary>
-        /// Regulärer Ausdruck für einen Kommentar in einer Zeile
-        /// </summary>
-        private String regCommentStr = "";
+        private string m_commentCharacters = "#;";
 
         /// <summary>
         /// Regulärer Ausdruck für einen Eintrag
         /// </summary>
-        private Regex regEntry = null;
+        private Regex m_regEntry;
 
         /// <summary>
         /// Regulärer Ausdruck für einen Bereichskopf
         /// </summary>
-        private Regex regCaption = null;
+        private Regex m_regCaption;
 
         /// <summary>
         /// Leerer Standard-Konstruktor
         /// </summary>
         public CfgFile()
         {
-            regCommentStr = @"(\s*[" + CommentCharacters + "](?<comment>.*))?";
-            regEntry = new Regex(@"^[ \t]*(?<entry>([^=])+)=(?<value>([^=" + CommentCharacters + "])+)" + regCommentStr + "$");
-            regCaption = new Regex(@"^[ \t]*(\[(?<caption>([^\]])+)\]){1}" + regCommentStr + "$");
+            var _regCommentStr = @"(\s*[" + m_commentCharacters + "](?<comment>.*))?";
+            m_regEntry = new Regex(@"^[ \t]*(?<entry>([^=])+)=(?<value>([^=" + m_commentCharacters + "])+)" + _regCommentStr + "$");
+            m_regCaption = new Regex(@"^[ \t]*(\[(?<caption>([^\]])+)\]){1}" + _regCommentStr + "$");
         }
 
         /// <summary>
@@ -66,21 +61,21 @@ namespace DeVes.Bazaar.Server.Parameter
         public CfgFile(string filename)
             : this()
         {
-            FileName = filename;
+            m_fileName = filename;
         }
 
-        public Boolean Read()
+        public bool Read()
         {
-            lines.Clear();
+            m_lines.Clear();
 
-            if (!File.Exists(this.FileName))
+            if (!File.Exists(this.m_fileName))
                 return false;
 
-            using (StreamReader sr = new StreamReader(FileName))
+            using (var _sr = new StreamReader(m_fileName))
             {
-                while (!sr.EndOfStream)
+                while (!_sr.EndOfStream)
                 {
-                    lines.Add(sr.ReadLine().TrimEnd());
+                    m_lines.Add((_sr.ReadLine() ?? string.Empty).TrimEnd());
                 }
             }
 
@@ -91,22 +86,22 @@ namespace DeVes.Bazaar.Server.Parameter
         /// Datei sichern
         /// </summary>
         /// <returns></returns>
-        public Boolean Save()
+        public bool Save()
         {
-            if (FileName == "") return false;
+            if (m_fileName == "") return false;
             try
             {
-                using (StreamWriter sw = new StreamWriter(FileName))
-                    foreach (String line in lines)
-                        sw.WriteLine(line);
+                using (var _sw = new StreamWriter(m_fileName))
+                    foreach (var _line in m_lines)
+                        _sw.WriteLine(_line);
             }
-            catch (IOException ex)
+            catch (IOException _ex)
             {
-                throw new IOException("Fehler beim Schreiben der Datei " + fileName, ex);
+                throw new IOException("Fehler beim Schreiben der Datei " + FileName, _ex);
             }
             catch
             {
-                throw new IOException("Fehler beim Schreiben der Datei " + fileName);
+                throw new IOException("Fehler beim Schreiben der Datei " + FileName);
             }
             return true;
         }
@@ -115,39 +110,39 @@ namespace DeVes.Bazaar.Server.Parameter
         /// Voller Name der Datei
         /// </summary>
         /// <returns></returns>
-        public String fileName
+        public string FileName
         {
-            get { return FileName; }
-            set { FileName = value; }
+            get { return m_fileName; }
+            set { m_fileName = value; }
         }
 
         /// <summary>
         /// Verzeichnis der Datei
         /// </summary>
         /// <returns></returns>
-        public String getDirectory()
+        public string GetDirectory()
         {
-            return Path.GetDirectoryName(FileName);
+            return Path.GetDirectoryName(m_fileName);
         }
 
         /// <summary>
         /// Sucht die Zeilennummer (nullbasiert) 
         /// eines gewünschten Eintrages
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>Nummer der Zeile, sonst -1</returns>
-        private int SearchCaptionLine(String Caption, Boolean CaseSensitive)
+        private int SearchCaptionLine(string caption, bool caseSensitive)
         {
-            if (!CaseSensitive) Caption = Caption.ToLower();
-            for (int i = 0; i < lines.Count; i++)
+            if (!caseSensitive) caption = caption.ToLower();
+            for (var _i = 0; _i < m_lines.Count; _i++)
             {
-                String line = lines[i].Trim();
-                if (line == "") continue;
-                if (!CaseSensitive) line = line.ToLower();
+                var _line = m_lines[_i].Trim();
+                if (_line == "") continue;
+                if (!caseSensitive) _line = _line.ToLower();
                 // Erst den gewünschten Abschnitt suchen
-                if (line == "[" + Caption + "]")
-                    return i;
+                if (_line == "[" + caption + "]")
+                    return _i;
             }
             return -1;// Bereich nicht gefunden
         }
@@ -156,27 +151,27 @@ namespace DeVes.Bazaar.Server.Parameter
         /// Sucht die Zeilennummer (nullbasiert) 
         /// eines gewünschten Eintrages
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="Entry">Name des Eintrages</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="entry">Name des Eintrages</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>Nummer der Zeile, sonst -1</returns>
-        private int SearchEntryLine(String Caption, String Entry, Boolean CaseSensitive)
+        private int SearchEntryLine(string caption, string entry, bool caseSensitive)
         {
-            Caption = Caption.ToLower();
-            if (!CaseSensitive) Entry = Entry.ToLower();
-            int CaptionStart = SearchCaptionLine(Caption, false);
-            if (CaptionStart < 0) return -1;
-            for (int i = CaptionStart + 1; i < lines.Count; i++)
+            caption = caption.ToLower();
+            if (!caseSensitive) entry = entry.ToLower();
+            var _captionStart = SearchCaptionLine(caption, false);
+            if (_captionStart < 0) return -1;
+            for (var _i = _captionStart + 1; _i < m_lines.Count; _i++)
             {
-                String line = lines[i].Trim();
-                if (line == "") continue;
-                if (!CaseSensitive) line = line.ToLower();
-                if (line.StartsWith("["))
+                var _line = m_lines[_i].Trim();
+                if (_line == "") continue;
+                if (!caseSensitive) _line = _line.ToLower();
+                if (_line.StartsWith("["))
                     return -1;// Ende, wenn der nächste Abschnitt beginnt
-                if (Regex.IsMatch(line, @"^[ \t]*[" + CommentCharacters + "]"))
+                if (Regex.IsMatch(_line, @"^[ \t]*[" + m_commentCharacters + "]"))
                     continue; // Kommentar
-                if (line.StartsWith(Entry))
-                    return i;// Eintrag gefunden
+                if (_line.StartsWith(entry))
+                    return _i;// Eintrag gefunden
             }
             return -1;// Eintrag nicht gefunden
         }
@@ -184,30 +179,30 @@ namespace DeVes.Bazaar.Server.Parameter
         /// <summary>
         /// Kommentiert einen Wert aus
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="Entry">Name des Eintrages</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="entry">Name des Eintrages</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>true = Eintrag gefunden und auskommentiert</returns>
-        public Boolean commentValue(String Caption, String Entry, Boolean CaseSensitive)
+        public bool CommentValue(string caption, string entry, bool caseSensitive)
         {
-            int line = SearchEntryLine(Caption, Entry, CaseSensitive);
-            if (line < 0) return false;
-            lines[line] = CommentCharacters[0] + lines[line];
+            var _line = SearchEntryLine(caption, entry, caseSensitive);
+            if (_line < 0) return false;
+            m_lines[_line] = m_commentCharacters[0] + m_lines[_line];
             return true;
         }
 
         /// <summary>
         /// Löscht einen Wert
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="Entry">Name des Eintrages</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="entry">Name des Eintrages</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>true = Eintrag gefunden und gelöscht</returns>
-        public Boolean deleteValue(String Caption, String Entry, Boolean CaseSensitive)
+        public bool DeleteValue(string caption, string entry, bool caseSensitive)
         {
-            int line = SearchEntryLine(Caption, Entry, CaseSensitive);
-            if (line < 0) return false;
-            lines.RemoveAt(line);
+            var _line = SearchEntryLine(caption, entry, caseSensitive);
+            if (_line < 0) return false;
+            m_lines.RemoveAt(_line);
             return true;
         }
 
@@ -215,25 +210,26 @@ namespace DeVes.Bazaar.Server.Parameter
         /// Liest den Wert eines Eintrages aus
         /// (Erweiterung: case sensitive)
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="Entry">Name des Eintrages</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="entry">Name des Eintrages</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>Wert des Eintrags oder leer</returns>
-        public String getValue(String Caption, String Entry, Boolean CaseSensitive)
+        public string GetValue(string caption, string entry, bool caseSensitive)
         {
-            int line = SearchEntryLine(Caption, Entry, CaseSensitive);
-            if (line < 0) return "";
-            int pos = lines[line].IndexOf("=");
-            if (pos < 0) return "";
-            return lines[line].Substring(pos + 1).Trim();
-            // Evtl. noch abschliessende Kommentarbereiche entfernen
+            var _line = SearchEntryLine(caption, entry, caseSensitive);
+
+            if (_line < 0) return "";
+
+            var _pos = (m_lines[_line] ?? string.Empty).IndexOf("=", StringComparison.Ordinal);
+
+            return _pos < 0 ? "" : (m_lines[_line] ?? string.Empty).Substring(_pos + 1).Trim();
         }
 
-        public string getValue_AsString(String Caption, String Entry, string defaultValue)
+        public string getValue_AsString(string caption, string entry, string defaultValue)
         {
             try
             {
-                string _result = getValue(Caption, Entry, false);
+                var _result = GetValue(caption, entry, false);
                 if (!string.IsNullOrEmpty(_result) && !string.IsNullOrEmpty(_result.Trim()))
                 {
                     return _result;
@@ -241,56 +237,76 @@ namespace DeVes.Bazaar.Server.Parameter
             }
             catch
             {
-
+                // ignored
             }
             return defaultValue;
         }
-        public double? getValue_AsdDouble(String Caption, String Entry, double? defaultValue)
+
+        public double getValue_AsdDouble(string caption, string entry, double defaultValue)
+        {
+            return this.getValue_AsdDouble(caption, entry, null) ?? defaultValue;
+        }
+        public double? getValue_AsdDouble(string caption, string entry, double? defaultValue)
         {
             try
             {
-                return Convert.ToDouble(getValue(Caption, Entry, false));
+                return Convert.ToDouble(GetValue(caption, entry, false));
             }
             catch
             {
-
+                // ignored
             }
             return defaultValue;
         }
-        public bool? getValue_AsBool(String Caption, String Entry, bool? defaultValue)
+
+        public bool getValue_AsBool(string caption, string entry, bool defaultValue)
+        {
+            return this.getValue_AsBool(caption, entry, null) ?? defaultValue;
+        }
+        public bool? getValue_AsBool(string caption, string entry, bool? defaultValue)
         {
             try
             {
-                return Convert.ToBoolean(getValue(Caption, Entry, false));
+                return Convert.ToBoolean(GetValue(caption, entry, false));
             }
             catch
             {
-
+                // ignored
             }
             return defaultValue;
         }
-        public int? getValue_AsInt(String Caption, String Entry, int? defaultValue)
+
+        public int getValue_AsInt(string caption, string entry, int defaultValue)
+        {
+            return this.getValue_AsInt(caption, entry, null) ?? defaultValue;
+        }
+        public int? getValue_AsInt(string caption, string entry, int? defaultValue)
         {
             try
             {
-                string _value = getValue(Caption, Entry, false);
+                var _value = GetValue(caption, entry, false);
                 return Convert.ToInt32(_value);
             }
             catch
             {
-
+                // ignored
             }
             return defaultValue;
         }
-        public DateTime? getValue_AsDateTime(String Caption, String Entry, Boolean CaseSensitive, DateTime? defaultValue)
+
+        public DateTime getValue_AsDateTime(string caption, string entry, bool caseSensitive, DateTime defaultValue)
+        {
+            return this.getValue_AsDateTime(caption, entry, caseSensitive, null) ?? defaultValue;
+        }
+        public DateTime? getValue_AsDateTime(string caption, string entry, bool caseSensitive, DateTime? defaultValue)
         {
             try
             {
-                return Convert.ToDateTime(getValue(Caption, Entry, CaseSensitive));
+                return Convert.ToDateTime(GetValue(caption, entry, caseSensitive));
             }
             catch
             {
-
+                // ignored
             }
             return defaultValue;
         }
@@ -300,103 +316,103 @@ namespace DeVes.Bazaar.Server.Parameter
         /// (und der Bereich) noch nicht existiert, werden die
         /// entsprechenden Einträge erstellt.
         /// </summary>
-        /// <param name="Caption">Name des Bereichs</param>
-        /// <param name="Entry">name des Eintrags</param>
-        /// <param name="Value">Wert des Eintrags</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereichs</param>
+        /// <param name="entry">name des Eintrags</param>
+        /// <param name="value">Wert des Eintrags</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>true = Eintrag erfolgreich gesetzt</returns>
-        private Boolean _setValue(String Caption, String Entry, String Value, Boolean CaseSensitive)
+        private bool _setValue(string caption, string entry, string value, bool caseSensitive)
         {
-            Caption = Caption.ToLower();
-            if (!CaseSensitive) Entry = Entry.ToLower();
-            int lastCommentedFound = -1;
-            int CaptionStart = SearchCaptionLine(Caption, false);
-            if (CaptionStart < 0)
+            caption = caption.ToLower();
+            if (!caseSensitive) entry = entry.ToLower();
+            var _lastCommentedFound = -1;
+            var _captionStart = SearchCaptionLine(caption, false);
+            if (_captionStart < 0)
             {
-                lines.Add("[" + Caption + "]");
-                lines.Add(Entry + "=" + Value);
+                m_lines.Add("[" + caption + "]");
+                m_lines.Add(entry + "=" + value);
                 return true;
             }
-            int EntryLine = SearchEntryLine(Caption, Entry, CaseSensitive);
-            for (int i = CaptionStart + 1; i < lines.Count; i++)
+            var _entryLine = SearchEntryLine(caption, entry, caseSensitive);
+            for (var _i = _captionStart + 1; _i < m_lines.Count; _i++)
             {
-                String line = lines[i].Trim();
-                if (!CaseSensitive) line = line.ToLower();
-                if (line == "") continue;
+                var _line = m_lines[_i].Trim();
+                if (!caseSensitive) _line = _line.ToLower();
+                if (_line == "") continue;
                 // Ende, wenn der nächste Abschnitt beginnt
-                if (line.StartsWith("["))
+                if (_line.StartsWith("["))
                 {
-                    lines.Insert(i, Entry + "=" + Value);
+                    m_lines.Insert(_i, entry + "=" + value);
                     return true;
                 }
                 // Suche aukommentierte, aber gesuchte Einträge
                 // (evtl. per Parameter bestimmen können?), falls
                 // der Eintrag noch nicht existiert.
-                if (EntryLine < 0)
-                    if (Regex.IsMatch(line, @"^[ \t]*[" + CommentCharacters + "]"))
+                if (_entryLine < 0)
+                    if (Regex.IsMatch(_line, @"^[ \t]*[" + m_commentCharacters + "]"))
                     {
-                        String tmpLine = line.Substring(1).Trim();
-                        if (tmpLine.StartsWith(Entry))
+                        var _tmpLine = _line.Substring(1).Trim();
+                        if (_tmpLine.StartsWith(entry))
                         {
                             // Werte vergleichen, wenn gleich,
                             // nur Kommentarzeichen löschen
-                            int pos = tmpLine.IndexOf("=");
-                            if (pos > 0)
+                            var _pos = _tmpLine.IndexOf("=", StringComparison.Ordinal);
+                            if (_pos > 0)
                             {
-                                if (Value == tmpLine.Substring(pos + 1).Trim())
+                                if (value == _tmpLine.Substring(_pos + 1).Trim())
                                 {
-                                    lines[i] = tmpLine;
+                                    m_lines[_i] = _tmpLine;
                                     return true;
                                 }
                             }
-                            lastCommentedFound = i;
+                            _lastCommentedFound = _i;
                         }
                         continue;// Kommentar
                     }
-                if (line.StartsWith(Entry))
+                if (_line.StartsWith(entry))
                 {
-                    lines[i] = Entry + "=" + Value;
+                    m_lines[_i] = entry + "=" + value;
                     return true;
                 }
             }
-            if (lastCommentedFound > 0)
-                lines.Insert(lastCommentedFound + 1, Entry + "=" + Value);
+            if (_lastCommentedFound > 0)
+                m_lines.Insert(_lastCommentedFound + 1, entry + "=" + value);
             else
-                lines.Insert(CaptionStart + 1, Entry + "=" + Value);
+                m_lines.Insert(_captionStart + 1, entry + "=" + value);
             return true;
         }
         
-        public Boolean setValue(String Caption, String Entry, string Value)
+        public bool SetValue(string caption, string entry, string value)
         {
-            this.deleteValue(Caption, Entry, true);
-            return this._setValue(Caption, Entry, Value, true);
+            this.DeleteValue(caption, entry, true);
+            return this._setValue(caption, entry, value, true);
         }
-        public Boolean setValue(String Caption, String Entry, bool Value)
+        public bool SetValue(string caption, string entry, bool value)
         {
-            this.deleteValue(Caption, Entry, true);
-            return this._setValue(Caption, Entry, Value ? "true" : "false", true);
+            this.DeleteValue(caption, entry, true);
+            return this._setValue(caption, entry, value ? "true" : "false", true);
         }
-        public Boolean setValue(String Caption, String Entry, int Value)
+        public bool SetValue(string caption, string entry, int value)
         {
-            this.deleteValue(Caption, Entry, true);
-            return this._setValue(Caption, Entry, Value.ToString(), true);
+            this.DeleteValue(caption, entry, true);
+            return this._setValue(caption, entry, value.ToString(), true);
         }
-        public Boolean setValue(String Caption, String Entry, double Value)
+        public bool SetValue(string caption, string entry, double value)
         {
-            this.deleteValue(Caption, Entry, true);
-            return this._setValue(Caption, Entry, Value.ToString(), true);
+            this.DeleteValue(caption, entry, true);
+            return this._setValue(caption, entry, value.ToString(CultureInfo.InvariantCulture), true);
         }
-        public Boolean setValue(String Caption, String Entry, DateTime Value)
+        public bool SetValue(string caption, string entry, DateTime value)
         {
-            this.deleteValue(Caption, Entry, true);
-            return this._setValue(Caption, Entry, Value.ToString(), true);
+            this.DeleteValue(caption, entry, true);
+            return this._setValue(caption, entry, value.ToString(CultureInfo.InvariantCulture), true);
         }
 
-        public Boolean existValue(String Caption, String Entry, Boolean CaseSensitive)
+        public bool ExistValue(string caption, string entry, bool caseSensitive)
         {
-            if (this.SearchCaptionLine(Caption, CaseSensitive) >= 0)
+            if (this.SearchCaptionLine(caption, caseSensitive) >= 0)
             {
-                if (this.SearchEntryLine(Caption, Entry, CaseSensitive) >= 0)
+                if (this.SearchEntryLine(caption, entry, caseSensitive) >= 0)
                 {
                     return true;
                 }
@@ -407,51 +423,48 @@ namespace DeVes.Bazaar.Server.Parameter
         /// <summary>
         /// Liest alle Einträge uns deren Werte eines Bereiches aus
         /// </summary>
-        /// <param name="Caption">Name des Bereichs</param>
+        /// <param name="caption">Name des Bereichs</param>
         /// <returns>Sortierte Liste mit Einträgen und Werten</returns>
-        public SortedList<String, String> getCaption(String Caption)
+        public SortedList<string, string> GetCaption(string caption)
         {
-            SortedList<String, String> result = new SortedList<string, string>();
-            Boolean CaptionFound = false;
-            for (int i = 0; i < lines.Count; i++)
+            var _result = new SortedList<string, string>();
+            var _captionFound = false;
+            for (var _i = 0; _i < m_lines.Count; _i++)
             {
-                String line = lines[i].Trim();
-                if (line == "") continue;
+                var _line = m_lines[_i].Trim();
+                if (_line == "") continue;
                 // Erst den gewünschten Abschnitt suchen
-                if (!CaptionFound)
-                    if (line.ToLower() != "[" + Caption + "]") continue;
+                if (!_captionFound)
+                    if (_line.ToLower() != "[" + caption + "]") continue;
                     else
                     {
-                        CaptionFound = true;
+                        _captionFound = true;
                         continue;
                     }
                 // Ende, wenn der nächste Abschnitt beginnt
-                if (line.StartsWith("[")) break;
-                if (Regex.IsMatch(line, @"^[ \t]*[" + CommentCharacters + "]")) continue; // Kommentar
-                int pos = line.IndexOf("=");
-                if (pos < 0)
-                    result.Add(line, "");
+                if (_line.StartsWith("[")) break;
+                if (Regex.IsMatch(_line, @"^[ \t]*[" + m_commentCharacters + "]")) continue; // Kommentar
+                var _pos = _line.IndexOf("=", StringComparison.Ordinal);
+                if (_pos < 0)
+                    _result.Add(_line, "");
                 else
-                    result.Add(line.Substring(0, pos).Trim(), line.Substring(pos + 1).Trim());
+                    _result.Add(_line.Substring(0, _pos).Trim(), _line.Substring(_pos + 1).Trim());
             }
-            return result;
+            return _result;
         }
 
         /// <summary>
         /// Erstellt eine Liste aller enthaltenen Bereiche
         /// </summary>
         /// <returns>Liste mit gefundenen Bereichen</returns>
-        public List<string> getAllCaptions()
+        public List<string> GetAllCaptions()
         {
-            List<string> result = new List<string>();
-            for (int i = 0; i < lines.Count; i++)
-            {
-                String line = lines[i];
-                Match mCaption = regCaption.Match(lines[i]);
-                if (mCaption.Success)
-                    result.Add(mCaption.Groups["caption"].Value.Trim());
-            }
-            return result;
+            return (
+                    from _t in m_lines
+                    select m_regCaption.Match(_t) into _mCaption
+                        where _mCaption.Success
+                    select _mCaption.Groups["caption"].Value.Trim()
+                   ).ToList();
         }
 
         /// <summary>
@@ -459,34 +472,36 @@ namespace DeVes.Bazaar.Server.Parameter
         /// in ein XML-Dokument
         /// </summary>
         /// <returns>XML-Dokument</returns>
-        public XmlDocument exportToXml()
+        public XmlDocument ExportToXml()
         {
-            XmlDocument doc = new XmlDocument();
-            XmlElement root = doc.CreateElement(
-                Path.GetFileNameWithoutExtension(this.fileName));
-            doc.AppendChild(root);
-            XmlElement Caption = null;
-            for (int i = 0; i < lines.Count; i++)
+            var _doc = new XmlDocument();
+            // ReSharper disable once AssignNullToNotNullAttribute
+            var _root = _doc.CreateElement(Path.GetFileNameWithoutExtension(this.FileName));
+            _doc.AppendChild(_root);
+
+            XmlElement _caption = null;
+
+            foreach (string _t in m_lines)
             {
-                Match mEntry = regEntry.Match(lines[i]);
-                Match mCaption = regCaption.Match(lines[i]);
-                if (mCaption.Success)
+                var _mEntry = m_regEntry.Match(_t);
+                var _mCaption = m_regCaption.Match(_t);
+                if (_mCaption.Success)
                 {
-                    Caption = doc.CreateElement(mCaption.Groups["caption"].Value.Trim());
-                    root.AppendChild(Caption);
+                    _caption = _doc.CreateElement(_mCaption.Groups["caption"].Value.Trim());
+                    _root.AppendChild(_caption);
                     continue;
                 }
-                if (mEntry.Success)
+                if (_mEntry.Success)
                 {
-                    XmlElement xe = doc.CreateElement(mEntry.Groups["entry"].Value.Trim());
-                    xe.InnerXml = mEntry.Groups["value"].Value.Trim();
-                    if (Caption == null)
-                        root.AppendChild(xe);
+                    var _xe = _doc.CreateElement(_mEntry.Groups["entry"].Value.Trim());
+                    _xe.InnerXml = _mEntry.Groups["value"].Value.Trim();
+                    if (_caption == null)
+                        _root.AppendChild(_xe);
                     else
-                        Caption.AppendChild(xe);
+                        _caption.AppendChild(_xe);
                 }
             }
-            return doc;
+            return _doc;
         }
     }
 

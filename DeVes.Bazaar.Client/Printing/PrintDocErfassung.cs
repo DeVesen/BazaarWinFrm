@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Drawing;
 
 namespace BHApp.Printing
@@ -17,7 +14,7 @@ namespace BHApp.Printing
             public string Zip { get; set; }
             public string Town { get; set; }
 
-            public string ID { get; set; }
+            public string Id { get; set; }
 
             public Font Font { get; set; }
 
@@ -36,9 +33,9 @@ namespace BHApp.Printing
             {
                 get
                 {
-                    StringBuilder _retObj = new StringBuilder();
+                    var _retObj = new StringBuilder();
 
-                    _retObj.AppendLine(this.ID);
+                    _retObj.AppendLine(this.Id);
                     _retObj.AppendLine(this.Titel);
                     _retObj.AppendLine(this.AsFinalName);
                     _retObj.AppendLine(this.Street);
@@ -55,8 +52,8 @@ namespace BHApp.Printing
             }
         }
 
-        private int m_pagecounter = 0;
-        private TablePrintDef m_tablesToPrint = null;
+        private int m_pagecounter;
+        private TablePrintDef m_tablesToPrint;
 
         public SellerAdressElem SellerAdress { get; set; }
 
@@ -75,8 +72,8 @@ namespace BHApp.Printing
 
         private void OnPrintDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            float leftMargin = 10; // e.MarginBounds.Left;
-            float topMargin = 10; // e.MarginBounds.Top;
+            float _leftMargin = 10; // e.MarginBounds.Left;
+            float _topMargin = 10; // e.MarginBounds.Top;
 
             float _maxRight = e.PageBounds.Width - 5;
             float _maxBottom = e.PageBounds.Height - 5;
@@ -85,13 +82,13 @@ namespace BHApp.Printing
             {
                 using (Brush _textBrush = new SolidBrush(Color.Black))
                 {
-                    RectangleF _rect = new RectangleF(leftMargin, topMargin, 0, 0);
+                    var _rect = new RectangleF(_leftMargin, _topMargin, 0, 0);
 
                     e.Graphics.DrawString(this.SellerAdress.AsFinal, this.SellerAdress.Font, _textBrush, _rect);
                 }
             }
 
-            e.Graphics.DrawString(string.Format("Seite: {0}", this.m_pagecounter + 1), new Font("ARIAL", 12), Brushes.Black, new PointF((float)_maxRight - (float)leftMargin - 150, (float)topMargin));
+            e.Graphics.DrawString(string.Format("Seite: {0}", this.m_pagecounter + 1), new Font("ARIAL", 12), Brushes.Black, new PointF((float)_maxRight - (float)_leftMargin - 150, (float)_topMargin));
 
             #region . Durcken der Tabelle .
 
@@ -102,14 +99,14 @@ namespace BHApp.Printing
                 _tableRectY = (e.PageBounds.Height * 20) / 100;
             }
 
-            RectangleF _mainTableFrameRect = new RectangleF(leftMargin, _tableRectY, _maxRight - leftMargin - 50, _maxBottom - _tableRectY - 100);
+            var _mainTableFrameRect = new RectangleF(_leftMargin, _tableRectY, _maxRight - _leftMargin - 50, _maxBottom - _tableRectY - 100);
 
             if (this.m_tablesToPrint != null)
             {
                 this.m_tablesToPrint.ColApear.Height = 45;
-                this.m_tablesToPrint.m_startPrintByLine = this.m_tablesToPrint.DrawTable(e.Graphics, _mainTableFrameRect, this.m_tablesToPrint.m_startPrintByLine);
+                this.m_tablesToPrint.StartPrintByLine = this.m_tablesToPrint.DrawTable(e.Graphics, _mainTableFrameRect, this.m_tablesToPrint.StartPrintByLine);
 
-                if (this.m_tablesToPrint.m_startPrintByLine < this.m_tablesToPrint.Lines.Count)
+                if (this.m_tablesToPrint.StartPrintByLine < this.m_tablesToPrint.Lines.Count)
                 {
                     m_pagecounter++;
                     e.HasMorePages = true;
@@ -118,14 +115,14 @@ namespace BHApp.Printing
                 {
                     m_pagecounter = 0;
                     e.HasMorePages = false;
-                    this.m_tablesToPrint.m_startPrintByLine = 0;
+                    this.m_tablesToPrint.StartPrintByLine = 0;
                 }
             }
 
             #endregion . Durcken der Tabelle .
 
-            string _text = "Die Abholung der nicht verkauften Ware, oder des Erlöses der verkauften Waren, muss am Samstag den 29.10.2011 bis 15:00 Uhr gegen Vorlage des Anmeldezettels erfolgen. Für abhanden gekommene Gegenstände wird von Seiten des Skiclubs Untergrombach e.V. keine Haftung übernommen. Der Verkauf der Ware erfolgt in fremden Namen und auf fremde Rechnung.";
-            RectangleF _bottomTextFrameRect = new RectangleF(leftMargin, _mainTableFrameRect.Bottom + 7, _mainTableFrameRect.Width, _maxBottom - (_mainTableFrameRect.Bottom + 7));
+            var _text = "Die Abholung der nicht verkauften Ware, oder des Erlöses der verkauften Waren, muss am Samstag den 29.10.2011 bis 15:00 Uhr gegen Vorlage des Anmeldezettels erfolgen. Für abhanden gekommene Gegenstände wird von Seiten des Skiclubs Untergrombach e.V. keine Haftung übernommen. Der Verkauf der Ware erfolgt in fremden Namen und auf fremde Rechnung.";
+            var _bottomTextFrameRect = new RectangleF(_leftMargin, _mainTableFrameRect.Bottom + 7, _mainTableFrameRect.Width, _maxBottom - (_mainTableFrameRect.Bottom + 7));
             e.Graphics.DrawString(DeVes.Bazaar.Client.GParams.Instance.SystemParameters.SellerInfoText, new Font("ARIAL", 12), Brushes.Black, _bottomTextFrameRect);
         }
     }

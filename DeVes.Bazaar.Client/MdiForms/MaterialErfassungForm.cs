@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.SubForms;
 using DeVes.Bazaar.Client.IBasarCom;
@@ -19,9 +15,9 @@ namespace DeVes.Bazaar.Client.MdiForms
         {
             get
             {
-                if (this.m_selPosSaveEditBtn.Tag is PositionLVI)
+                if (this.m_selPosSaveEditBtn.Tag is PositionLvi)
                 {
-                    return ((PositionLVI)this.m_selPosSaveEditBtn.Tag).DataObj;
+                    return ((PositionLvi)this.m_selPosSaveEditBtn.Tag).DataObj;
                 }
                 return null;
             }
@@ -31,7 +27,7 @@ namespace DeVes.Bazaar.Client.MdiForms
         {
             get
             {
-                List<Control> _resList = new List<Control>();
+                var _resList = new List<Control>();
 
                 _resList.Add(this.m_posNrTb);
                 _resList.Add(this.m_posTitelTb);
@@ -75,7 +71,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         private void OnPosInputCtrlKeyUp(object sender, KeyEventArgs e)
         {
-            Control _actual = sender as Control;
+            var _actual = sender as Control;
             if (_actual != null)
             {
                 this.m_selPosSaveNewBtn.Enabled = this.ActualEditPosition == null && this.HasMinForNextPos();
@@ -83,7 +79,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
                 if (e.KeyCode == Keys.Return)
                 {
-                    int _currentIndex = this.PosInputSeq.IndexOf(_actual);
+                    var _currentIndex = this.PosInputSeq.IndexOf(_actual);
 
                     if (this.PosInputSeq.Count > _currentIndex + 1)
                     {
@@ -103,16 +99,16 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         private void m_clearPosCtrlsBtn_Click(object sender, EventArgs e)
         {
-            foreach (Control _ctrl in this.PosInputSeq)
+            foreach (var _ctrl in this.PosInputSeq)
             {
-                if (_ctrl is DVTextBox)
+                if (_ctrl is DvTextBox)
                 {
-                    ((DVTextBox)_ctrl).ResetText();
+                    ((DvTextBox)_ctrl).ResetText();
                 }
-                else if (_ctrl is DVComboBox)
+                else if (_ctrl is DvComboBox)
                 {
-                    ((DVComboBox)_ctrl).SelectedIndex = -1;
-                    ((DVComboBox)_ctrl).SelectedItem = null;
+                    ((DvComboBox)_ctrl).SelectedIndex = -1;
+                    ((DvComboBox)_ctrl).SelectedItem = null;
                 }
             }
 
@@ -134,15 +130,15 @@ namespace DeVes.Bazaar.Client.MdiForms
                 return;
             }
 
-            BizPosition _positionToChange = new BizPosition();
+            var _positionToChange = new BizPosition();
             this.ScreenToBiz(ref _positionToChange);
 
             try
             {
                 if (GParams.Instance.BasarCom.PositionGet(_positionToChange.PositionNo, true) == null)
                 {
-                    bool _updated = true;
-                    bool _updatedSpec = true;
+                    var _updated = true;
+                    var _updatedSpec = true;
 
                     _positionToChange.SupplierId = this.m_supplierSelection.ActualSupplier.SupplierID;
                     GParams.Instance.BasarCom.PositionCreate(_positionToChange, out _updated, out _updatedSpec);
@@ -165,9 +161,9 @@ namespace DeVes.Bazaar.Client.MdiForms
                     this.m_posNrTb.SelectAll();
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
 
@@ -178,13 +174,13 @@ namespace DeVes.Bazaar.Client.MdiForms
                 return;
             }
 
-            BizPosition _positionToChange = this.ActualEditPosition;
+            var _positionToChange = this.ActualEditPosition;
             this.ScreenToBiz(ref _positionToChange);
 
             try
             {
-                bool _updated = true;
-                bool _updatedSpec = true;
+                var _updated = true;
+                var _updatedSpec = true;
 
                 GParams.Instance.BasarCom.PositionUpdate(_positionToChange, out _updated, out _updatedSpec);
 
@@ -199,9 +195,9 @@ namespace DeVes.Bazaar.Client.MdiForms
                     MessageBox.Show("Speichern der Änderung war nicht möglich!");
                 }
             }
-            catch(Exception ex)
+            catch(Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
 
@@ -224,16 +220,16 @@ namespace DeVes.Bazaar.Client.MdiForms
             {
                 if (this.m_matlPosLv.SelectedItems.Count > 0)
                 {
-                    if (MessageBox.Show("Position(en) wirklich löschen?", "Löschen...", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageBox.Show("Position(en) wirklich löschen?", "Löschen...", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         foreach (ListViewItem _lvItem in this.m_matlPosLv.SelectedItems)
                         {
-                            PositionLVI _toRemoveLine = _lvItem as PositionLVI;
+                            var _toRemoveLine = _lvItem as PositionLvi;
 
                             if (_toRemoveLine != null)
                             {
-                                bool _removed = false;
-                                bool _removedSpec = false;
+                                var _removed = false;
+                                var _removedSpec = false;
                                 GParams.Instance.BasarCom.PositionRemove(_toRemoveLine.DataObj.PositionNo, true, out _removed, out _removedSpec);
                             }
                         }
@@ -244,9 +240,9 @@ namespace DeVes.Bazaar.Client.MdiForms
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
 
@@ -255,7 +251,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             if (this.m_matlPosLv.Items.Count <= 0)
                 return;
 
-            TablePrintDef _tableInfo = new TablePrintDef();
+            var _tableInfo = new TablePrintDef();
             _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Pos Nr.", 8.50F));
             _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Kategorie", 14.50F));
             _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Hersteller", 14.50F));
@@ -264,16 +260,16 @@ namespace DeVes.Bazaar.Client.MdiForms
             _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Min. Preis", 11.00F));
 
 
-            List<ListViewItem> _itemsToPrint = new List<ListViewItem>();
+            var _itemsToPrint = new List<ListViewItem>();
             foreach (ListViewItem _lvItem in this.m_matlPosLv.Items)
             {
                 _itemsToPrint.Add(_lvItem);
             }
 
-            _itemsToPrint.Sort(delegate(ListViewItem _lv01, ListViewItem _lv02)
+            _itemsToPrint.Sort(delegate(ListViewItem lv01, ListViewItem lv02)
             {
-                int? _pos01 = GParams.ToInt32(_lv01.SubItems[0].Text);
-                int? _pos02 = GParams.ToInt32(_lv02.SubItems[0].Text);
+                var _pos01 = GParams.ToInt32(lv01.SubItems[0].Text);
+                var _pos02 = GParams.ToInt32(lv02.SubItems[0].Text);
 
                 if (_pos01.HasValue && _pos02.HasValue)
                 {
@@ -284,15 +280,15 @@ namespace DeVes.Bazaar.Client.MdiForms
                     else
                         return 0;
                 }
-                return string.Compare(_lv01.SubItems[0].Text, _lv02.SubItems[0].Text);
+                return string.Compare(lv01.SubItems[0].Text, lv02.SubItems[0].Text);
             });
 
 
-            foreach (ListViewItem _lvItem in _itemsToPrint)
+            foreach (var _lvItem in _itemsToPrint)
             {
-                TablePrintDef.FieldDef _posNoInfo = new TablePrintDef.FieldDef(_lvItem.SubItems[0].Text);
-                TablePrintDef.FieldDef _maxQtyInfo = new TablePrintDef.FieldDef(_lvItem.SubItems[4].Text + " €");
-                TablePrintDef.FieldDef _minQtyInfo = new TablePrintDef.FieldDef(_lvItem.SubItems[5].Text + " €");
+                var _posNoInfo = new TablePrintDef.FieldDef(_lvItem.SubItems[0].Text);
+                var _maxQtyInfo = new TablePrintDef.FieldDef(_lvItem.SubItems[4].Text + " €");
+                var _minQtyInfo = new TablePrintDef.FieldDef(_lvItem.SubItems[5].Text + " €");
 
                 _posNoInfo.StringFormat.Alignment = StringAlignment.Center;
                 _maxQtyInfo.StringFormat.Alignment = StringAlignment.Far;
@@ -307,12 +303,12 @@ namespace DeVes.Bazaar.Client.MdiForms
             }
 
 
-            PrintDocErfassung _printDocument = new PrintDocErfassung(_tableInfo);
+            var _printDocument = new PrintDocErfassung(_tableInfo);
             _printDocument.DefaultPageSettings.Landscape = true;
             _printDocument.PrinterSettings.DefaultPageSettings.Landscape = true;
 
             _printDocument.SellerAdress = new PrintDocErfassung.SellerAdressElem();
-            _printDocument.SellerAdress.ID = this.m_supplierSelection.ActualSupplier.SupplierNo.ToString();
+            _printDocument.SellerAdress.Id = this.m_supplierSelection.ActualSupplier.SupplierNo.ToString();
             _printDocument.SellerAdress.Titel = this.m_supplierSelection.ActualSupplier.Salutation;
             _printDocument.SellerAdress.VName = this.m_supplierSelection.ActualSupplier.FirstName;
             _printDocument.SellerAdress.NName = this.m_supplierSelection.ActualSupplier.LastName;
@@ -322,14 +318,14 @@ namespace DeVes.Bazaar.Client.MdiForms
 
             if (GParams.Instance.SystemParameters.PrintPev)
             {
-                System.Windows.Forms.PrintPreviewDialog _printPrevDlg = new System.Windows.Forms.PrintPreviewDialog();
+                var _printPrevDlg = new PrintPreviewDialog();
                 _printPrevDlg.Document = _printDocument;
                 _printPrevDlg.ShowDialog();
             }
             else
             {
-                PrintDialog _printerFrm = new PrintDialog();
-                if (_printerFrm.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                var _printerFrm = new PrintDialog();
+                if (_printerFrm.ShowDialog(this) == DialogResult.OK)
                 {
                     _printDocument.PrinterSettings = _printerFrm.PrinterSettings;
                     _printDocument.Print();
@@ -354,9 +350,9 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         private void m_matlPosLv_Click(object sender, EventArgs e)
         {
-            if (this.m_matlPosLv.SelectedItems.Count == 1 && this.m_matlPosLv.SelectedItems[0] is PositionLVI)
+            if (this.m_matlPosLv.SelectedItems.Count == 1 && this.m_matlPosLv.SelectedItems[0] is PositionLvi)
             {
-                this.m_selPosSaveEditBtn.Tag = this.m_matlPosLv.SelectedItems[0] as PositionLVI;
+                this.m_selPosSaveEditBtn.Tag = this.m_matlPosLv.SelectedItems[0] as PositionLvi;
 
                 this.BizToScreen(this.ActualEditPosition);
 
@@ -379,16 +375,16 @@ namespace DeVes.Bazaar.Client.MdiForms
 
                 if (this.m_matlPosLv.SelectedItems.Count > 0)
                 {
-                    foreach (Control _ctrl in this.PosInputSeq)
+                    foreach (var _ctrl in this.PosInputSeq)
                     {
-                        if (_ctrl is DVTextBox)
+                        if (_ctrl is DvTextBox)
                         {
-                            ((DVTextBox)_ctrl).ResetText();
+                            ((DvTextBox)_ctrl).ResetText();
                         }
-                        else if (_ctrl is DVComboBox)
+                        else if (_ctrl is DvComboBox)
                         {
-                            ((DVComboBox)_ctrl).SelectedIndex = -1;
-                            ((DVComboBox)_ctrl).SelectedItem = null;
+                            ((DvComboBox)_ctrl).SelectedIndex = -1;
+                            ((DvComboBox)_ctrl).SelectedItem = null;
                         }
                     }
                 }
@@ -405,38 +401,38 @@ namespace DeVes.Bazaar.Client.MdiForms
             {
                 if (this.m_supplierSelection.ActualSupplier != null)
                 {
-                    BizPosition[] _positionArray = GParams.Instance.BasarCom.PositionGetAll(this.m_supplierSelection.ActualSupplier.SupplierID);
+                    var _positionArray = GParams.Instance.BasarCom.PositionGetAll(this.m_supplierSelection.ActualSupplier.SupplierID);
 
                     if (_positionArray != null && _positionArray.Length > 0)
                     {
                         this.m_printListBtn.Enabled = true;
 
-                        foreach (BizPosition _position in _positionArray)
+                        foreach (var _position in _positionArray)
                         {
-                            this.m_matlPosLv.Items.Add(new PositionLVI(_position));
+                            this.m_matlPosLv.Items.Add(new PositionLvi(_position));
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
 
         private bool HasMinForNextPos()
         {
-            bool _result = true;
+            var _result = true;
 
-            foreach (Control _ctrl in this.PosInputSeq)
+            foreach (var _ctrl in this.PosInputSeq)
             {
-                if (_ctrl is DVTextBox)
+                if (_ctrl is DvTextBox)
                 {
-                    _result = _result && (((DVTextBox)_ctrl).HasValueAndLikeWish || !((DVTextBox)_ctrl).IsMargin);
+                    _result = _result && (((DvTextBox)_ctrl).HasValueAndLikeWish || !((DvTextBox)_ctrl).IsMargin);
                 }
-                else if (_ctrl is DVComboBox)
+                else if (_ctrl is DvComboBox)
                 {
-                    _result = _result && (((DVComboBox)_ctrl).SelectedItem != null || !((DVComboBox)_ctrl).IsMargin);
+                    _result = _result && (((DvComboBox)_ctrl).SelectedItem != null || !((DvComboBox)_ctrl).IsMargin);
                 }
             }
 
@@ -477,18 +473,18 @@ namespace DeVes.Bazaar.Client.MdiForms
             {
                 this.m_herstellerCb.Items.Clear();
 
-                BizManufacturer[] _allManufs = GParams.Instance.BasarCom.ManufacturerGetAll();
+                var _allManufs = GParams.Instance.BasarCom.ManufacturerGetAll();
                 if (_allManufs != null && _allManufs.Length > 0)
                 {
-                    foreach (BizManufacturer _manufItem in _allManufs)
+                    foreach (var _manufItem in _allManufs)
                     {
                         this.m_herstellerCb.Items.Add(new DvComboBoxItem(null, _manufItem.Designation, _manufItem));
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
         private void ReloadCategoryComboBox()
@@ -497,23 +493,23 @@ namespace DeVes.Bazaar.Client.MdiForms
             {
                 this.m_posCatCb.Items.Clear();
 
-                BizMaterialCategory[] _allCateg = GParams.Instance.BasarCom.MaterialCategoryGetAll();
+                var _allCateg = GParams.Instance.BasarCom.MaterialCategoryGetAll();
 
                 if (_allCateg != null && _allCateg.Length > 0)
                 {
-                    List<BizMaterialCategory> _matlCatList = new List<BizMaterialCategory>(_allCateg);
+                    var _matlCatList = new List<BizMaterialCategory>(_allCateg);
                     if (_allCateg != null && _allCateg.Length > 0)
                     {
-                        foreach (BizMaterialCategory _categItem in _allCateg)
+                        foreach (var _categItem in _allCateg)
                         {
                             this.m_posCatCb.Items.Add(new DvComboBoxItem(null, _categItem.Designation, _categItem));
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
 
@@ -541,19 +537,19 @@ namespace DeVes.Bazaar.Client.MdiForms
                 return;
             }
 
-            string _value = string.Empty;
+            var _value = string.Empty;
             if (InputTextForm.RequestInput(this, _labelText, ref _value))
             {
                 if (sender == this.m_newMatlCatBtn)
                 {
-                    BizMaterialCategory _newCate = GParams.Instance.GetMaterialCategoryByName(_value);
+                    var _newCate = GParams.Instance.GetMaterialCategoryByName(_value);
                     if (_newCate == null)
                     {
                         _newCate = new BizMaterialCategory();
                         _newCate.Designation = _value;
 
-                        bool _created = false;
-                        bool _createdSpec = false;
+                        var _created = false;
+                        var _createdSpec = false;
 
                         GParams.Instance.BasarCom.MaterialCategoryCreate(_newCate, out _created, out _createdSpec);
 
@@ -574,14 +570,14 @@ namespace DeVes.Bazaar.Client.MdiForms
                 }
                 else if (sender == this.m_newMatlManufBtn)
                 {
-                    BizManufacturer _newManuf = GParams.Instance.GetManufacturerByName(_value);
+                    var _newManuf = GParams.Instance.GetManufacturerByName(_value);
                     if (_newManuf == null)
                     {
                         _newManuf = new BizManufacturer();
                         _newManuf.Designation = _value;
 
-                        bool _created = false;
-                        bool _createdSpec = false;
+                        var _created = false;
+                        var _createdSpec = false;
 
                         GParams.Instance.BasarCom.ManufacturerCreate(_newManuf, out _created, out _createdSpec);
 
@@ -604,11 +600,11 @@ namespace DeVes.Bazaar.Client.MdiForms
         }
     }
 
-    public class PositionLVI : ListViewItem
+    public class PositionLvi : ListViewItem
     {
         public BizPosition DataObj { get; set; }
 
-        public PositionLVI(BizPosition position)
+        public PositionLvi(BizPosition position)
         {
             this.DataObj = position;
 

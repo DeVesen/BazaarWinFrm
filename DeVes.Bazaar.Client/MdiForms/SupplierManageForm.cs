@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 
@@ -37,7 +32,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             }
         }
 
-        private BizSupplierer[] m_actualKnownSupl = null;
+        private BizSupplierer[] m_actualKnownSupl;
 
         public SupplierManageForm()
         {
@@ -81,7 +76,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             if (!this.HasMinInformations() || this.ActiveSupplierLv == null)
                 return;
 
-            BizSupplierer _supplierBiz = this.ActiveSupplierLv.DataObj;
+            var _supplierBiz = this.ActiveSupplierLv.DataObj;
 
             _supplierBiz.Salutation = this.m_sellerTitelCb.Text;
             _supplierBiz.LastName = this.m_sellerNameTb.Text;
@@ -94,14 +89,14 @@ namespace DeVes.Bazaar.Client.MdiForms
 
             try
             {
-                bool _updated = false;
-                bool _updatedSpecified = false;
+                var _updated = false;
+                var _updatedSpecified = false;
 
                 GParams.Instance.BasarCom.SupplierUpdate(_supplierBiz, out _updated, out _updatedSpecified);
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
 
             this.ResetSupplArea();
@@ -113,18 +108,18 @@ namespace DeVes.Bazaar.Client.MdiForms
         {
             if (this.ActiveSupplierLv != null)
             {
-                if (MessageBox.Show("Lieferant wirklich löschen?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show("Lieferant wirklich löschen?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     try
                     {
-                        bool _removed = false;
-                        bool _removedSpecified = false;
+                        var _removed = false;
+                        var _removedSpecified = false;
 
                         GParams.Instance.BasarCom.SupplierRemove(this.ActiveSupplierLv.DataObj.SupplierID, out _removed, out _removedSpecified);
                     }
-                    catch(Exception ex)
+                    catch(Exception _ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(_ex.Message);
                     }
                 }
             }
@@ -144,7 +139,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         private bool HasMinInformations()
         {
-            bool _result = true;
+            var _result = true;
 
             _result = (_result && !string.IsNullOrEmpty(this.m_sellerTitelCb.Text));
             _result = _result && (!string.IsNullOrEmpty(this.m_sellerNameTb.Text) || !this.m_sellerNameTb.IsMargin);
@@ -220,11 +215,11 @@ namespace DeVes.Bazaar.Client.MdiForms
                     MessageBox.Show("Keine Verkäufer gefunden!");
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
                 this.m_searchValTb.Enabled = false;
 
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
         private void ViewFilterResult()
@@ -235,18 +230,18 @@ namespace DeVes.Bazaar.Client.MdiForms
             {
 
                 var _qResult =
-                    from a in m_actualKnownSupl
-                    where (a.LastName.ToLower().IndexOf(this.m_searchValTb.Text) >= 0 || a.FirstName.ToLower().IndexOf(this.m_searchValTb.Text) >= 0)
-                    select a;
+                    from _a in m_actualKnownSupl
+                    where (_a.LastName.ToLower().IndexOf(this.m_searchValTb.Text) >= 0 || _a.FirstName.ToLower().IndexOf(this.m_searchValTb.Text) >= 0)
+                    select _a;
 
-                foreach (BizSupplierer _supl in _qResult)
+                foreach (var _supl in _qResult)
                 {
                     this.m_filterResListView.Items.Add(new SupplierLvItem(_supl));
                 }
             }
             else
             {
-                foreach (BizSupplierer _supl in m_actualKnownSupl)
+                foreach (var _supl in m_actualKnownSupl)
                 {
                     this.m_filterResListView.Items.Add(new SupplierLvItem(_supl));
                 }

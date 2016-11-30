@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using DeVes.Bazaar.Client;
 
@@ -62,7 +59,7 @@ namespace BHApp.Printing
             }
         }
 
-        internal int m_startPrintByLine = 0;
+        internal int StartPrintByLine = 0;
 
         public ColumnDef ColApear { get; set; }
         public List<ColumnItem> Columns { get; set; }
@@ -87,9 +84,9 @@ namespace BHApp.Printing
         }
         public void AddLine(params FieldDef[] lineValue)
         {
-            List<FieldDef> _line = new List<FieldDef>();
+            var _line = new List<FieldDef>();
 
-            foreach (FieldDef _fieldValue in lineValue)
+            foreach (var _fieldValue in lineValue)
             {
                 _line.Add(_fieldValue);
             }
@@ -103,10 +100,10 @@ namespace BHApp.Printing
             {
                 if (this.Lines[lineIndex].Count > 0)
                 {
-                    List<float> _values = new List<float>();
-                    foreach (FieldDef _field in this.Lines[lineIndex])
+                    var _values = new List<float>();
+                    foreach (var _field in this.Lines[lineIndex])
                     {
-                        SizeF _sizeF = g.MeasureString(_field.Text, _field.Font);
+                        var _sizeF = g.MeasureString(_field.Text, _field.Font);
 
                         _values.Add(_sizeF.Height);
                     }
@@ -142,20 +139,20 @@ namespace BHApp.Printing
 
         public int DrawTable(Graphics g, RectangleF mainRect, int startByLine)
         {
-            Pen _gridLinePen1 = new Pen(Color.Black, 1);
+            var _gridLinePen1 = new Pen(Color.Black, 1);
 
-            Dictionary<int, int> _colToWidth = new Dictionary<int,int>();
+            var _colToWidth = new Dictionary<int,int>();
 
             #region . columns .
 
-            Rectangle _colRect = GParams.ToRectangle(new RectangleF(mainRect.X, mainRect.Y, 10, this.ColApear.Height));
+            var _colRect = GParams.ToRectangle(new RectangleF(mainRect.X, mainRect.Y, 10, this.ColApear.Height));
 
             Brush _colBkBrush = new SolidBrush(this.ColApear.BkColor);
             Brush _colTextBrush = new SolidBrush(this.ColApear.ForeColor);
 
-            foreach (TablePrintDef.ColumnItem _colValue in this.Columns)
+            foreach (var _colValue in this.Columns)
             {
-                bool _isLastCol = this.Columns.IndexOf(_colValue) == this.Columns.Count - 1;
+                var _isLastCol = this.Columns.IndexOf(_colValue) == this.Columns.Count - 1;
 
                 if (this.CalcWidth(mainRect.Width, _colValue.Width) <= 0)
                     continue;
@@ -172,7 +169,7 @@ namespace BHApp.Printing
                 g.FillRectangle(_colBkBrush, _colRect);
 
                 //Text
-                StringFormat _stringFormat = new StringFormat();
+                var _stringFormat = new StringFormat();
                 _stringFormat.Alignment = StringAlignment.Near;
                 _stringFormat.LineAlignment = StringAlignment.Center;
                 g.DrawString(_colValue.Text, this.ColApear.Font, _colTextBrush, _colRect, _stringFormat);
@@ -195,13 +192,13 @@ namespace BHApp.Printing
 
             #region . Zeilen .
 
-            Rectangle _lineRect = GParams.ToRectangle(new RectangleF(mainRect.X, _colRect.Bottom + 2, 50, this.ColApear.Height));
+            var _lineRect = GParams.ToRectangle(new RectangleF(mainRect.X, _colRect.Bottom + 2, 50, this.ColApear.Height));
 
             for (; startByLine < this.Lines.Count; startByLine++)
             {
-                List<TablePrintDef.FieldDef> _line = this.Lines[startByLine];
-                int _lineIndex = this.Lines.IndexOf(_line);
-                float _biggestHeightOfLine = this.GetBiggestHeightOfLine(g, _lineIndex);
+                var _line = this.Lines[startByLine];
+                var _lineIndex = this.Lines.IndexOf(_line);
+                var _biggestHeightOfLine = this.GetBiggestHeightOfLine(g, _lineIndex);
 
                 if (_biggestHeightOfLine <= 0)
                 {
@@ -215,8 +212,8 @@ namespace BHApp.Printing
                 _lineRect.Height = (int)_biggestHeightOfLine;
 
                 //Points ermitteln
-                PointF _pointStart1 = new PointF(_lineRect.X + 1, _lineRect.Y + 1);
-                PointF _pointStart2 = new PointF(_lineRect.Right, _lineRect.Bottom);
+                var _pointStart1 = new PointF(_lineRect.X + 1, _lineRect.Y + 1);
+                var _pointStart2 = new PointF(_lineRect.Right, _lineRect.Bottom);
 
                 //Prüfen ob das nächste noch passt
                 if (!mainRect.Contains(_pointStart1) || !mainRect.Contains(_pointStart2))
@@ -225,11 +222,11 @@ namespace BHApp.Printing
                 }
 
                 //Zeile durchlaufen
-                for(int _colIndex = 0; _colIndex < _line.Count; _colIndex++)
+                for(var _colIndex = 0; _colIndex < _line.Count; _colIndex++)
                 {
-                    TablePrintDef.FieldDef _field = _line[_colIndex];
-                    TablePrintDef.ColumnItem _colItem = this.Columns[_colIndex];
-                    bool _isLastCol = this.Columns.Count - 1 == _colIndex;
+                    var _field = _line[_colIndex];
+                    var _colItem = this.Columns[_colIndex];
+                    var _isLastCol = this.Columns.Count - 1 == _colIndex;
 
                     if (!_colToWidth.ContainsKey(_colIndex))
                         continue;
@@ -245,9 +242,9 @@ namespace BHApp.Printing
                     }
 
                     //Hindergrund
-                    using (Brush _ftBK = new SolidBrush(_field.BkColor))
+                    using (Brush _ftBk = new SolidBrush(_field.BkColor))
                     {
-                        g.FillRectangle(_ftBK, new Rectangle(_lineRect.X + 1, _lineRect.Y + 1, _lineRect.Width - 1, _lineRect.Height - 1));
+                        g.FillRectangle(_ftBk, new Rectangle(_lineRect.X + 1, _lineRect.Y + 1, _lineRect.Width - 1, _lineRect.Height - 1));
                     }
 
                     //Text zeichnen

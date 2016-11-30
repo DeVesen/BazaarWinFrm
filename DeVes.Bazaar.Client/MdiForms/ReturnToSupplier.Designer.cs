@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnToSupplier));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnToSupplier));
             this.m_supplierSelection = new DeVes.Bazaar.Client.CustControls.SupplierSelection();
             this.m_soldPosLv = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));

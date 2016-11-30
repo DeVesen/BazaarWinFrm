@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Drawing;
 
 namespace DeVes.Bazaar.Client.CustControls
 {
-    public class DVComboBox : ComboBox
+    public class DvComboBox : ComboBox
     {
         private Color m_orgBkColor;
-        private bool m_isMargin = false;
+        private bool m_isMargin;
         public bool IsMargin
         {
             get
@@ -33,7 +29,7 @@ namespace DeVes.Bazaar.Client.CustControls
             }
         }
 
-        public DVComboBox()
+        public DvComboBox()
         {
         }
 
@@ -45,7 +41,7 @@ namespace DeVes.Bazaar.Client.CustControls
             {
                 try
                 {
-                    DVComboBox.AutoComplete(this, e, true);
+                    DvComboBox.AutoComplete(this, e, true);
                 }
                 catch
                 {
@@ -55,9 +51,9 @@ namespace DeVes.Bazaar.Client.CustControls
         }
 
         // AutoComplete
-        public static void AutoComplete(ComboBox cb, System.Windows.Forms.KeyPressEventArgs e, bool blnLimitToList)
+        public static void AutoComplete(ComboBox cb, KeyPressEventArgs e, bool blnLimitToList)
         {
-            string strFindStr = "";
+            var _strFindStr = "";
 
             if (e.KeyChar == (char)8)
             {
@@ -69,29 +65,29 @@ namespace DeVes.Bazaar.Client.CustControls
                 }
 
                 if (cb.SelectionLength == 0)
-                    strFindStr = cb.Text.Substring(0, cb.Text.Length - 1);
+                    _strFindStr = cb.Text.Substring(0, cb.Text.Length - 1);
                 else
-                    strFindStr = cb.Text.Substring(0, cb.SelectionStart - 1);
+                    _strFindStr = cb.Text.Substring(0, cb.SelectionStart - 1);
             }
             else
             {
                 if (cb.SelectionLength == 0)
-                    strFindStr = cb.Text + e.KeyChar;
+                    _strFindStr = cb.Text + e.KeyChar;
                 else
-                    strFindStr = cb.Text.Substring(0, cb.SelectionStart) + e.KeyChar;
+                    _strFindStr = cb.Text.Substring(0, cb.SelectionStart) + e.KeyChar;
             }
 
-            int intIdx = -1;
+            var _intIdx = -1;
 
             // Search the string in the ComboBox list.
 
-            intIdx = cb.FindString(strFindStr);
+            _intIdx = cb.FindString(_strFindStr);
 
-            if (intIdx != -1)
+            if (_intIdx != -1)
             {
                 cb.SelectedText = "";
-                cb.SelectedIndex = intIdx;
-                cb.SelectionStart = strFindStr.Length;
+                cb.SelectedIndex = _intIdx;
+                cb.SelectionStart = _strFindStr.Length;
                 cb.SelectionLength = cb.Text.Length;
                 e.Handled = true;
             }

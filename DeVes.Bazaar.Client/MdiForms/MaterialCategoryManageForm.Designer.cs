@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialCategoryManageForm));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialCategoryManageForm));
             this.label1 = new System.Windows.Forms.Label();
             this.m_removeCatBtn = new System.Windows.Forms.Button();
             this.m_addCatBtn = new System.Windows.Forms.Button();
-            this.m_catLv = new DeVes.Bazaar.Client.CustControls.DVListView();
+            this.m_catLv = new DeVes.Bazaar.Client.CustControls.DvListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.m_catInputTb = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).BeginInit();
@@ -156,7 +156,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button m_removeCatBtn;
         private System.Windows.Forms.Button m_addCatBtn;
-        private DeVes.Bazaar.Client.CustControls.DVListView m_catLv;
+        private DeVes.Bazaar.Client.CustControls.DvListView m_catLv;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.TextBox m_catInputTb;
         

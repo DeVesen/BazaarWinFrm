@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.MdiForms;
 
@@ -12,7 +6,7 @@ namespace DeVes.Bazaar.Client
 {
     public partial class MainForm : Form
     {
-        private MdiClientManager m_mdiClientManager = null;
+        private MdiClientManager m_mdiClientManager;
 
 
         public MainForm()
@@ -24,7 +18,7 @@ namespace DeVes.Bazaar.Client
 
         private void OnToolStripItemClicked(object sender, EventArgs e)
         {
-            ToolStripItem _ctrl = sender as ToolStripItem;
+            var _ctrl = sender as ToolStripItem;
             if (_ctrl != null && _ctrl.Tag != null)
             {
                 this.m_mdiClientManager.RunForm(_ctrl.Tag.ToString());

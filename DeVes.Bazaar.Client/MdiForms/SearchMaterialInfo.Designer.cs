@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             this.m_supplierInfoGb = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
-            this.m_supplierNoTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_supplierNoTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.m_suplAdressTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_suplAdressTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.m_suplNameTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_suplNameTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.m_suplTitelTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_suplTitelTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.bkGroupBox1 = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
             this.m_badScanLb = new System.Windows.Forms.Label();
-            this.m_posNrToFindTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posNrToFindTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.m_positionGb = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
             this.m_returnSellBtn = new System.Windows.Forms.Button();
-            this.m_posCatTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
-            this.m_herstellerTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
-            this.m_posMinPriceTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posCatTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
+            this.m_herstellerTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
+            this.m_posMinPriceTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.m_posDescTb = new System.Windows.Forms.RichTextBox();
-            this.m_posMaxPriceTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posMaxPriceTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.m_posTitelTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posTitelTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.m_posNrTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posNrTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).BeginInit();
             this.m_supplierInfoGb.SuspendLayout();
@@ -101,7 +101,7 @@
             this.m_supplierNoTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_supplierNoTb.Name = "m_supplierNoTb";
             this.m_supplierNoTb.ReadOnly = true;
-            this.m_supplierNoTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Int32;
+            this.m_supplierNoTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Int32;
             this.m_supplierNoTb.Size = new System.Drawing.Size(83, 26);
             this.m_supplierNoTb.TabIndex = 1;
             this.m_supplierNoTb.TabStop = false;
@@ -130,7 +130,7 @@
             this.m_suplAdressTb.Multiline = true;
             this.m_suplAdressTb.Name = "m_suplAdressTb";
             this.m_suplAdressTb.ReadOnly = true;
-            this.m_suplAdressTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_suplAdressTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_suplAdressTb.Size = new System.Drawing.Size(904, 50);
             this.m_suplAdressTb.TabIndex = 7;
             this.m_suplAdressTb.TabStop = false;
@@ -159,7 +159,7 @@
             this.m_suplNameTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_suplNameTb.Name = "m_suplNameTb";
             this.m_suplNameTb.ReadOnly = true;
-            this.m_suplNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_suplNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_suplNameTb.Size = new System.Drawing.Size(688, 26);
             this.m_suplNameTb.TabIndex = 5;
             this.m_suplNameTb.TabStop = false;
@@ -185,7 +185,7 @@
             this.m_suplTitelTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_suplTitelTb.Name = "m_suplTitelTb";
             this.m_suplTitelTb.ReadOnly = true;
-            this.m_suplTitelTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_suplTitelTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_suplTitelTb.Size = new System.Drawing.Size(113, 26);
             this.m_suplTitelTb.TabIndex = 3;
             this.m_suplTitelTb.TabStop = false;
@@ -238,7 +238,7 @@
             this.m_posNrToFindTb.Location = new System.Drawing.Point(7, 26);
             this.m_posNrToFindTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posNrToFindTb.Name = "m_posNrToFindTb";
-            this.m_posNrToFindTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Int32;
+            this.m_posNrToFindTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Int32;
             this.m_posNrToFindTb.Size = new System.Drawing.Size(909, 53);
             this.m_posNrToFindTb.TabIndex = 0;
             this.m_posNrToFindTb.TabStop = false;
@@ -292,7 +292,7 @@
             this.m_posCatTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posCatTb.Name = "m_posCatTb";
             this.m_posCatTb.ReadOnly = true;
-            this.m_posCatTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_posCatTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Double;
             this.m_posCatTb.Size = new System.Drawing.Size(205, 26);
             this.m_posCatTb.TabIndex = 15;
             this.m_posCatTb.TabStop = false;
@@ -306,7 +306,7 @@
             this.m_herstellerTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_herstellerTb.Name = "m_herstellerTb";
             this.m_herstellerTb.ReadOnly = true;
-            this.m_herstellerTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_herstellerTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Double;
             this.m_herstellerTb.Size = new System.Drawing.Size(205, 26);
             this.m_herstellerTb.TabIndex = 14;
             this.m_herstellerTb.TabStop = false;
@@ -320,7 +320,7 @@
             this.m_posMinPriceTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posMinPriceTb.Name = "m_posMinPriceTb";
             this.m_posMinPriceTb.ReadOnly = true;
-            this.m_posMinPriceTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_posMinPriceTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Double;
             this.m_posMinPriceTb.Size = new System.Drawing.Size(132, 26);
             this.m_posMinPriceTb.TabIndex = 11;
             this.m_posMinPriceTb.TabStop = false;
@@ -384,7 +384,7 @@
             this.m_posMaxPriceTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posMaxPriceTb.Name = "m_posMaxPriceTb";
             this.m_posMaxPriceTb.ReadOnly = true;
-            this.m_posMaxPriceTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_posMaxPriceTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Double;
             this.m_posMaxPriceTb.Size = new System.Drawing.Size(132, 26);
             this.m_posMaxPriceTb.TabIndex = 9;
             this.m_posMaxPriceTb.TabStop = false;
@@ -422,7 +422,7 @@
             this.m_posTitelTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posTitelTb.Name = "m_posTitelTb";
             this.m_posTitelTb.ReadOnly = true;
-            this.m_posTitelTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_posTitelTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_posTitelTb.Size = new System.Drawing.Size(556, 26);
             this.m_posTitelTb.TabIndex = 3;
             this.m_posTitelTb.TabStop = false;
@@ -448,7 +448,7 @@
             this.m_posNrTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posNrTb.Name = "m_posNrTb";
             this.m_posNrTb.ReadOnly = true;
-            this.m_posNrTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Int32;
+            this.m_posNrTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Int32;
             this.m_posNrTb.Size = new System.Drawing.Size(132, 26);
             this.m_posNrTb.TabIndex = 1;
             this.m_posNrTb.TabStop = false;
@@ -495,31 +495,31 @@
         #endregion
 
         private CustControls.BkGroupBox m_supplierInfoGb;
-        public CustControls.DVTextBox m_supplierNoTb;
+        public CustControls.DvTextBox m_supplierNoTb;
         private System.Windows.Forms.Label label4;
-        private CustControls.DVTextBox m_suplAdressTb;
+        private CustControls.DvTextBox m_suplAdressTb;
         private System.Windows.Forms.Label label3;
-        private CustControls.DVTextBox m_suplNameTb;
+        private CustControls.DvTextBox m_suplNameTb;
         private System.Windows.Forms.Label label2;
-        private CustControls.DVTextBox m_suplTitelTb;
+        private CustControls.DvTextBox m_suplTitelTb;
         private System.Windows.Forms.Label label1;
         private CustControls.BkGroupBox bkGroupBox1;
-        private CustControls.DVTextBox m_posNrToFindTb;
+        private CustControls.DvTextBox m_posNrToFindTb;
         private CustControls.BkGroupBox m_positionGb;
-        private CustControls.DVTextBox m_posMinPriceTb;
+        private CustControls.DvTextBox m_posMinPriceTb;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox m_posDescTb;
-        private CustControls.DVTextBox m_posMaxPriceTb;
+        private CustControls.DvTextBox m_posMaxPriceTb;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
-        private CustControls.DVTextBox m_posTitelTb;
+        private CustControls.DvTextBox m_posTitelTb;
         private System.Windows.Forms.Label label5;
-        private CustControls.DVTextBox m_posNrTb;
+        private CustControls.DvTextBox m_posNrTb;
         private System.Windows.Forms.Label label7;
-        private CustControls.DVTextBox m_posCatTb;
-        private CustControls.DVTextBox m_herstellerTb;
+        private CustControls.DvTextBox m_posCatTb;
+        private CustControls.DvTextBox m_herstellerTb;
         private System.Windows.Forms.Label m_badScanLb;
         private System.Windows.Forms.Button m_returnSellBtn;
     }

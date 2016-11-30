@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DeVes.Bazaar.Client.SubForms
@@ -20,11 +14,11 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             if (sender == this.m_addValueBtn)
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.Yes;
+                this.DialogResult = DialogResult.Yes;
             }
             else if (sender == this.m_cancelActionBtn)
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.No;
+                this.DialogResult = DialogResult.No;
             }
             else
             {
@@ -41,8 +35,8 @@ namespace DeVes.Bazaar.Client.SubForms
         }
         public static bool RequestInput(IWin32Window owner, string titel, string label, ref string value)
         {
-            InputTextForm _form = new InputTextForm();
-            bool _result = false;
+            var _form = new InputTextForm();
+            var _result = false;
 
             _form.Text = titel;
             _form.label1.Text = label;

@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierSelection));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierSelection));
             this.m_supplierInfoGb = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
             this.m_returnedTb = new System.Windows.Forms.TextBox();
-            this.m_supplierNoTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_supplierNoTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.m_suplAdressTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_suplAdressTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.m_newSellerBtn = new System.Windows.Forms.Button();
             this.m_searchSellerBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.m_suplNameTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_suplNameTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.m_suplTitelTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_suplTitelTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.m_supplierInfoGb.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +85,7 @@
             this.m_supplierNoTb.Location = new System.Drawing.Point(12, 41);
             this.m_supplierNoTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_supplierNoTb.Name = "m_supplierNoTb";
-            this.m_supplierNoTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Int32;
+            this.m_supplierNoTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Int32;
             this.m_supplierNoTb.Size = new System.Drawing.Size(83, 26);
             this.m_supplierNoTb.TabIndex = 1;
             this.m_supplierNoTb.TabStop = false;
@@ -115,7 +115,7 @@
             this.m_suplAdressTb.Multiline = true;
             this.m_suplAdressTb.Name = "m_suplAdressTb";
             this.m_suplAdressTb.ReadOnly = true;
-            this.m_suplAdressTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_suplAdressTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_suplAdressTb.Size = new System.Drawing.Size(527, 50);
             this.m_suplAdressTb.TabIndex = 7;
             this.m_suplAdressTb.TabStop = false;
@@ -174,7 +174,7 @@
             this.m_suplNameTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_suplNameTb.Name = "m_suplNameTb";
             this.m_suplNameTb.ReadOnly = true;
-            this.m_suplNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_suplNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_suplNameTb.Size = new System.Drawing.Size(311, 26);
             this.m_suplNameTb.TabIndex = 5;
             this.m_suplNameTb.TabStop = false;
@@ -200,7 +200,7 @@
             this.m_suplTitelTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_suplTitelTb.Name = "m_suplTitelTb";
             this.m_suplTitelTb.ReadOnly = true;
-            this.m_suplTitelTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_suplTitelTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_suplTitelTb.Size = new System.Drawing.Size(113, 26);
             this.m_suplTitelTb.TabIndex = 3;
             this.m_suplTitelTb.TabStop = false;
@@ -233,16 +233,16 @@
         #endregion
 
         private BkGroupBox m_supplierInfoGb;
-        private DVTextBox m_suplAdressTb;
+        private DvTextBox m_suplAdressTb;
         private System.Windows.Forms.Button m_newSellerBtn;
         private System.Windows.Forms.Button m_searchSellerBtn;
         private System.Windows.Forms.Label label3;
-        private DVTextBox m_suplNameTb;
+        private DvTextBox m_suplNameTb;
         private System.Windows.Forms.Label label2;
-        private DVTextBox m_suplTitelTb;
+        private DvTextBox m_suplTitelTb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        public DVTextBox m_supplierNoTb;
+        public DvTextBox m_supplierNoTb;
         private System.Windows.Forms.TextBox m_returnedTb;
     }
 }

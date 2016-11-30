@@ -31,7 +31,7 @@
             this.titelBarCtrl1 = new DeVes.Bazaar.Server.CustControls.TitelBarCtrl();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dvTextBox2 = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.dvTextBox2 = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -75,7 +75,7 @@
             this.dvTextBox2.IsMargin = false;
             this.dvTextBox2.Location = new System.Drawing.Point(16, 134);
             this.dvTextBox2.Name = "dvTextBox2";
-            this.dvTextBox2.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.String;
+            this.dvTextBox2.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.String;
             this.dvTextBox2.Size = new System.Drawing.Size(256, 20);
             this.dvTextBox2.TabIndex = 2;
             this.dvTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -116,7 +116,7 @@
         private CustControls.TitelBarCtrl titelBarCtrl1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private CustControls.DVTextBox dvTextBox2;
+        private CustControls.DvTextBox dvTextBox2;
         private System.Windows.Forms.Label label2;
     }
 }

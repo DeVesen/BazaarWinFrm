@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
+using DeVes.Bazaar.Data.Biz;
 
 namespace DeVes.Bazaar.Data.Tables
 {
@@ -35,8 +33,8 @@ namespace DeVes.Bazaar.Data.Tables
         {
             if (id.HasValue)
             {
-                DataRow[] _rows = this.Select("Id='" + id.ToString() + "'");
-                if (_rows != null && _rows.Length == 1)
+                var _rows = this.Select("Id='" + id.ToString() + "'");
+                if (_rows.Length == 1)
                     return _rows[0];
             }
             return null;
@@ -45,8 +43,8 @@ namespace DeVes.Bazaar.Data.Tables
         {
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(name.Trim()))
             {
-                DataRow[] _rows = this.Select("LastName='" + name + "'");
-                if (_rows != null && _rows.Length == 1)
+                var _rows = this.Select("LastName='" + name + "'");
+                if (_rows.Length == 1)
                     return _rows[0];
             }
             return null;
@@ -55,8 +53,8 @@ namespace DeVes.Bazaar.Data.Tables
         {
             if (no > 0)
             {
-                DataRow[] _rows = this.Select("SupplierNo=" + no.ToString());
-                if (_rows != null && _rows.Length == 1)
+                var _rows = this.Select("SupplierNo=" + no.ToString());
+                if (_rows.Length == 1)
                     return _rows[0];
             }
             return null;
@@ -64,12 +62,13 @@ namespace DeVes.Bazaar.Data.Tables
 
         public int GetNextSupplierNo()
         {
-            int _result = 1;
-            DataRow[] _rows = this.Select(string.Empty, "SupplierNo desc");
+            var _result = 1;
+            var _rows = this.Select(string.Empty, "SupplierNo desc");
 
-            if (_rows != null && _rows.Length > 0)
+            if (_rows.Length > 0)
             {
-                _result = DeVes.Bazaar.Data.Biz.BizBase.ToInt32(_rows[0]["SupplierNo"]).Value + 1;
+                var _toInt = BizBase.ToInt32(_rows[0]["SupplierNo"]);
+                _result = (_toInt ?? 0) + 1;
             }
 
             return _result;

@@ -29,49 +29,49 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.m_notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.m_startUpTimer = new System.Windows.Forms.Timer(this.components);
             this.bkGroupBox4 = new DeVes.Bazaar.Server.CustControls.BkGroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.bkGroupBox3 = new DeVes.Bazaar.Server.CustControls.BkGroupBox();
-            this.m_licenseTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_licenseTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.m_lizPb = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.m_pcCodeTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_pcCodeTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.bkGroupBox1 = new DeVes.Bazaar.Server.CustControls.BkGroupBox();
             this.m_conStatePb = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.m_ownPort = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_ownPort = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.m_ipListLb = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.m_machineNameTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_machineNameTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.bkGroupBox2 = new DeVes.Bazaar.Server.CustControls.BkGroupBox();
-            this.m_lieferGewinnTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_lieferGewinnTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.m_eigenBetragTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_eigenBetragTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.m_einnahmenTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_einnahmenTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.m_returnPosCountTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_returnPosCountTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.m_soldPosCountTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_soldPosCountTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.m_notSoldPosCountTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_notSoldPosCountTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.m_numSuplTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_numSuplTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.m_paramsGb = new DeVes.Bazaar.Server.CustControls.BkGroupBox();
             this.m_printPrevCb = new System.Windows.Forms.CheckBox();
             this.m_saveBtn = new System.Windows.Forms.Button();
-            this.m_infoMsgPosPrintTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_infoMsgPosPrintTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.m_prozGewinTb = new DeVes.Bazaar.Server.CustControls.DVTextBox();
+            this.m_prozGewinTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.titelBarCtrl1 = new DeVes.Bazaar.Server.CustControls.TitelBarCtrl();
             this.button5 = new System.Windows.Forms.Button();
@@ -152,7 +152,7 @@
             this.m_licenseTb.Location = new System.Drawing.Point(190, 46);
             this.m_licenseTb.Multiline = true;
             this.m_licenseTb.Name = "m_licenseTb";
-            this.m_licenseTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.String;
+            this.m_licenseTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.String;
             this.m_licenseTb.Size = new System.Drawing.Size(210, 63);
             this.m_licenseTb.TabIndex = 12;
             // 
@@ -198,7 +198,7 @@
             this.m_pcCodeTb.Location = new System.Drawing.Point(12, 46);
             this.m_pcCodeTb.Name = "m_pcCodeTb";
             this.m_pcCodeTb.ReadOnly = true;
-            this.m_pcCodeTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.String;
+            this.m_pcCodeTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.String;
             this.m_pcCodeTb.Size = new System.Drawing.Size(151, 22);
             this.m_pcCodeTb.TabIndex = 3;
             // 
@@ -261,7 +261,7 @@
             this.m_ownPort.IsMargin = false;
             this.m_ownPort.Location = new System.Drawing.Point(647, 46);
             this.m_ownPort.Name = "m_ownPort";
-            this.m_ownPort.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Int32;
+            this.m_ownPort.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Int32;
             this.m_ownPort.Size = new System.Drawing.Size(151, 22);
             this.m_ownPort.TabIndex = 7;
             // 
@@ -301,7 +301,7 @@
             this.m_machineNameTb.Location = new System.Drawing.Point(12, 46);
             this.m_machineNameTb.Name = "m_machineNameTb";
             this.m_machineNameTb.ReadOnly = true;
-            this.m_machineNameTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.String;
+            this.m_machineNameTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.String;
             this.m_machineNameTb.Size = new System.Drawing.Size(151, 22);
             this.m_machineNameTb.TabIndex = 3;
             // 
@@ -346,7 +346,7 @@
             this.m_lieferGewinnTb.Location = new System.Drawing.Point(274, 157);
             this.m_lieferGewinnTb.Name = "m_lieferGewinnTb";
             this.m_lieferGewinnTb.ReadOnly = true;
-            this.m_lieferGewinnTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_lieferGewinnTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Double;
             this.m_lieferGewinnTb.Size = new System.Drawing.Size(113, 22);
             this.m_lieferGewinnTb.TabIndex = 15;
             this.m_lieferGewinnTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -368,7 +368,7 @@
             this.m_eigenBetragTb.Location = new System.Drawing.Point(145, 157);
             this.m_eigenBetragTb.Name = "m_eigenBetragTb";
             this.m_eigenBetragTb.ReadOnly = true;
-            this.m_eigenBetragTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_eigenBetragTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Double;
             this.m_eigenBetragTb.Size = new System.Drawing.Size(113, 22);
             this.m_eigenBetragTb.TabIndex = 13;
             this.m_eigenBetragTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -390,7 +390,7 @@
             this.m_einnahmenTb.Location = new System.Drawing.Point(17, 157);
             this.m_einnahmenTb.Name = "m_einnahmenTb";
             this.m_einnahmenTb.ReadOnly = true;
-            this.m_einnahmenTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_einnahmenTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Double;
             this.m_einnahmenTb.Size = new System.Drawing.Size(113, 22);
             this.m_einnahmenTb.TabIndex = 11;
             this.m_einnahmenTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -412,7 +412,7 @@
             this.m_returnPosCountTb.Location = new System.Drawing.Point(274, 100);
             this.m_returnPosCountTb.Name = "m_returnPosCountTb";
             this.m_returnPosCountTb.ReadOnly = true;
-            this.m_returnPosCountTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_returnPosCountTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Double;
             this.m_returnPosCountTb.Size = new System.Drawing.Size(113, 22);
             this.m_returnPosCountTb.TabIndex = 9;
             this.m_returnPosCountTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -434,7 +434,7 @@
             this.m_soldPosCountTb.Location = new System.Drawing.Point(145, 100);
             this.m_soldPosCountTb.Name = "m_soldPosCountTb";
             this.m_soldPosCountTb.ReadOnly = true;
-            this.m_soldPosCountTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_soldPosCountTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Double;
             this.m_soldPosCountTb.Size = new System.Drawing.Size(113, 22);
             this.m_soldPosCountTb.TabIndex = 7;
             this.m_soldPosCountTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -456,7 +456,7 @@
             this.m_notSoldPosCountTb.Location = new System.Drawing.Point(17, 100);
             this.m_notSoldPosCountTb.Name = "m_notSoldPosCountTb";
             this.m_notSoldPosCountTb.ReadOnly = true;
-            this.m_notSoldPosCountTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_notSoldPosCountTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Double;
             this.m_notSoldPosCountTb.Size = new System.Drawing.Size(113, 22);
             this.m_notSoldPosCountTb.TabIndex = 5;
             this.m_notSoldPosCountTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -478,7 +478,7 @@
             this.m_numSuplTb.Location = new System.Drawing.Point(17, 49);
             this.m_numSuplTb.Name = "m_numSuplTb";
             this.m_numSuplTb.ReadOnly = true;
-            this.m_numSuplTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_numSuplTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Double;
             this.m_numSuplTb.Size = new System.Drawing.Size(74, 22);
             this.m_numSuplTb.TabIndex = 3;
             this.m_numSuplTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -542,7 +542,7 @@
             this.m_infoMsgPosPrintTb.Location = new System.Drawing.Point(12, 100);
             this.m_infoMsgPosPrintTb.Multiline = true;
             this.m_infoMsgPosPrintTb.Name = "m_infoMsgPosPrintTb";
-            this.m_infoMsgPosPrintTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.String;
+            this.m_infoMsgPosPrintTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.String;
             this.m_infoMsgPosPrintTb.Size = new System.Drawing.Size(373, 79);
             this.m_infoMsgPosPrintTb.TabIndex = 3;
             // 
@@ -562,7 +562,7 @@
             this.m_prozGewinTb.IsMargin = false;
             this.m_prozGewinTb.Location = new System.Drawing.Point(12, 49);
             this.m_prozGewinTb.Name = "m_prozGewinTb";
-            this.m_prozGewinTb.ResultType = DeVes.Bazaar.Server.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_prozGewinTb.ResultType = DeVes.Bazaar.Server.CustControls.DvTextBox.ResultTypes.Double;
             this.m_prozGewinTb.Size = new System.Drawing.Size(151, 22);
             this.m_prozGewinTb.TabIndex = 1;
             // 
@@ -639,39 +639,39 @@
         private CustControls.BkGroupBox m_paramsGb;
         private System.Windows.Forms.Label label1;
         private CustControls.BkGroupBox bkGroupBox2;
-        private CustControls.DVTextBox m_infoMsgPosPrintTb;
+        private CustControls.DvTextBox m_infoMsgPosPrintTb;
         private System.Windows.Forms.Label label2;
-        private CustControls.DVTextBox m_prozGewinTb;
+        private CustControls.DvTextBox m_prozGewinTb;
         private System.Windows.Forms.Button m_saveBtn;
-        private CustControls.DVTextBox m_numSuplTb;
+        private CustControls.DvTextBox m_numSuplTb;
         private System.Windows.Forms.Label label3;
-        private CustControls.DVTextBox m_returnPosCountTb;
+        private CustControls.DvTextBox m_returnPosCountTb;
         private System.Windows.Forms.Label label6;
-        private CustControls.DVTextBox m_soldPosCountTb;
+        private CustControls.DvTextBox m_soldPosCountTb;
         private System.Windows.Forms.Label label5;
-        private CustControls.DVTextBox m_notSoldPosCountTb;
+        private CustControls.DvTextBox m_notSoldPosCountTb;
         private System.Windows.Forms.Label label4;
-        private CustControls.DVTextBox m_lieferGewinnTb;
+        private CustControls.DvTextBox m_lieferGewinnTb;
         private System.Windows.Forms.Label label9;
-        private CustControls.DVTextBox m_eigenBetragTb;
+        private CustControls.DvTextBox m_eigenBetragTb;
         private System.Windows.Forms.Label label8;
-        private CustControls.DVTextBox m_einnahmenTb;
+        private CustControls.DvTextBox m_einnahmenTb;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox m_printPrevCb;
         private CustControls.BkGroupBox bkGroupBox1;
-        private CustControls.DVTextBox m_machineNameTb;
+        private CustControls.DvTextBox m_machineNameTb;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ListBox m_ipListLb;
         private System.Windows.Forms.Button button1;
-        private CustControls.DVTextBox m_ownPort;
+        private CustControls.DvTextBox m_ownPort;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox m_conStatePb;
         private CustControls.BkGroupBox bkGroupBox3;
         private System.Windows.Forms.Button button2;
-        private CustControls.DVTextBox m_pcCodeTb;
+        private CustControls.DvTextBox m_pcCodeTb;
         private System.Windows.Forms.Label label15;
-        private CustControls.DVTextBox m_licenseTb;
+        private CustControls.DvTextBox m_licenseTb;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox m_lizPb;
         private CustControls.BkGroupBox bkGroupBox4;

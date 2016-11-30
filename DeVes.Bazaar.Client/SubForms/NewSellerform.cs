@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 
@@ -19,7 +13,7 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private bool CheckIfValid()
         {
-            bool _result = true;
+            var _result = true;
 
             _result = (_result && !string.IsNullOrEmpty(this.m_sellerTitelCb.Text));
             _result = _result && (!string.IsNullOrEmpty(this.m_sellerNameTb.Text) || !this.m_sellerNameTb.IsMargin);
@@ -38,14 +32,14 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             if (this.CheckIfValid())
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
 
         private void m_cancelBtn_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -54,7 +48,7 @@ namespace DeVes.Bazaar.Client.SubForms
 
         public static BizSupplierer EnterNewSupplier(IWin32Window owner)
         {
-            NewSellerform _frm = new NewSellerform();
+            var _frm = new NewSellerform();
             BizSupplierer _result = null;
 
             if (_frm.ShowDialog(owner) == DialogResult.OK)

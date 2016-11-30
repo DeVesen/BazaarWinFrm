@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace DeVes.Bazaar.Data.Tables
@@ -21,8 +18,8 @@ namespace DeVes.Bazaar.Data.Tables
         {
             if (id.HasValue)
             {
-                DataRow[] _rows = this.Select("Id='" + id.ToString() + "'");
-                if (_rows != null && _rows.Length == 1)
+                var _rows = this.Select("Id='" + id.ToString() + "'");
+                if (_rows.Length == 1)
                     return _rows[0];
             }
             return null;
@@ -30,7 +27,7 @@ namespace DeVes.Bazaar.Data.Tables
 
         public void AddRowWithoutSave(Guid id, string designation)
         {
-            DataRow _newRow = this.NewRow();
+            var _newRow = this.NewRow();
 
             _newRow["Id"] = id.ToString();
             _newRow["Designation"] = designation;

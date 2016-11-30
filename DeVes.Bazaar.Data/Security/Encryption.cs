@@ -14,68 +14,68 @@ namespace DeVes.Bazaar.Data.Security
         /// Encrypts the string.
         /// </summary>
         /// <param name="clearText">The clear text.</param>
-        /// <param name="Key">The key.</param>
-        /// <param name="IV">The IV.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="iv">The IV.</param>
         /// <returns></returns>
-        private static byte[] EncryptString(byte[] clearText, byte[] Key, byte[] IV)
+        private static byte[] EncryptString(byte[] clearText, byte[] key, byte[] iv)
         {
-            MemoryStream ms = new MemoryStream();
-            Rijndael alg = Rijndael.Create();
-            alg.Key = Key;
-            alg.IV = IV;
-            CryptoStream cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write);
-            cs.Write(clearText, 0, clearText.Length);
-            cs.Close();
-            byte[] encryptedData = ms.ToArray();
-            return encryptedData;
+            var _ms = new MemoryStream();
+            var _alg = Rijndael.Create();
+            _alg.Key = key;
+            _alg.IV = iv;
+            var _cs = new CryptoStream(_ms, _alg.CreateEncryptor(), CryptoStreamMode.Write);
+            _cs.Write(clearText, 0, clearText.Length);
+            _cs.Close();
+            var _encryptedData = _ms.ToArray();
+            return _encryptedData;
         }
 
         /// <summary>
         /// Encrypts the string.
         /// </summary>
         /// <param name="clearText">The clear text.</param>
-        /// <param name="Password">The password.</param>
+        /// <param name="password">The password.</param>
         /// <returns></returns>
-        public static string EncryptString(string clearText, string Password)
+        public static string EncryptString(string clearText, string password)
         {
-            byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(clearText);
-            PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-            byte[] encryptedData = EncryptString(clearBytes, pdb.GetBytes(32), pdb.GetBytes(16));
-            return Convert.ToBase64String(encryptedData);
+            var _clearBytes = System.Text.Encoding.Unicode.GetBytes(clearText);
+            var _pdb = new PasswordDeriveBytes(password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+            var _encryptedData = EncryptString(_clearBytes, _pdb.GetBytes(32), _pdb.GetBytes(16));
+            return Convert.ToBase64String(_encryptedData);
         }
 
         /// <summary>
         /// Decrypts the string.
         /// </summary>
         /// <param name="cipherData">The cipher data.</param>
-        /// <param name="Key">The key.</param>
-        /// <param name="IV">The IV.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="iv">The IV.</param>
         /// <returns></returns>
-        private static byte[] DecryptString(byte[] cipherData, byte[] Key, byte[] IV)
+        private static byte[] DecryptString(byte[] cipherData, byte[] key, byte[] iv)
         {
-            MemoryStream ms = new MemoryStream();
-            Rijndael alg = Rijndael.Create();
-            alg.Key = Key;
-            alg.IV = IV;
-            CryptoStream cs = new CryptoStream(ms, alg.CreateDecryptor(), CryptoStreamMode.Write);
-            cs.Write(cipherData, 0, cipherData.Length);
-            cs.Close();
-            byte[] decryptedData = ms.ToArray();
-            return decryptedData;
+            var _ms = new MemoryStream();
+            var _alg = Rijndael.Create();
+            _alg.Key = key;
+            _alg.IV = iv;
+            var _cs = new CryptoStream(_ms, _alg.CreateDecryptor(), CryptoStreamMode.Write);
+            _cs.Write(cipherData, 0, cipherData.Length);
+            _cs.Close();
+            var _decryptedData = _ms.ToArray();
+            return _decryptedData;
         }
 
         /// <summary>
         /// Decrypts the string.
         /// </summary>
         /// <param name="cipherText">The cipher text.</param>
-        /// <param name="Password">The password.</param>
+        /// <param name="password">The password.</param>
         /// <returns></returns>
-        public static string DecryptString(string cipherText, string Password)
+        public static string DecryptString(string cipherText, string password)
         {
-            byte[] cipherBytes = Convert.FromBase64String(cipherText);
-            PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-            byte[] decryptedData = DecryptString(cipherBytes, pdb.GetBytes(32), pdb.GetBytes(16));
-            return System.Text.Encoding.Unicode.GetString(decryptedData);
+            var _cipherBytes = Convert.FromBase64String(cipherText);
+            var _pdb = new PasswordDeriveBytes(password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+            var _decryptedData = DecryptString(_cipherBytes, _pdb.GetBytes(32), _pdb.GetBytes(16));
+            return System.Text.Encoding.Unicode.GetString(_decryptedData);
         }
     }
 

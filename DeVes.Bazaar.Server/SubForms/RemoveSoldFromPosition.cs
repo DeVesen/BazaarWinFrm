@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Data;
-using System.Media;
 
 namespace DeVes.Bazaar.Server.SubForms
 {
     public partial class RemoveSoldFromPosition : Form
     {
-        [System.Runtime.InteropServices.DllImport("kernel32 .dll")]
-        private static extern bool Beep(int freq, int dur);
-
         public enum FrmTypes
         {
             RemoveSuplPos,
@@ -36,16 +26,16 @@ namespace DeVes.Bazaar.Server.SubForms
             {
                 case FrmTypes.RemoveSuplPos:
                     this.titelBarCtrl1.TitelText = "Verkäufer zurücksetzten:";
-                    this.label2.Text = "Verkäufernummer:";
+                    this.label2.Text = @"Verkäufernummer:";
                     break;
 
                 case FrmTypes.RemoveSold:
                     this.titelBarCtrl1.TitelText = "Verkauf zurücksetzten:";
-                    this.label2.Text = "Positionsnummer:";
+                    this.label2.Text = @"Positionsnummer:";
                     break;
                 case FrmTypes.RemoveReturned:
                     this.titelBarCtrl1.TitelText = "Rückgabe zurücksetzten:";
-                    this.label2.Text = "Positionsnummer:";
+                    this.label2.Text = @"Positionsnummer:";
                     break;
             }
         }
@@ -78,17 +68,16 @@ namespace DeVes.Bazaar.Server.SubForms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         public static void AskForNumber(IWin32Window owner, FrmTypes frmType)
         {
-            RemoveSoldFromPosition _frm = new RemoveSoldFromPosition(frmType);
+            var _frm = new RemoveSoldFromPosition(frmType);
 
             _frm.ShowDialog(owner);
             _frm.Dispose();
-            _frm = null;
         }
 
         private void dvTextBox2_KeyDown(object sender, KeyEventArgs e)

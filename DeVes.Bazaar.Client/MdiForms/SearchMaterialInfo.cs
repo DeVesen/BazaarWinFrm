@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 
@@ -12,7 +7,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 {
     public partial class SearchMaterialInfo : BaseMdiForm
     {
-        private Timer m_initFocusTimer = null;
+        private Timer m_initFocusTimer;
 
         public SearchMaterialInfo()
         {
@@ -139,8 +134,8 @@ namespace DeVes.Bazaar.Client.MdiForms
                     return;
                 }
 
-                int _positionNo = GParams.ToInt32(this.m_posNrToFindTb.Text).Value;
-                BizPosition _posToSell = GParams.Instance.BasarCom.PositionGet(_positionNo, true);
+                var _positionNo = GParams.ToInt32(this.m_posNrToFindTb.Text).Value;
+                var _posToSell = GParams.Instance.BasarCom.PositionGet(_positionNo, true);
 
                 if (_posToSell == null)
                 {
@@ -154,7 +149,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
                 SetGoodMsg("Position gefunden...");
 
-                BizSupplierer _supplierBiz = GParams.Instance.BasarCom.SupplierGet_ByID(_posToSell.SupplierId);
+                var _supplierBiz = GParams.Instance.BasarCom.SupplierGet_ByID(_posToSell.SupplierId);
 
                 if (_supplierBiz == null)
                 {
@@ -175,7 +170,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         private void m_returnSellBtn_Click(object sender, EventArgs e)
         {
-            BizPosition _position = this.m_returnSellBtn.Tag as BizPosition;
+            var _position = this.m_returnSellBtn.Tag as BizPosition;
 
             if (_position != null && _position.SoldAt.HasValue && !_position.ReturnedToSupplierAt.HasValue)
             {
@@ -183,8 +178,8 @@ namespace DeVes.Bazaar.Client.MdiForms
                 _position.SoldFor = null;
 
 
-                bool _result = false;
-                bool _resultIsSep = false;
+                var _result = false;
+                var _resultIsSep = false;
                 GParams.Instance.BasarCom.PositionUpdate(_position, out _result, out _resultIsSep);
 
                 if (_result && _resultIsSep)

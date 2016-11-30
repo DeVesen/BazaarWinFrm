@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
+﻿using System.Data;
 
 namespace DeVes.Bazaar.Data.Tables
 {
@@ -19,9 +15,9 @@ namespace DeVes.Bazaar.Data.Tables
 
         public static T OpenDataTable<T>(string openFromFolder) where T : BasicTable, new()
         {
-            T _result = new T();
+            var _result = new T();
 
-            string _readPath = System.IO.Path.Combine(openFromFolder, _result.GetXmlFileName());
+            var _readPath = System.IO.Path.Combine(openFromFolder, _result.GetXmlFileName());
 
             if (System.IO.File.Exists(_readPath))
             {
@@ -41,7 +37,7 @@ namespace DeVes.Bazaar.Data.Tables
 
         public void SaveDataTable(string folderSaveTo)
         {
-            string _finalPath = System.IO.Path.Combine(folderSaveTo, this.GetXmlFileName());
+            var _finalPath = System.IO.Path.Combine(folderSaveTo, this.GetXmlFileName());
             this.WriteXml(_finalPath);
         }
     }

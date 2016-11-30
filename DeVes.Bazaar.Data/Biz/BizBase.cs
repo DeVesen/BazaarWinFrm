@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.Serialization;
 using System.Data;
 
@@ -35,7 +32,7 @@ namespace DeVes.Bazaar.Data.Biz
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -47,7 +44,7 @@ namespace DeVes.Bazaar.Data.Biz
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -59,7 +56,7 @@ namespace DeVes.Bazaar.Data.Biz
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -71,7 +68,7 @@ namespace DeVes.Bazaar.Data.Biz
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -83,7 +80,7 @@ namespace DeVes.Bazaar.Data.Biz
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -95,7 +92,7 @@ namespace DeVes.Bazaar.Data.Biz
             }
             catch
             {
-
+                // ignored
             }
             return null;
         }
@@ -121,7 +118,7 @@ namespace DeVes.Bazaar.Data.Biz
                 }
                 catch
                 {
-
+                    // ignored
                 }
             }
         }
@@ -146,7 +143,7 @@ namespace DeVes.Bazaar.Data.Biz
                 }
                 catch
                 {
-
+                    // ignored
                 }
             }
         }
@@ -170,7 +167,7 @@ namespace DeVes.Bazaar.Data.Biz
                 }
                 catch
                 {
-
+                    // ignored
                 }
             }
         }
@@ -195,7 +192,7 @@ namespace DeVes.Bazaar.Data.Biz
                 }
                 catch
                 {
-
+                    // ignored
                 }
             }
         }
@@ -220,7 +217,7 @@ namespace DeVes.Bazaar.Data.Biz
                 }
                 catch
                 {
-
+                    // ignored
                 }
             }
         }
@@ -245,7 +242,7 @@ namespace DeVes.Bazaar.Data.Biz
                 }
                 catch
                 {
-
+                    // ignored
                 }
             }
         }

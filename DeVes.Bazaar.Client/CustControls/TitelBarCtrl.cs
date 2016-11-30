@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
@@ -43,8 +38,8 @@ namespace DeVes.Bazaar.Client.CustControls
 
             using(Brush _textBrush = new SolidBrush(Color.Black))
             {
-                RectangleF _rF = new RectangleF(60, 0, this.Bounds.Width - 100, this.Bounds.Height);
-                StringFormat _sf = new StringFormat();
+                var _rF = new RectangleF(60, 0, this.Bounds.Width - 100, this.Bounds.Height);
+                var _sf = new StringFormat();
                 //_sf.Alignment = StringAlignment.Center;
                 _sf.LineAlignment = StringAlignment.Center;
                 e.Graphics.DrawString(this.TitelText, this.Font, _textBrush, _rF, _sf);
@@ -75,14 +70,14 @@ namespace DeVes.Bazaar.Client.CustControls
             }
             else
             {
-                float _F_splitHeight = (float)splitHeight;
-                float _F_SizeHeight = (float)size.Height;
-                float _prozSplit = (_F_splitHeight * 100) / _F_SizeHeight;
-                float _point = (1F * _prozSplit) / 100F;
+                var _fSplitHeight = (float)splitHeight;
+                var _fSizeHeight = (float)size.Height;
+                var _prozSplit = (_fSplitHeight * 100) / _fSizeHeight;
+                var _point = (1F * _prozSplit) / 100F;
 
-                using (LinearGradientBrush _pthGrBrush = new LinearGradientBrush(size, backColor1, backColor2, LinearGradientMode.Vertical))
+                using (var _pthGrBrush = new LinearGradientBrush(size, backColor1, backColor2, LinearGradientMode.Vertical))
                 {
-                    ColorBlend _cb = new ColorBlend();
+                    var _cb = new ColorBlend();
                     _cb.Colors = new Color[] { backColor1, backColor2, backColor1 };
                     _cb.Positions = new float[] { 0, _point, 1F };
 

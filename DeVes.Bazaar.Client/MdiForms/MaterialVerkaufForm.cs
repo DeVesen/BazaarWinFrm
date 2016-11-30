@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
-using GP.UI.Mobile2.AppParameter;
 using BHApp.Printing;
 
 namespace DeVes.Bazaar.Client.MdiForms
 {
     public partial class MaterialVerkaufForm : BaseMdiForm
     {
-        public class PositionLVI : ListViewItem
+        public class PositionLvi : ListViewItem
         {
             public BizPosition DataObj { get; set; }
 
-            public PositionLVI(BizPosition position)
+            public PositionLvi(BizPosition position)
             {
                 this.DataObj = position;
 
@@ -96,14 +92,14 @@ namespace DeVes.Bazaar.Client.MdiForms
                         if (!string.IsNullOrEmpty(this.m_positonNoTb.Text) &&
                             GParams.ToInt32(this.m_positonNoTb.Text).HasValue)
                         {
-                            int _positionNo = GParams.ToInt32(this.m_positonNoTb.Text).Value;
+                            var _positionNo = GParams.ToInt32(this.m_positonNoTb.Text).Value;
 
                             if (!this.IsPositionAlreadyInList(_positionNo))
                             {
-                                BizPosition _posToSell =
+                                var _posToSell =
                                     GParams.Instance.BasarCom.PositionGet(_positionNo, true);
 
-                                bool _isSold = _posToSell != null && _posToSell.SoldAt.HasValue && _posToSell.SoldAtSpecified;
+                                var _isSold = _posToSell != null && _posToSell.SoldAt.HasValue && _posToSell.SoldAtSpecified;
 
                                 if (_posToSell != null && !_isSold)
                                 {
@@ -143,9 +139,9 @@ namespace DeVes.Bazaar.Client.MdiForms
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception _ex)
                     {
-                        this.SetBadMsg(ex.Message);
+                        this.SetBadMsg(_ex.Message);
                     }
                 }
             }
@@ -175,7 +171,7 @@ namespace DeVes.Bazaar.Client.MdiForms
                 return;
             }
 
-            this.m_matlPosLv.Items.Add(new PositionLVI(this.ActualToSellPosition));
+            this.m_matlPosLv.Items.Add(new PositionLvi(this.ActualToSellPosition));
             this.SetTotalMoneySum();
 
             this.PlayConfirmedSound();
@@ -206,12 +202,12 @@ namespace DeVes.Bazaar.Client.MdiForms
             if (this.m_matlPosLv.Items.Count <= 0)
                 return;
 
-            Dictionary<int, ListViewItem> _posNoToLine = new Dictionary<int, ListViewItem>();
-            List<BizPosition> _positionsToConfirm = new List<BizPosition>();
+            var _posNoToLine = new Dictionary<int, ListViewItem>();
+            var _positionsToConfirm = new List<BizPosition>();
 
             foreach (ListViewItem _lvItem in this.m_matlPosLv.Items)
             {
-                PositionLVI _posItem = _lvItem as PositionLVI;
+                var _posItem = _lvItem as PositionLvi;
                 if (_posItem != null)
                 {
                     _posNoToLine[_posItem.DataObj.PositionNo] = _posItem;
@@ -224,15 +220,15 @@ namespace DeVes.Bazaar.Client.MdiForms
             {
                 try
                 {
-                    PositionSellResult _sellResult = GParams.Instance.BasarCom.PositionSell(_positionsToConfirm.ToArray());
+                    var _sellResult = GParams.Instance.BasarCom.PositionSell(_positionsToConfirm.ToArray());
 
                     if (_sellResult != null && _sellResult.NotSoldPosReason != null && _sellResult.NotSoldPosReason.Length > 0)
                     {
-                        int _notFound = 0;
-                        int _meanSold = 0;
-                        int _meanReturned = 0;
+                        var _notFound = 0;
+                        var _meanSold = 0;
+                        var _meanReturned = 0;
 
-                        foreach (PositionSellResultNotSoldPosReasonTypes _reasons in _sellResult.NotSoldPosReason)
+                        foreach (var _reasons in _sellResult.NotSoldPosReason)
                         {
                             switch (_reasons)
                             {
@@ -250,7 +246,7 @@ namespace DeVes.Bazaar.Client.MdiForms
                             }
                         }
 
-                        StringBuilder _sb = new StringBuilder();
+                        var _sb = new StringBuilder();
                         _sb.AppendFormat("{0} \t nicht gefunden\n", _notFound);
                         _sb.AppendFormat("{0} \t zwischenzeitlich verkauft\n", _meanSold);
                         _sb.AppendFormat("{0} \t zwischenzeitlich zurückgegeben\n", _meanReturned);
@@ -262,15 +258,15 @@ namespace DeVes.Bazaar.Client.MdiForms
                     {
                         #region . Drucken .
 
-                        double _priceSum = 0.0;
-                        TablePrintDef _tableInfo = new TablePrintDef();
+                        var _priceSum = 0.0;
+                        var _tableInfo = new TablePrintDef();
                         _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Pos Nr.", 10.60F));
                         _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Kategorie", 15.00F));
                         _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Hersteller", 15.00F));
                         _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Bezeichnung", 47.50F));
                         _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Preis", 11.90F));
 
-                        foreach (BizPosition _soldPosition in _sellResult.SoldPositions)
+                        foreach (var _soldPosition in _sellResult.SoldPositions)
                         {
                             if (_posNoToLine.ContainsKey(_soldPosition.PositionNo))
                             {
@@ -287,8 +283,8 @@ namespace DeVes.Bazaar.Client.MdiForms
                                 _priceSum += _soldPosition.SoldFor.Value;
                         }
 
-                        TablePrintDef.FieldDef _sumTextObj = new TablePrintDef.FieldDef("Summe:");
-                        TablePrintDef.FieldDef _sumValueObj = new TablePrintDef.FieldDef(_priceSum.ToString());
+                        var _sumTextObj = new TablePrintDef.FieldDef("Summe:");
+                        var _sumValueObj = new TablePrintDef.FieldDef(_priceSum.ToString());
                         _sumTextObj.Font = new Font("ARIAL", 13, FontStyle.Bold | FontStyle.Underline);
                         _sumValueObj.Font = new Font("ARIAL", 13, FontStyle.Bold | FontStyle.Underline);
                         _tableInfo.AddLine(_sumTextObj,
@@ -298,20 +294,20 @@ namespace DeVes.Bazaar.Client.MdiForms
                                             _sumValueObj);
 
 
-                        PrintDocVerkauf _printDocument = new PrintDocVerkauf(_tableInfo);
+                        var _printDocument = new PrintDocVerkauf(_tableInfo);
                         _printDocument.DefaultPageSettings.Landscape = true;
                         _printDocument.PrinterSettings.DefaultPageSettings.Landscape = true;
 
                         if (GParams.Instance.SystemParameters.PrintPev)
                         {
-                            System.Windows.Forms.PrintPreviewDialog _printPrevDlg = new System.Windows.Forms.PrintPreviewDialog();
+                            var _printPrevDlg = new PrintPreviewDialog();
                             _printPrevDlg.Document = _printDocument;
                             _printPrevDlg.ShowDialog();
                         }
                         else
                         {
-                            PrintDialog _printerFrm = new PrintDialog();
-                            if (_printerFrm.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                            var _printerFrm = new PrintDialog();
+                            if (_printerFrm.ShowDialog(this) == DialogResult.OK)
                             {
                                 _printDocument.PrinterSettings = _printerFrm.PrinterSettings;
                                 _printDocument.Print();
@@ -321,9 +317,9 @@ namespace DeVes.Bazaar.Client.MdiForms
                         #endregion . Drucken .
                     }
                 }
-                catch(Exception ex)
+                catch(Exception _ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(_ex.Message);
                 }
             }
 
@@ -398,7 +394,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
             foreach (ListViewItem _lvItem in this.m_matlPosLv.Items)
             {
-                PositionLVI _posItem = _lvItem as PositionLVI;
+                var _posItem = _lvItem as PositionLvi;
                 if (_posItem != null)
                 {
                     _qty += _posItem.DataObj.SoldFor.Value;
@@ -414,7 +410,7 @@ namespace DeVes.Bazaar.Client.MdiForms
         {
             foreach (ListViewItem _lvItem in this.m_matlPosLv.Items)
             {
-                PositionLVI _posItem = _lvItem as PositionLVI;
+                var _posItem = _lvItem as PositionLvi;
 
                 if (_posItem != null && _posItem.DataObj.PositionNo == positionNo)
                 {

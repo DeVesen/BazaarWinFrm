@@ -32,17 +32,17 @@
             this.m_sellerDescRtb = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.m_sellerPhoneTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
-            this.m_sellerTownTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_sellerPhoneTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
+            this.m_sellerTownTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.m_sellerZipTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_sellerZipTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.m_sellerStreetTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_sellerStreetTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.m_sellerVNameTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_sellerVNameTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.m_sellerNameTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
-            this.m_sellerTitelCb = new DeVes.Bazaar.Client.CustControls.DVComboBox();
+            this.m_sellerNameTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
+            this.m_sellerTitelCb = new DeVes.Bazaar.Client.CustControls.DvComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.m_cancelBtn = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -140,7 +140,7 @@
             this.m_sellerPhoneTb.IsMargin = true;
             this.m_sellerPhoneTb.Location = new System.Drawing.Point(111, 181);
             this.m_sellerPhoneTb.Name = "m_sellerPhoneTb";
-            this.m_sellerPhoneTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_sellerPhoneTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_sellerPhoneTb.Size = new System.Drawing.Size(617, 26);
             this.m_sellerPhoneTb.TabIndex = 44;
             // 
@@ -153,7 +153,7 @@
             this.m_sellerTownTb.IsMargin = true;
             this.m_sellerTownTb.Location = new System.Drawing.Point(166, 135);
             this.m_sellerTownTb.Name = "m_sellerTownTb";
-            this.m_sellerTownTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_sellerTownTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_sellerTownTb.Size = new System.Drawing.Size(562, 26);
             this.m_sellerTownTb.TabIndex = 43;
             // 
@@ -173,7 +173,7 @@
             this.m_sellerZipTb.IsMargin = false;
             this.m_sellerZipTb.Location = new System.Drawing.Point(111, 135);
             this.m_sellerZipTb.Name = "m_sellerZipTb";
-            this.m_sellerZipTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_sellerZipTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_sellerZipTb.Size = new System.Drawing.Size(49, 26);
             this.m_sellerZipTb.TabIndex = 41;
             this.m_sellerZipTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -196,7 +196,7 @@
             this.m_sellerStreetTb.IsMargin = false;
             this.m_sellerStreetTb.Location = new System.Drawing.Point(111, 106);
             this.m_sellerStreetTb.Name = "m_sellerStreetTb";
-            this.m_sellerStreetTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_sellerStreetTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_sellerStreetTb.Size = new System.Drawing.Size(617, 26);
             this.m_sellerStreetTb.TabIndex = 39;
             // 
@@ -218,7 +218,7 @@
             this.m_sellerVNameTb.IsMargin = false;
             this.m_sellerVNameTb.Location = new System.Drawing.Point(111, 77);
             this.m_sellerVNameTb.Name = "m_sellerVNameTb";
-            this.m_sellerVNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_sellerVNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_sellerVNameTb.Size = new System.Drawing.Size(617, 26);
             this.m_sellerVNameTb.TabIndex = 37;
             // 
@@ -241,7 +241,7 @@
             this.m_sellerNameTb.IsMargin = true;
             this.m_sellerNameTb.Location = new System.Drawing.Point(111, 49);
             this.m_sellerNameTb.Name = "m_sellerNameTb";
-            this.m_sellerNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_sellerNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_sellerNameTb.Size = new System.Drawing.Size(617, 26);
             this.m_sellerNameTb.TabIndex = 35;
             // 
@@ -448,17 +448,17 @@
         private System.Windows.Forms.RichTextBox m_sellerDescRtb;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private CustControls.DVTextBox m_sellerPhoneTb;
-        private CustControls.DVTextBox m_sellerTownTb;
+        private CustControls.DvTextBox m_sellerPhoneTb;
+        private CustControls.DvTextBox m_sellerTownTb;
         private System.Windows.Forms.Label label5;
-        private CustControls.DVTextBox m_sellerZipTb;
+        private CustControls.DvTextBox m_sellerZipTb;
         private System.Windows.Forms.Label label4;
-        private CustControls.DVTextBox m_sellerStreetTb;
+        private CustControls.DvTextBox m_sellerStreetTb;
         private System.Windows.Forms.Label label3;
-        private CustControls.DVTextBox m_sellerVNameTb;
+        private CustControls.DvTextBox m_sellerVNameTb;
         private System.Windows.Forms.Label label2;
-        private CustControls.DVTextBox m_sellerNameTb;
-        private CustControls.DVComboBox m_sellerTitelCb;
+        private CustControls.DvTextBox m_sellerNameTb;
+        private CustControls.DvComboBox m_sellerTitelCb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private CustControls.BkGroupBox bkGroupBox1;

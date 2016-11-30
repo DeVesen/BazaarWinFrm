@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 
 namespace DeVes.Bazaar.Client
 {
     public class GParams
     {
-        private static GParams m_instance = null;
+        private static GParams _instance;
         public static GParams Instance
         {
             get
             {
-                if (GParams.m_instance == null)
+                if (GParams._instance == null)
                 {
-                    GParams.m_instance = new GParams();
+                    GParams._instance = new GParams();
                 }
-                return GParams.m_instance;
+                return GParams._instance;
             }
         }
 
-        private string m_serverAdress = null;
+        private string m_serverAdress;
         public string ServerAdress
         {
             get
@@ -34,7 +31,7 @@ namespace DeVes.Bazaar.Client
             }
         }
 
-        private int m_portAdress = 0;
+        private int m_portAdress;
         public int PortAdress
         {
             get
@@ -68,7 +65,7 @@ namespace DeVes.Bazaar.Client
             }
         }
         
-        private IBasarCom.BasarCom m_basarCom = null;
+        private IBasarCom.BasarCom m_basarCom;
         public IBasarCom.BasarCom BasarCom
         {
             get
@@ -84,10 +81,10 @@ namespace DeVes.Bazaar.Client
             }
         }
 
-        public DeVes.Bazaar.Client.IBasarCom.BizMaterialCategory GetMaterialCategoryByName(string name)
+        public IBasarCom.BizMaterialCategory GetMaterialCategoryByName(string name)
         {
-            DeVes.Bazaar.Client.IBasarCom.BizMaterialCategory[] _list = GParams.Instance.BasarCom.MaterialCategoryGetAll();
-            foreach (DeVes.Bazaar.Client.IBasarCom.BizMaterialCategory _catItem in _list)
+            var _list = GParams.Instance.BasarCom.MaterialCategoryGetAll();
+            foreach (var _catItem in _list)
             {
                 if (string.Compare(name, _catItem.Designation, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -96,10 +93,10 @@ namespace DeVes.Bazaar.Client
             }
             return null;
         }
-        public DeVes.Bazaar.Client.IBasarCom.BizManufacturer GetManufacturerByName(string name)
+        public IBasarCom.BizManufacturer GetManufacturerByName(string name)
         {
-            DeVes.Bazaar.Client.IBasarCom.BizManufacturer[] _list = GParams.Instance.BasarCom.ManufacturerGetAll();
-            foreach (DeVes.Bazaar.Client.IBasarCom.BizManufacturer _manufItem in _list)
+            var _list = GParams.Instance.BasarCom.ManufacturerGetAll();
+            foreach (var _manufItem in _list)
             {
                 if (string.Compare(name, _manufItem.Designation, StringComparison.OrdinalIgnoreCase) == 0)
                 {

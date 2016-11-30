@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using GP.UI.Mobile2.AppParameter;
 
@@ -12,10 +10,10 @@ namespace DeVes.Bazaar.Client
         {
             get
             {
-                System.Reflection.Assembly _assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                string baseDir = System.IO.Path.GetDirectoryName(_assembly.ManifestModule.FullyQualifiedName);
+                var _assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                var _baseDir = System.IO.Path.GetDirectoryName(_assembly.ManifestModule.FullyQualifiedName);
 
-                return baseDir;
+                return _baseDir;
             }
         }
         public static string LocalAppParamPath
@@ -39,18 +37,18 @@ namespace DeVes.Bazaar.Client
 
             if (System.IO.File.Exists(Program.LocalAppParamPath))
             {
-                CfgFile _cfgFile = new CfgFile(Program.LocalAppParamPath);
+                var _cfgFile = new CfgFile(Program.LocalAppParamPath);
 
                 if (_cfgFile.Read())
                 {
-                    if (!string.IsNullOrEmpty(_cfgFile.getValue("Comunication", "Adress", false)))
+                    if (!string.IsNullOrEmpty(_cfgFile.GetValue("Comunication", "Adress", false)))
                     {
-                        GParams.Instance.ServerAdress = _cfgFile.getValue("Comunication", "Adress", false);
+                        GParams.Instance.ServerAdress = _cfgFile.GetValue("Comunication", "Adress", false);
                     }
 
-                    if (GParams.ToInt32(_cfgFile.getValue("Comunication", "Port", false)).HasValue)
+                    if (GParams.ToInt32(_cfgFile.GetValue("Comunication", "Port", false)).HasValue)
                     {
-                        GParams.Instance.PortAdress = GParams.ToInt32(_cfgFile.getValue("Comunication", "Port", false)).Value;
+                        GParams.Instance.PortAdress = GParams.ToInt32(_cfgFile.GetValue("Comunication", "Port", false)) ?? 0;
                     }
                 }
             }

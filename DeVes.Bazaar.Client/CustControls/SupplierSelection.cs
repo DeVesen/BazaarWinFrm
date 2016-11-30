@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 using DeVes.Bazaar.Client.SubForms;
@@ -14,7 +8,7 @@ namespace DeVes.Bazaar.Client.CustControls
     public partial class SupplierSelection : UserControl
     {
         public delegate void OnSupplierSet(object sender, SupplierSetArgs e);
-        public event OnSupplierSet SupplierSet = null;
+        public event OnSupplierSet SupplierSet;
 
         public bool ViewSupplierAdd
         {
@@ -52,9 +46,9 @@ namespace DeVes.Bazaar.Client.CustControls
                     {
                         this.SetActualSupplier(GParams.Instance.BasarCom.SupplierGet_No(GParams.ToInt32(this.m_supplierNoTb.Text).Value, true));
                     }
-                    catch(Exception ex)
+                    catch(Exception _ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(_ex.Message);
                     }
                 }
                 else
@@ -78,7 +72,7 @@ namespace DeVes.Bazaar.Client.CustControls
 
             try
             {
-                BizSupplierer _supplier = NewSellerform.EnterNewSupplier(this);
+                var _supplier = NewSellerform.EnterNewSupplier(this);
                 if (_supplier != null)
                 {
                     _supplier.SupplierID = GParams.Instance.BasarCom.SupplierCreate(_supplier);
@@ -114,10 +108,10 @@ namespace DeVes.Bazaar.Client.CustControls
                     this.m_supplierNoTb.SelectAll();
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
                 this.Reset();
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
 
                 this.m_supplierNoTb.Focus();
                 this.m_supplierNoTb.SelectAll();

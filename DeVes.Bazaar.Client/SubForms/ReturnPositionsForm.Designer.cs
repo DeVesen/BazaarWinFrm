@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.bkGroupBox1 = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
-            this.dvTextBox1 = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.dvTextBox1 = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.bkGroupBox2 = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
             this.m_matlPosLv = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -66,7 +66,7 @@
             this.dvTextBox1.IsMargin = false;
             this.dvTextBox1.Location = new System.Drawing.Point(12, 21);
             this.dvTextBox1.Name = "dvTextBox1";
-            this.dvTextBox1.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.dvTextBox1.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.dvTextBox1.Size = new System.Drawing.Size(730, 53);
             this.dvTextBox1.TabIndex = 0;
             this.dvTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -188,7 +188,7 @@
         #endregion
 
         private CustControls.BkGroupBox bkGroupBox1;
-        private CustControls.DVTextBox dvTextBox1;
+        private CustControls.DvTextBox dvTextBox1;
         private CustControls.BkGroupBox bkGroupBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListView m_matlPosLv;

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using System.ServiceModel;
 using System.ServiceModel.Description;
@@ -29,27 +26,27 @@ namespace DeVes.Bazaar.Server
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.m_pcCodeTb.Text = Program.PcCode;
-            this.m_lizPb.Image = Program.OptionExist("IsActivated") ? DeVes.Bazaar.Server.Properties.Resources.check2_32x32 : DeVes.Bazaar.Server.Properties.Resources.delete2_32x32;
+            this.m_lizPb.Image = Program.OptionExist("IsActivated") ? Properties.Resources.check2_32x32 : Properties.Resources.delete2_32x32;
 
             this.m_machineNameTb.Text = Dns.GetHostName();
-            IPAddress[] _localIPs = Dns.GetHostAddresses(Dns.GetHostName());
-            foreach (IPAddress _localIP in Dns.GetHostAddresses(Dns.GetHostName()))
+            Dns.GetHostAddresses(Dns.GetHostName());
+            foreach (var _localIp in Dns.GetHostAddresses(Dns.GetHostName()))
             {
-                if (_localIP.ToString().Split('.').Length == 4)
+                if (_localIp.ToString().Split('.').Length == 4)
                 {
-                    this.m_ipListLb.Items.Add(_localIP.ToString());
+                    this.m_ipListLb.Items.Add(_localIp.ToString());
                 }
             }
 
             lock (GParams.Instance.ComLockObj)
             {
                 Program.CfgFile.Read();
-                this.m_prozGewinTb.Text = Program.CfgFile.getValue_AsdDouble("SellParams", "ProzGewin", 15).Value.ToString();
+                this.m_prozGewinTb.Text = Program.CfgFile.getValue_AsdDouble("SellParams", "ProzGewin", 15).ToString(CultureInfo.InvariantCulture);
                 this.m_infoMsgPosPrintTb.Text = Program.CfgFile.getValue_AsString("SellParams", "InfoMsgPosPrint", "");
-                this.m_printPrevCb.Checked = Program.CfgFile.getValue_AsBool("General", "PrintPev", true).Value;
+                this.m_printPrevCb.Checked = Program.CfgFile.getValue_AsBool("General", "PrintPev", true);
 
                 this.m_ownPort.Text = Program.CfgFile.getValue_AsInt("General", "OwnPort", 1353).ToString();
-                if (this.StartServices(Program.CfgFile.getValue_AsInt("General", "PrintPev", 1353).Value))
+                if (this.StartServices(Program.CfgFile.getValue_AsInt("General", "PrintPev", 1353)))
                 {
                     //this.m_startUpTimer.Start();
                 }
@@ -60,29 +57,20 @@ namespace DeVes.Bazaar.Server
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach (ServiceHost _serviceHost in m_serviceHosts)
+            foreach (var _serviceHost in m_serviceHosts)
             {
                 _serviceHost.Close();
             }
             m_serviceHosts.Clear();
         }
 
-        private bool StartServiceHost(bool secureCommunication, int communicationPort, Type implementationClass, Type contract)
-        {
-            string _errorMsg = null;
-            return this.StartServiceHost(secureCommunication, communicationPort, implementationClass, contract, out _errorMsg);
-        }
         private bool StartServiceHost(bool secureCommunication, int communicationPort, Type implementationClass, Type contract, out string errorMsg)
         {
             try
             {
-                string protocol = secureCommunication ? "https://" : "http://";
+                var _protocol = secureCommunication ? "https://" : "http://";
 
-                // Due to the reason that a service is supposed to be accessable for
-                // mobile devices, we stick to BasicHttpBinding and use Transport mode
-                // to provide secure communication.
-
-                BasicHttpBinding _binding = new BasicHttpBinding();
+                var _binding = new BasicHttpBinding();
                 _binding.MaxReceivedMessageSize = 1000000;
                 if (secureCommunication)
                 {
@@ -92,23 +80,17 @@ namespace DeVes.Bazaar.Server
 
                 //http://localhost:1353/GP.CrossEnterpriseUnit.Integrator/ISession
                 //https://localhost:1354/GP.CrossEnterpriseUnit.Integrator/ISession
-                Uri _baseAddress = new Uri(protocol + Environment.MachineName + ":" + communicationPort.ToString() + "/DeVes.Bazaar.Integrator/" + contract.Name);
+                var _baseAddress = new Uri(_protocol + Environment.MachineName + ":" + communicationPort.ToString() + "/DeVes.Bazaar.Integrator/" + contract.Name);
 
-                //Create new service host for service
-                ServiceHost _serviceHost = new ServiceHost(implementationClass, _baseAddress);
-
-                //_serviceHost.Credentials.WindowsAuthentication.AllowAnonymousLogons = true;
+                var _serviceHost = new ServiceHost(implementationClass, _baseAddress);
 
                 _serviceHost.AddServiceEndpoint(contract, _binding, _baseAddress);
-                // if secure web services are enabled add another endpoint1
 
+                var _serviceMetaDataBehavior = new ServiceMetadataBehavior();
+                _serviceMetaDataBehavior.HttpGetEnabled = !secureCommunication;
+                _serviceMetaDataBehavior.HttpsGetEnabled = secureCommunication;
 
-                ServiceMetadataBehavior _serviceMetaDataBehavior = new ServiceMetadataBehavior();
-                _serviceMetaDataBehavior.HttpGetEnabled = secureCommunication ? false : true;
-                // also make service metadata available if secure communication is desired
-                _serviceMetaDataBehavior.HttpsGetEnabled = secureCommunication ? true : false;
-
-                ServiceThrottlingBehavior _throttle = new ServiceThrottlingBehavior();
+                var _throttle = new ServiceThrottlingBehavior();
                 _throttle.MaxConcurrentCalls = 1000;
                 _throttle.MaxConcurrentInstances = 1000;
                 _throttle.MaxConcurrentSessions = 1000;
@@ -119,7 +101,7 @@ namespace DeVes.Bazaar.Server
                 _serviceHost.OpenTimeout = new TimeSpan(1, 0, 0);
                 _serviceHost.CloseTimeout = new TimeSpan(1, 0, 0);
 
-                ServiceDebugBehavior _debugBehavior = _serviceHost.Description.Behaviors[typeof(ServiceDebugBehavior)] as ServiceDebugBehavior;
+                var _debugBehavior = _serviceHost.Description.Behaviors[typeof(ServiceDebugBehavior)] as ServiceDebugBehavior;
                 if (_debugBehavior != null)
                 {
                     _debugBehavior.IncludeExceptionDetailInFaults = true;
@@ -177,7 +159,7 @@ namespace DeVes.Bazaar.Server
         }
         protected override void OnClosing(CancelEventArgs e)
         {
-            e.Cancel = !(MessageBox.Show(this, "Server wirklich beenden?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes);
+            e.Cancel = MessageBox.Show(this, @"Server wirklich beenden?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes;
 
             base.OnClosing(e);
         }
@@ -187,9 +169,9 @@ namespace DeVes.Bazaar.Server
             lock (GParams.Instance.ComLockObj)
             {
                 Program.CfgFile.Read();
-                Program.CfgFile.setValue("SellParams", "ProzGewin", this.m_prozGewinTb.Text);
-                Program.CfgFile.setValue("SellParams", "InfoMsgPosPrint", this.m_infoMsgPosPrintTb.Text);
-                Program.CfgFile.setValue("General", "PrintPev", this.m_printPrevCb.Checked);
+                Program.CfgFile.SetValue("SellParams", "ProzGewin", this.m_prozGewinTb.Text);
+                Program.CfgFile.SetValue("SellParams", "InfoMsgPosPrint", this.m_infoMsgPosPrintTb.Text);
+                Program.CfgFile.SetValue("General", "PrintPev", this.m_printPrevCb.Checked);
                 Program.CfgFile.Save();
             }   
         }
@@ -203,39 +185,39 @@ namespace DeVes.Bazaar.Server
                 this.bkGroupBox2.Invoke(new StaticInfo(this.ShowStatic));
             }
 
-            int _supplCount = 0;
-            int positionsCount, notSold, isSold, isReturn;
-            double _prozValue, soldBetrag, _eigenBetrag;
+            int _supplCount;
+            int _notSold, _isSold, _isReturn;
+            double _soldBetrag, _eigenBetrag;
 
             lock (GParams.Instance.ComLockObj)
             {
                 GParams.Instance.Supplier.SupplierStats(out _supplCount);
-                GParams.Instance.Position.PositionsStats(out positionsCount, out notSold, out isSold, out isReturn,
-                                                         out soldBetrag);
+                int _positionsCount;
+                GParams.Instance.Position.PositionsStats(out _positionsCount, out _notSold, out _isSold, out _isReturn,
+                                                         out _soldBetrag);
 
-                _prozValue = Program.CfgFile.getValue_AsdDouble("SellParams", "ProzGewin", 15).Value;
-                _eigenBetrag = soldBetrag * _prozValue / 100;
+                var _prozValue = Program.CfgFile.getValue_AsdDouble("SellParams", "ProzGewin", 15);
+                _eigenBetrag = _soldBetrag * _prozValue / 100;
             }
 
 
             this.m_numSuplTb.Text = _supplCount.ToString();
 
-            this.m_notSoldPosCountTb.Text = notSold.ToString();
-            this.m_soldPosCountTb.Text = isSold.ToString();
-            this.m_returnPosCountTb.Text = isReturn.ToString();
+            this.m_notSoldPosCountTb.Text = _notSold.ToString();
+            this.m_soldPosCountTb.Text = _isSold.ToString();
+            this.m_returnPosCountTb.Text = _isReturn.ToString();
 
-            this.m_einnahmenTb.Text = soldBetrag.ToString();
-            this.m_eigenBetragTb.Text = _eigenBetrag.ToString();
-            this.m_lieferGewinnTb.Text = (soldBetrag - _eigenBetrag).ToString();
+            this.m_einnahmenTb.Text = _soldBetrag.ToString(CultureInfo.InvariantCulture);
+            this.m_eigenBetragTb.Text = _eigenBetrag.ToString(CultureInfo.InvariantCulture);
+            this.m_lieferGewinnTb.Text = (_soldBetrag - _eigenBetrag).ToString(CultureInfo.InvariantCulture);
         }
 
         private bool StartServices(int port)
         {
-            bool _allStarted = true;
-            string _errorMsg = null;
-            _allStarted = _allStarted && StartServiceHost(false, port, typeof(BasarCom), typeof(IBasarCom), out _errorMsg);
+            string _errorMsg;
+            var _allStarted = StartServiceHost(false, port, typeof(BasarCom), typeof(IBasarCom), out _errorMsg);
 
-            this.m_conStatePb.Image = _allStarted ? DeVes.Bazaar.Server.Properties.Resources.check2_16x16 : DeVes.Bazaar.Server.Properties.Resources.delete2_16x16;
+            this.m_conStatePb.Image = _allStarted ? Properties.Resources.check2_16x16 : Properties.Resources.delete2_16x16;
             this.m_conStatePb.Tag = _errorMsg;
 
             return _allStarted;
@@ -244,18 +226,18 @@ namespace DeVes.Bazaar.Server
         {
             if (this.m_ownPort.IntValue.HasValue)
             {
-                foreach (ServiceHost _serviceHost in m_serviceHosts)
+                foreach (var _serviceHost in m_serviceHosts)
                 {
                     _serviceHost.Close();
                 }
                 m_serviceHosts.Clear();
 
                 Program.CfgFile.Read();
-                Program.CfgFile.setValue("General", "OwnPort", this.m_ownPort.IntValue.Value);
+                Program.CfgFile.SetValue("General", "OwnPort", this.m_ownPort.IntValue.Value);
                 Program.CfgFile.Save();
 
                 Program.CfgFile.Read();
-                this.StartServices(Program.CfgFile.getValue_AsInt("General", "OwnPort", 1353).Value);
+                this.StartServices(Program.CfgFile.getValue_AsInt("General", "OwnPort", 1353));
             }
             else
             {
@@ -266,11 +248,11 @@ namespace DeVes.Bazaar.Server
         private void button2_Click(object sender, EventArgs e)
         {
             Program.CfgFile.Read();
-            Program.CfgFile.setValue("General", "License", this.m_licenseTb.Text);
+            Program.CfgFile.SetValue("General", "License", this.m_licenseTb.Text);
             Program.CfgFile.Save();
 
             Program.ActivateLizence();
-            this.m_lizPb.Image = Program.OptionExist("IsActivated") ? DeVes.Bazaar.Server.Properties.Resources.check2_32x32 : DeVes.Bazaar.Server.Properties.Resources.delete2_32x32;
+            this.m_lizPb.Image = Program.OptionExist("IsActivated") ? Properties.Resources.check2_32x32 : Properties.Resources.delete2_32x32;
         }
 
         private void m_conStatePb_Click(object sender, EventArgs e)

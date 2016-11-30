@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
@@ -68,21 +63,21 @@ namespace DeVes.Bazaar.Client.SubForms
 
         protected void PlayBadSound()
         {
-            System.Media.SoundPlayer _sp = new System.Media.SoundPlayer(Properties.Resources.Windows_Battery_Critical);
+            var _sp = new System.Media.SoundPlayer(Properties.Resources.Windows_Battery_Critical);
             _sp.Play();
             _sp.Dispose();
             _sp = null;
         }
         protected void PlayGoodSound()
         {
-            System.Media.SoundPlayer _sp = new System.Media.SoundPlayer(Properties.Resources.Windows_Print_complete);
+            var _sp = new System.Media.SoundPlayer(Properties.Resources.Windows_Print_complete);
             _sp.Play();
             _sp.Dispose();
             _sp = null;
         }
         protected void PlayConfirmedSound()
         {
-            System.Media.SoundPlayer _sp = new System.Media.SoundPlayer(Properties.Resources.Speech_Sleep);
+            var _sp = new System.Media.SoundPlayer(Properties.Resources.Speech_Sleep);
             _sp.Play();
             _sp.Dispose();
             _sp = null;
@@ -92,7 +87,7 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
+                this.DialogResult = DialogResult.None;
                 this.Close();
             }
         }
@@ -117,14 +112,14 @@ namespace DeVes.Bazaar.Client.SubForms
             }
             else
             {
-                float _F_splitHeight = (float)splitHeight;
-                float _F_SizeHeight = (float)size.Height;
-                float _prozSplit = (_F_splitHeight * 100) / _F_SizeHeight;
-                float _point = (1F * _prozSplit) / 100F;
+                var _fSplitHeight = (float)splitHeight;
+                var _fSizeHeight = (float)size.Height;
+                var _prozSplit = (_fSplitHeight * 100) / _fSizeHeight;
+                var _point = (1F * _prozSplit) / 100F;
 
-                using (LinearGradientBrush _pthGrBrush = new LinearGradientBrush(size, backColor1, backColor2, LinearGradientMode.Vertical))
+                using (var _pthGrBrush = new LinearGradientBrush(size, backColor1, backColor2, LinearGradientMode.Vertical))
                 {
-                    ColorBlend _cb = new ColorBlend();
+                    var _cb = new ColorBlend();
                     _cb.Colors = new Color[] { backColor1, backColor2, backColor2, backColor1 };
                     //_cb.Positions = new float[] { 0, _point, 1F };
                     _cb.Positions = new float[] { 0.0f, 0.1f, 0.8f, 1.0f };

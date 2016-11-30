@@ -29,16 +29,16 @@ namespace DeVes.Bazaar.Client.MdiForms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialErfassungForm));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialErfassungForm));
             this.m_positionGb = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
             this.m_newMatlManufBtn = new System.Windows.Forms.Button();
             this.m_newMatlCatBtn = new System.Windows.Forms.Button();
             this.m_copyLineBtn = new System.Windows.Forms.Button();
             this.m_importBtn = new System.Windows.Forms.Button();
             this.m_clearPosCtrlsBtn = new System.Windows.Forms.Button();
-            this.m_posMinPriceTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posMinPriceTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.m_herstellerCb = new DeVes.Bazaar.Client.CustControls.DVComboBox();
+            this.m_herstellerCb = new DeVes.Bazaar.Client.CustControls.DvComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.m_printListBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -55,13 +55,13 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.m_selPosRemoveBtn = new System.Windows.Forms.Button();
             this.m_selPosSaveEditBtn = new System.Windows.Forms.Button();
             this.m_selPosSaveNewBtn = new System.Windows.Forms.Button();
-            this.m_posMaxPriceTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posMaxPriceTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.m_posCatCb = new DeVes.Bazaar.Client.CustControls.DVComboBox();
+            this.m_posCatCb = new DeVes.Bazaar.Client.CustControls.DvComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.m_posTitelTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posTitelTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.m_posNrTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_posNrTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.m_importOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.m_supplierSelection = new DeVes.Bazaar.Client.CustControls.SupplierSelection();
@@ -191,7 +191,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.m_posMinPriceTb.Location = new System.Drawing.Point(578, 106);
             this.m_posMinPriceTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posMinPriceTb.Name = "m_posMinPriceTb";
-            this.m_posMinPriceTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_posMinPriceTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Double;
             this.m_posMinPriceTb.Size = new System.Drawing.Size(132, 26);
             this.m_posMinPriceTb.TabIndex = 11;
             this.m_posMinPriceTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnPosInputCtrlKeyUp);
@@ -396,7 +396,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.m_posMaxPriceTb.Location = new System.Drawing.Point(438, 106);
             this.m_posMaxPriceTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posMaxPriceTb.Name = "m_posMaxPriceTb";
-            this.m_posMaxPriceTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Double;
+            this.m_posMaxPriceTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Double;
             this.m_posMaxPriceTb.Size = new System.Drawing.Size(132, 26);
             this.m_posMaxPriceTb.TabIndex = 9;
             this.m_posMaxPriceTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnPosInputCtrlKeyUp);
@@ -447,7 +447,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.m_posTitelTb.Location = new System.Drawing.Point(154, 47);
             this.m_posTitelTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posTitelTb.Name = "m_posTitelTb";
-            this.m_posTitelTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_posTitelTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_posTitelTb.Size = new System.Drawing.Size(394, 26);
             this.m_posTitelTb.TabIndex = 3;
             this.m_posTitelTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnPosInputCtrlKeyUp);
@@ -473,7 +473,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.m_posNrTb.Location = new System.Drawing.Point(12, 47);
             this.m_posNrTb.Margin = new System.Windows.Forms.Padding(4);
             this.m_posNrTb.Name = "m_posNrTb";
-            this.m_posNrTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.Int32;
+            this.m_posNrTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.Int32;
             this.m_posNrTb.Size = new System.Drawing.Size(132, 26);
             this.m_posNrTb.TabIndex = 1;
             this.m_posNrTb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnPosInputCtrlKeyUp);
@@ -533,9 +533,9 @@ namespace DeVes.Bazaar.Client.MdiForms
         private BkGroupBox m_positionGb;
         private System.Windows.Forms.Button m_importBtn;
         private System.Windows.Forms.Button m_clearPosCtrlsBtn;
-        private DeVes.Bazaar.Client.CustControls.DVTextBox m_posMinPriceTb;
+        private DeVes.Bazaar.Client.CustControls.DvTextBox m_posMinPriceTb;
         private System.Windows.Forms.Label label11;
-        private DeVes.Bazaar.Client.CustControls.DVComboBox m_herstellerCb;
+        private DeVes.Bazaar.Client.CustControls.DvComboBox m_herstellerCb;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button m_printListBtn;
         private System.Windows.Forms.Label label9;
@@ -552,13 +552,13 @@ namespace DeVes.Bazaar.Client.MdiForms
         private System.Windows.Forms.Button m_selPosRemoveBtn;
         private System.Windows.Forms.Button m_selPosSaveEditBtn;
         private System.Windows.Forms.Button m_selPosSaveNewBtn;
-        private DeVes.Bazaar.Client.CustControls.DVTextBox m_posMaxPriceTb;
+        private DeVes.Bazaar.Client.CustControls.DvTextBox m_posMaxPriceTb;
         private System.Windows.Forms.Label label8;
-        private DeVes.Bazaar.Client.CustControls.DVComboBox m_posCatCb;
+        private DeVes.Bazaar.Client.CustControls.DvComboBox m_posCatCb;
         private System.Windows.Forms.Label label6;
-        private DeVes.Bazaar.Client.CustControls.DVTextBox m_posTitelTb;
+        private DeVes.Bazaar.Client.CustControls.DvTextBox m_posTitelTb;
         private System.Windows.Forms.Label label5;
-        private DeVes.Bazaar.Client.CustControls.DVTextBox m_posNrTb;
+        private DeVes.Bazaar.Client.CustControls.DvTextBox m_posNrTb;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button m_copyLineBtn;
         private System.Windows.Forms.OpenFileDialog m_importOpenFile;

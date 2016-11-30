@@ -39,7 +39,7 @@ namespace DeVes.Bazaar.Server.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DeVes.Bazaar.Server.Properties.Resources", typeof(Resources).Assembly);
+                    var temp = new global::System.Resources.ResourceManager("DeVes.Bazaar.Server.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,7 +65,7 @@ namespace DeVes.Bazaar.Server.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap check2_16x16 {
             get {
-                object obj = ResourceManager.GetObject("check2_16x16", resourceCulture);
+                var obj = ResourceManager.GetObject("check2_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace DeVes.Bazaar.Server.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap check2_32x32 {
             get {
-                object obj = ResourceManager.GetObject("check2_32x32", resourceCulture);
+                var obj = ResourceManager.GetObject("check2_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace DeVes.Bazaar.Server.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap delete2_16x16 {
             get {
-                object obj = ResourceManager.GetObject("delete2_16x16", resourceCulture);
+                var obj = ResourceManager.GetObject("delete2_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +95,7 @@ namespace DeVes.Bazaar.Server.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap delete2_32x32 {
             get {
-                object obj = ResourceManager.GetObject("delete2_32x32", resourceCulture);
+                var obj = ResourceManager.GetObject("delete2_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace DeVes.Bazaar.Server.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap disk_blue_32x32 {
             get {
-                object obj = ResourceManager.GetObject("disk_blue_32x32", resourceCulture);
+                var obj = ResourceManager.GetObject("disk_blue_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

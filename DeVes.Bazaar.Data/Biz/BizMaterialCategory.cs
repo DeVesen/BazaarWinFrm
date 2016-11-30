@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.Serialization;
 
 namespace DeVes.Bazaar.Data.Biz
@@ -26,15 +23,16 @@ namespace DeVes.Bazaar.Data.Biz
 
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception)
             {
+                // ignored
             }
             return false;
         }
 
         public static BizMaterialCategory ConvertFromDataRow(System.Data.DataRow row)
         {
-            BizMaterialCategory _result = new BizMaterialCategory();
+            var _result = new BizMaterialCategory();
 
             try
             {
@@ -42,7 +40,7 @@ namespace DeVes.Bazaar.Data.Biz
 
                 _result.Designation = BizBase.ToString(row["Designation"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _result = null;
             }

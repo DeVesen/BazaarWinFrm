@@ -251,7 +251,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSetPositionsAsReturnedOperationCompleted(object arg) {
             if ((this.SetPositionsAsReturnedCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SetPositionsAsReturnedCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -260,7 +260,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionGet", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizPosition PositionGet(int positionNo, [System.Xml.Serialization.XmlIgnoreAttribute()] bool positionNoSpecified) {
-            object[] results = this.Invoke("PositionGet", new object[] {
+            var results = this.Invoke("PositionGet", new object[] {
                         positionNo,
                         positionNoSpecified});
             return ((BizPosition)(results[0]));
@@ -283,7 +283,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionGetOperationCompleted(object arg) {
             if ((this.PositionGetCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionGetCompleted(this, new PositionGetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -293,7 +293,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizPosition[] PositionGetAll(string supplierId) {
-            object[] results = this.Invoke("PositionGetAll", new object[] {
+            var results = this.Invoke("PositionGetAll", new object[] {
                         supplierId});
             return ((BizPosition[])(results[0]));
         }
@@ -314,7 +314,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionGetAllOperationCompleted(object arg) {
             if ((this.PositionGetAllCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionGetAllCompleted(this, new PositionGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -324,7 +324,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts")]
         public AllPositionResult[] AllSupplierAndPositions() {
-            object[] results = this.Invoke("AllSupplierAndPositions", new object[0]);
+            var results = this.Invoke("AllSupplierAndPositions", new object[0]);
             return ((AllPositionResult[])(results[0]));
         }
         
@@ -343,7 +343,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnAllSupplierAndPositionsOperationCompleted(object arg) {
             if ((this.AllSupplierAndPositionsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AllSupplierAndPositionsCompleted(this, new AllSupplierAndPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -352,7 +352,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/CheckAlive", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string CheckAlive() {
-            object[] results = this.Invoke("CheckAlive", new object[0]);
+            var results = this.Invoke("CheckAlive", new object[0]);
             return ((string)(results[0]));
         }
         
@@ -371,7 +371,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnCheckAliveOperationCompleted(object arg) {
             if ((this.CheckAliveCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CheckAliveCompleted(this, new CheckAliveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -380,7 +380,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/GetParameters", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public ParameterResult GetParameters() {
-            object[] results = this.Invoke("GetParameters", new object[0]);
+            var results = this.Invoke("GetParameters", new object[0]);
             return ((ParameterResult)(results[0]));
         }
         
@@ -399,7 +399,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnGetParametersOperationCompleted(object arg) {
             if ((this.GetParametersCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetParametersCompleted(this, new GetParametersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -408,7 +408,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/MaterialCategoryGet", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizMaterialCategory MaterialCategoryGet(string Id) {
-            object[] results = this.Invoke("MaterialCategoryGet", new object[] {
+            var results = this.Invoke("MaterialCategoryGet", new object[] {
                         Id});
             return ((BizMaterialCategory)(results[0]));
         }
@@ -429,7 +429,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryGetOperationCompleted(object arg) {
             if ((this.MaterialCategoryGetCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryGetCompleted(this, new MaterialCategoryGetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -439,7 +439,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizMaterialCategory[] MaterialCategoryGetAll() {
-            object[] results = this.Invoke("MaterialCategoryGetAll", new object[0]);
+            var results = this.Invoke("MaterialCategoryGetAll", new object[0]);
             return ((BizMaterialCategory[])(results[0]));
         }
         
@@ -458,7 +458,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryGetAllOperationCompleted(object arg) {
             if ((this.MaterialCategoryGetAllCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryGetAllCompleted(this, new MaterialCategoryGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -466,7 +466,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/MaterialCategoryCreate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void MaterialCategoryCreate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizMaterialCategory materialCategory, out bool MaterialCategoryCreateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool MaterialCategoryCreateResultSpecified) {
-            object[] results = this.Invoke("MaterialCategoryCreate", new object[] {
+            var results = this.Invoke("MaterialCategoryCreate", new object[] {
                         materialCategory});
             MaterialCategoryCreateResult = ((bool)(results[0]));
             MaterialCategoryCreateResultSpecified = ((bool)(results[1]));
@@ -488,7 +488,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryCreateOperationCompleted(object arg) {
             if ((this.MaterialCategoryCreateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryCreateCompleted(this, new MaterialCategoryCreateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -496,7 +496,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/MaterialCategoryUpdate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void MaterialCategoryUpdate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizMaterialCategory materialCategory, out bool MaterialCategoryUpdateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool MaterialCategoryUpdateResultSpecified) {
-            object[] results = this.Invoke("MaterialCategoryUpdate", new object[] {
+            var results = this.Invoke("MaterialCategoryUpdate", new object[] {
                         materialCategory});
             MaterialCategoryUpdateResult = ((bool)(results[0]));
             MaterialCategoryUpdateResultSpecified = ((bool)(results[1]));
@@ -518,7 +518,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryUpdateOperationCompleted(object arg) {
             if ((this.MaterialCategoryUpdateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryUpdateCompleted(this, new MaterialCategoryUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -526,7 +526,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/MaterialCategoryRemove", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void MaterialCategoryRemove(string matlCatId, out bool MaterialCategoryRemoveResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool MaterialCategoryRemoveResultSpecified) {
-            object[] results = this.Invoke("MaterialCategoryRemove", new object[] {
+            var results = this.Invoke("MaterialCategoryRemove", new object[] {
                         matlCatId});
             MaterialCategoryRemoveResult = ((bool)(results[0]));
             MaterialCategoryRemoveResultSpecified = ((bool)(results[1]));
@@ -548,7 +548,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryRemoveOperationCompleted(object arg) {
             if ((this.MaterialCategoryRemoveCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryRemoveCompleted(this, new MaterialCategoryRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -557,7 +557,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/ManufacturerGet", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizManufacturer ManufacturerGet(string Id) {
-            object[] results = this.Invoke("ManufacturerGet", new object[] {
+            var results = this.Invoke("ManufacturerGet", new object[] {
                         Id});
             return ((BizManufacturer)(results[0]));
         }
@@ -578,7 +578,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerGetOperationCompleted(object arg) {
             if ((this.ManufacturerGetCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerGetCompleted(this, new ManufacturerGetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -588,7 +588,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizManufacturer[] ManufacturerGetAll() {
-            object[] results = this.Invoke("ManufacturerGetAll", new object[0]);
+            var results = this.Invoke("ManufacturerGetAll", new object[0]);
             return ((BizManufacturer[])(results[0]));
         }
         
@@ -607,7 +607,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerGetAllOperationCompleted(object arg) {
             if ((this.ManufacturerGetAllCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerGetAllCompleted(this, new ManufacturerGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -615,7 +615,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/ManufacturerCreate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void ManufacturerCreate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizManufacturer manufacturer, out bool ManufacturerCreateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool ManufacturerCreateResultSpecified) {
-            object[] results = this.Invoke("ManufacturerCreate", new object[] {
+            var results = this.Invoke("ManufacturerCreate", new object[] {
                         manufacturer});
             ManufacturerCreateResult = ((bool)(results[0]));
             ManufacturerCreateResultSpecified = ((bool)(results[1]));
@@ -637,7 +637,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerCreateOperationCompleted(object arg) {
             if ((this.ManufacturerCreateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerCreateCompleted(this, new ManufacturerCreateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -645,7 +645,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/ManufacturerUpdate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void ManufacturerUpdate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizManufacturer materialCategory, out bool ManufacturerUpdateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool ManufacturerUpdateResultSpecified) {
-            object[] results = this.Invoke("ManufacturerUpdate", new object[] {
+            var results = this.Invoke("ManufacturerUpdate", new object[] {
                         materialCategory});
             ManufacturerUpdateResult = ((bool)(results[0]));
             ManufacturerUpdateResultSpecified = ((bool)(results[1]));
@@ -667,7 +667,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerUpdateOperationCompleted(object arg) {
             if ((this.ManufacturerUpdateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerUpdateCompleted(this, new ManufacturerUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -675,7 +675,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/ManufacturerRemove", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void ManufacturerRemove(string matlCatId, out bool ManufacturerRemoveResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool ManufacturerRemoveResultSpecified) {
-            object[] results = this.Invoke("ManufacturerRemove", new object[] {
+            var results = this.Invoke("ManufacturerRemove", new object[] {
                         matlCatId});
             ManufacturerRemoveResult = ((bool)(results[0]));
             ManufacturerRemoveResultSpecified = ((bool)(results[1]));
@@ -697,7 +697,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerRemoveOperationCompleted(object arg) {
             if ((this.ManufacturerRemoveCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerRemoveCompleted(this, new ManufacturerRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -706,7 +706,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierGet_ByID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizSupplierer SupplierGet_ByID(string id) {
-            object[] results = this.Invoke("SupplierGet_ByID", new object[] {
+            var results = this.Invoke("SupplierGet_ByID", new object[] {
                         id});
             return ((BizSupplierer)(results[0]));
         }
@@ -727,7 +727,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierGet_ByIDOperationCompleted(object arg) {
             if ((this.SupplierGet_ByIDCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierGet_ByIDCompleted(this, new SupplierGet_ByIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -736,7 +736,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierGet_ByName", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizSupplierer SupplierGet_ByName([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string supplierName) {
-            object[] results = this.Invoke("SupplierGet_ByName", new object[] {
+            var results = this.Invoke("SupplierGet_ByName", new object[] {
                         supplierName});
             return ((BizSupplierer)(results[0]));
         }
@@ -757,7 +757,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierGet_ByNameOperationCompleted(object arg) {
             if ((this.SupplierGet_ByNameCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierGet_ByNameCompleted(this, new SupplierGet_ByNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -766,7 +766,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierGet_No", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizSupplierer SupplierGet_No(int supplierNumber, [System.Xml.Serialization.XmlIgnoreAttribute()] bool supplierNumberSpecified) {
-            object[] results = this.Invoke("SupplierGet_No", new object[] {
+            var results = this.Invoke("SupplierGet_No", new object[] {
                         supplierNumber,
                         supplierNumberSpecified});
             return ((BizSupplierer)(results[0]));
@@ -789,7 +789,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierGet_NoOperationCompleted(object arg) {
             if ((this.SupplierGet_NoCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierGet_NoCompleted(this, new SupplierGet_NoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -799,7 +799,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizSupplierer[] SupplierGetAll() {
-            object[] results = this.Invoke("SupplierGetAll", new object[0]);
+            var results = this.Invoke("SupplierGetAll", new object[0]);
             return ((BizSupplierer[])(results[0]));
         }
         
@@ -818,7 +818,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierGetAllOperationCompleted(object arg) {
             if ((this.SupplierGetAllCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierGetAllCompleted(this, new SupplierGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -827,7 +827,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierCreate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string SupplierCreate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizSupplierer supplier) {
-            object[] results = this.Invoke("SupplierCreate", new object[] {
+            var results = this.Invoke("SupplierCreate", new object[] {
                         supplier});
             return ((string)(results[0]));
         }
@@ -848,7 +848,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierCreateOperationCompleted(object arg) {
             if ((this.SupplierCreateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierCreateCompleted(this, new SupplierCreateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -856,7 +856,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierUpdate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void SupplierUpdate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizSupplierer supplier, out bool SupplierUpdateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool SupplierUpdateResultSpecified) {
-            object[] results = this.Invoke("SupplierUpdate", new object[] {
+            var results = this.Invoke("SupplierUpdate", new object[] {
                         supplier});
             SupplierUpdateResult = ((bool)(results[0]));
             SupplierUpdateResultSpecified = ((bool)(results[1]));
@@ -878,7 +878,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierUpdateOperationCompleted(object arg) {
             if ((this.SupplierUpdateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierUpdateCompleted(this, new SupplierUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -886,7 +886,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierRemove", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void SupplierRemove(string supplierId, out bool SupplierRemoveResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool SupplierRemoveResultSpecified) {
-            object[] results = this.Invoke("SupplierRemove", new object[] {
+            var results = this.Invoke("SupplierRemove", new object[] {
                         supplierId});
             SupplierRemoveResult = ((bool)(results[0]));
             SupplierRemoveResultSpecified = ((bool)(results[1]));
@@ -908,7 +908,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierRemoveOperationCompleted(object arg) {
             if ((this.SupplierRemoveCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierRemoveCompleted(this, new SupplierRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -916,7 +916,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SetSupplierToReturned", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void SetSupplierToReturned([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string supplierId, bool isReturned, [System.Xml.Serialization.XmlIgnoreAttribute()] bool isReturnedSpecified, out bool SetSupplierToReturnedResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool SetSupplierToReturnedResultSpecified) {
-            object[] results = this.Invoke("SetSupplierToReturned", new object[] {
+            var results = this.Invoke("SetSupplierToReturned", new object[] {
                         supplierId,
                         isReturned,
                         isReturnedSpecified});
@@ -942,7 +942,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSetSupplierToReturnedOperationCompleted(object arg) {
             if ((this.SetSupplierToReturnedCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SetSupplierToReturnedCompleted(this, new SetSupplierToReturnedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -950,7 +950,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionCreate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void PositionCreate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizPosition supplierPosition, out bool PositionCreateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool PositionCreateResultSpecified) {
-            object[] results = this.Invoke("PositionCreate", new object[] {
+            var results = this.Invoke("PositionCreate", new object[] {
                         supplierPosition});
             PositionCreateResult = ((bool)(results[0]));
             PositionCreateResultSpecified = ((bool)(results[1]));
@@ -972,7 +972,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionCreateOperationCompleted(object arg) {
             if ((this.PositionCreateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionCreateCompleted(this, new PositionCreateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -980,7 +980,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionUpdate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void PositionUpdate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizPosition supplierPosition, out bool PositionUpdateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool PositionUpdateResultSpecified) {
-            object[] results = this.Invoke("PositionUpdate", new object[] {
+            var results = this.Invoke("PositionUpdate", new object[] {
                         supplierPosition});
             PositionUpdateResult = ((bool)(results[0]));
             PositionUpdateResultSpecified = ((bool)(results[1]));
@@ -1002,7 +1002,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionUpdateOperationCompleted(object arg) {
             if ((this.PositionUpdateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionUpdateCompleted(this, new PositionUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1010,7 +1010,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionRemove", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void PositionRemove(int positionNo, [System.Xml.Serialization.XmlIgnoreAttribute()] bool positionNoSpecified, out bool PositionRemoveResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool PositionRemoveResultSpecified) {
-            object[] results = this.Invoke("PositionRemove", new object[] {
+            var results = this.Invoke("PositionRemove", new object[] {
                         positionNo,
                         positionNoSpecified});
             PositionRemoveResult = ((bool)(results[0]));
@@ -1034,7 +1034,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionRemoveOperationCompleted(object arg) {
             if ((this.PositionRemoveCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionRemoveCompleted(this, new PositionRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1043,7 +1043,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionSell", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public PositionSellResult PositionSell([System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")] BizPosition[] position) {
-            object[] results = this.Invoke("PositionSell", new object[] {
+            var results = this.Invoke("PositionSell", new object[] {
                         position});
             return ((PositionSellResult)(results[0]));
         }
@@ -1064,7 +1064,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionSellOperationCompleted(object arg) {
             if ((this.PositionSellCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionSellCompleted(this, new PositionSellCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1073,7 +1073,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionReturn", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public PositionReturnedResult PositionReturn(string supplierId) {
-            object[] results = this.Invoke("PositionReturn", new object[] {
+            var results = this.Invoke("PositionReturn", new object[] {
                         supplierId});
             return ((PositionReturnedResult)(results[0]));
         }
@@ -1094,7 +1094,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionReturnOperationCompleted(object arg) {
             if ((this.PositionReturnCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionReturnCompleted(this, new PositionReturnCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1104,7 +1104,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizPosition[] GetSoldPositions(string supplierId) {
-            object[] results = this.Invoke("GetSoldPositions", new object[] {
+            var results = this.Invoke("GetSoldPositions", new object[] {
                         supplierId});
             return ((BizPosition[])(results[0]));
         }
@@ -1125,7 +1125,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnGetSoldPositionsOperationCompleted(object arg) {
             if ((this.GetSoldPositionsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetSoldPositionsCompleted(this, new GetSoldPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1135,7 +1135,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizPosition[] GetSoldNotReturnedPositions(string supplierId) {
-            object[] results = this.Invoke("GetSoldNotReturnedPositions", new object[] {
+            var results = this.Invoke("GetSoldNotReturnedPositions", new object[] {
                         supplierId});
             return ((BizPosition[])(results[0]));
         }
@@ -1156,7 +1156,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnGetSoldNotReturnedPositionsOperationCompleted(object arg) {
             if ((this.GetSoldNotReturnedPositionsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetSoldNotReturnedPositionsCompleted(this, new GetSoldNotReturnedPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1166,7 +1166,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizPosition[] GetNotSoldNotReturnedPositions(string supplierId) {
-            object[] results = this.Invoke("GetNotSoldNotReturnedPositions", new object[] {
+            var results = this.Invoke("GetNotSoldNotReturnedPositions", new object[] {
                         supplierId});
             return ((BizPosition[])(results[0]));
         }
@@ -1187,7 +1187,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnGetNotSoldNotReturnedPositionsOperationCompleted(object arg) {
             if ((this.GetNotSoldNotReturnedPositionsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetNotSoldNotReturnedPositionsCompleted(this, new GetNotSoldNotReturnedPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1202,7 +1202,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
                         || (url == string.Empty))) {
                 return false;
             }
-            System.Uri wsUri = new System.Uri(url);
+            var wsUri = new System.Uri(url);
             if (((wsUri.Port >= 1024) 
                         && (string.Compare(wsUri.Host, "localHost", System.StringComparison.OrdinalIgnoreCase) == 0))) {
                 return true;

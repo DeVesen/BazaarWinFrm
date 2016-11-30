@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DeVes.Bazaar.Client.CustControls
 {
-    public class DVListView : ListView
+    public class DvListView : ListView
     {
-        private bool m_resizeColumns = false;
+        private bool m_resizeColumns;
         public bool ResizeColumns
         {
             get
@@ -25,9 +22,9 @@ namespace DeVes.Bazaar.Client.CustControls
         {
             base.OnResize(e);
 
-            float _width = (float)this.Width - 5;
-            float _colCount = (float)this.Columns.Count;
-            float _widthPerCol = _width / _colCount;
+            var _width = (float)this.Width - 5;
+            var _colCount = (float)this.Columns.Count;
+            var _widthPerCol = _width / _colCount;
 
             if (_widthPerCol > 10 && this.m_resizeColumns)
             {

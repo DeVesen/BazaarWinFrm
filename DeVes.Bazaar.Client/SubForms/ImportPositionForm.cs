@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 
@@ -12,11 +9,11 @@ namespace DeVes.Bazaar.Client.SubForms
 {
     public partial class ImportPositionForm : BaseSubForm
     {
-        public class PositionLVI : ListViewItem
+        public class PositionLvi : ListViewItem
         {
             public BizPosition DataObj { get; set; }
 
-            public PositionLVI(BizPosition position)
+            public PositionLvi(BizPosition position)
             {
                 this.DataObj = position;
 
@@ -29,11 +26,11 @@ namespace DeVes.Bazaar.Client.SubForms
             }
         }
 
-        private List<PositionLVI> m_globalList = new List<PositionLVI>();
+        private List<PositionLvi> m_globalList = new List<PositionLvi>();
         private DataTable m_importTable = new DataTable();
 
-        private BizSupplierer m_supplier = null;
-        private string m_fileName = null;
+        private BizSupplierer m_supplier;
+        private string m_fileName;
 
         public ImportPositionForm()
         {
@@ -44,11 +41,11 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             foreach (DataRow _row in this.m_importTable.Rows)
             {
-                BizPosition _bizPos = this.ConvertFromDataRow(_row);
+                var _bizPos = this.ConvertFromDataRow(_row);
                 if (_bizPos != null)
                 {
-                    this.m_globalList.Add(new PositionLVI(_bizPos));
-                    this.m_matlPosLv.Items.Add(new PositionLVI(_bizPos));
+                    this.m_globalList.Add(new PositionLvi(_bizPos));
+                    this.m_matlPosLv.Items.Add(new PositionLvi(_bizPos));
                 }
             }
         }
@@ -61,10 +58,10 @@ namespace DeVes.Bazaar.Client.SubForms
                 {
                     foreach (ListViewItem _lvItem in this.m_matlPosLv.Items)
                     {
-                        PositionLVI _posItem = _lvItem as PositionLVI;
+                        var _posItem = _lvItem as PositionLvi;
                         if (_posItem != null && _posItem.DataObj.PositionNo.ToString() == this.dvTextBox1.Text)
                         {
-                            this.ImportLineToSupplier(this.m_matlPosLv.Items[0] as PositionLVI);
+                            this.ImportLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
                             this.PlayGoodSound();
                             break;
                         }
@@ -76,9 +73,9 @@ namespace DeVes.Bazaar.Client.SubForms
                         }
                     }
                 }
-                else if (this.m_matlPosLv.Items.Count == 1 && this.m_matlPosLv.Items[0] is PositionLVI)
+                else if (this.m_matlPosLv.Items.Count == 1 && this.m_matlPosLv.Items[0] is PositionLvi)
                 {
-                    this.ImportLineToSupplier(this.m_matlPosLv.Items[0] as PositionLVI);
+                    this.ImportLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
                 }
                 else 
                 {
@@ -92,24 +89,24 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             this.m_matlPosLv.Items.Clear();
 
-            string _enteredValue = this.dvTextBox1.Text.ToLower().Trim();
+            var _enteredValue = this.dvTextBox1.Text.ToLower().Trim();
 
             if (!string.IsNullOrEmpty(_enteredValue))
             {
                 var _items =
-                    from I in this.m_globalList
-                    where I.DataObj.PositionNo.ToString().IndexOf(_enteredValue) >= 0 ||
-                          I.DataObj.Material.ToString().ToLower().IndexOf(_enteredValue) >= 0
-                    select I;
+                    from _ in this.m_globalList
+                    where _.DataObj.PositionNo.ToString().IndexOf(_enteredValue) >= 0 ||
+                          _.DataObj.Material.ToString().ToLower().IndexOf(_enteredValue) >= 0
+                    select _;
 
-                foreach (PositionLVI _row in _items)
+                foreach (var _row in _items)
                 {
                     this.m_matlPosLv.Items.Add(_row);
                 }
             }
             else
             {
-                foreach (PositionLVI _row in this.m_globalList)
+                foreach (var _row in this.m_globalList)
                 {
                     this.m_matlPosLv.Items.Add(_row);
                 }
@@ -118,9 +115,9 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private void m_matlPosLv_DoubleClick(object sender, EventArgs e)
         {
-            if (this.m_matlPosLv.SelectedItems.Count == 1 && this.m_matlPosLv.SelectedItems[0] is PositionLVI)
+            if (this.m_matlPosLv.SelectedItems.Count == 1 && this.m_matlPosLv.SelectedItems[0] is PositionLvi)
             {
-                this.ImportLineToSupplier(this.m_matlPosLv.SelectedItems[0] as PositionLVI);
+                this.ImportLineToSupplier(this.m_matlPosLv.SelectedItems[0] as PositionLvi);
             }
         }
 
@@ -160,7 +157,7 @@ namespace DeVes.Bazaar.Client.SubForms
 
                     _result.Memo = GParams.ToString(row["Memo"]);
                 }
-                catch (Exception ex)
+                catch (Exception _ex)
                 {
                     _result = null;
                 }
@@ -170,13 +167,13 @@ namespace DeVes.Bazaar.Client.SubForms
         }
         private bool IsHeadLine(params string[] columnValues)
         {
-            List<string> _headValues = new List<string>() { "Nummer", "Bezeichnung", "Kategorie", "Hersteller", "Preis in", "min. Preis" };
-            int _columnCount = System.Math.Min(columnValues.Length, _headValues.Count);
-            bool _oneIsDiff = false;
+            var _headValues = new List<string>() { "Nummer", "Bezeichnung", "Kategorie", "Hersteller", "Preis in", "min. Preis" };
+            var _columnCount = Math.Min(columnValues.Length, _headValues.Count);
+            var _oneIsDiff = false;
 
-            for (int _colIndex = 0; _colIndex < _columnCount; _colIndex++)
+            for (var _colIndex = 0; _colIndex < _columnCount; _colIndex++)
             {
-                string _colValueToCompate = columnValues[_colIndex];
+                var _colValueToCompate = columnValues[_colIndex];
                 if (_colValueToCompate.Length > _headValues[_colIndex].Length)
                     _colValueToCompate = _colValueToCompate.Substring(0, _headValues[_colIndex].Length);
 
@@ -200,7 +197,7 @@ namespace DeVes.Bazaar.Client.SubForms
             this.m_importTable.Columns.Add("PriceMax", typeof(double));
             this.m_importTable.Columns.Add("Memo", typeof(string));
 
-            List<string> _impCols = new List<string>() { "PositionNo", "Material", "Category", "Manufacturer", "PriceMax", "PriceMin" };
+            var _impCols = new List<string>() { "PositionNo", "Material", "Category", "Manufacturer", "PriceMax", "PriceMin" };
             System.IO.StreamReader _streamReader = null;
 
             try
@@ -214,21 +211,21 @@ namespace DeVes.Bazaar.Client.SubForms
 
                     if (_line != null && !string.IsNullOrEmpty(_line.Trim()))
                     {
-                        string[] _columns = _line.Split(new string[] { ";" }, StringSplitOptions.None);
+                        var _columns = _line.Split(new string[] { ";" }, StringSplitOptions.None);
                         if (_columns != null && _columns.Length >= _impCols.Count)
                         {
                             if (!this.IsHeadLine(_columns))
                             {
-                                bool _hadOneEx = false;
-                                DataRow _newRow = this.m_importTable.NewRow();
+                                var _hadOneEx = false;
+                                var _newRow = this.m_importTable.NewRow();
 
-                                for (int _colIndex = 0; _colIndex < _impCols.Count; _colIndex++)
+                                for (var _colIndex = 0; _colIndex < _impCols.Count; _colIndex++)
                                 {
                                     try
                                     {
                                         if (_columns[_colIndex] != null && !string.IsNullOrEmpty(_columns[_colIndex].Trim()))
                                         {
-                                            DataColumn _dataCol = this.m_importTable.Columns[_impCols[_colIndex]];
+                                            var _dataCol = this.m_importTable.Columns[_impCols[_colIndex]];
 
                                             if (_dataCol.DataType.FullName == typeof(string).FullName)
                                             {
@@ -244,7 +241,7 @@ namespace DeVes.Bazaar.Client.SubForms
                                             }
                                         }
                                     }
-                                    catch (Exception ex)
+                                    catch (Exception _ex)
                                     {
                                         _hadOneEx = true;
                                         break;
@@ -261,7 +258,7 @@ namespace DeVes.Bazaar.Client.SubForms
 
                 } while (_line != null);
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
 
             }
@@ -291,26 +288,26 @@ namespace DeVes.Bazaar.Client.SubForms
             {
                 this.m_importTable.ReadXml(filePath);
             }
-            catch(Exception ex)
+            catch(Exception _ex)
             {
                 return false;
             }
             return this.m_importTable.Rows.Count > 0;
         }
-        private void ImportLineToSupplier(PositionLVI line)
+        private void ImportLineToSupplier(PositionLvi line)
         {
             if (line == null)
                 return;
 
             try
             {
-                BizPosition _newPosition = line.DataObj;
+                var _newPosition = line.DataObj;
                 _newPosition.SupplierId = this.m_supplier.SupplierID;
 
                 if (GParams.Instance.BasarCom.PositionGet(_newPosition.PositionNo, true) == null)
                 {
-                    bool _created = false;
-                    bool _createdSpec = false;
+                    var _created = false;
+                    var _createdSpec = false;
 
                     GParams.Instance.BasarCom.PositionCreate(_newPosition, out _created, out _createdSpec);
 
@@ -331,9 +328,9 @@ namespace DeVes.Bazaar.Client.SubForms
                     MessageBox.Show("Positionsnummer existiert bereits!");
                 }
             }
-            catch(Exception ex)
+            catch(Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
 
             this.dvTextBox1.ResetText();
@@ -342,18 +339,18 @@ namespace DeVes.Bazaar.Client.SubForms
 
 
 
-        public static DialogResult HandleImport(IWin32Window owner, string FileName, BizSupplierer supplier)
+        public static DialogResult HandleImport(IWin32Window owner, string fileName, BizSupplierer supplier)
         {
-            if (System.IO.File.Exists(FileName))
+            if (System.IO.File.Exists(fileName))
             {
-                System.IO.FileInfo _fileInfo = new System.IO.FileInfo(FileName);
-                ImportPositionForm _frm = new ImportPositionForm();
+                var _fileInfo = new System.IO.FileInfo(fileName);
+                var _frm = new ImportPositionForm();
 
                 if (string.Compare(_fileInfo.Extension, ".csv", StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    if (_frm.ReadPositonCsv(FileName))
+                    if (_frm.ReadPositonCsv(fileName))
                     {
-                        _frm.m_fileName = FileName;
+                        _frm.m_fileName = fileName;
                         _frm.m_supplier = supplier;
 
                         return _frm.ShowDialog(owner);
@@ -361,9 +358,9 @@ namespace DeVes.Bazaar.Client.SubForms
                 }
                 else if (string.Compare(_fileInfo.Extension, ".xml", StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    if (_frm.ReadPositionXml(FileName))
+                    if (_frm.ReadPositionXml(fileName))
                     {
-                        _frm.m_fileName = FileName;
+                        _frm.m_fileName = fileName;
                         _frm.m_supplier = supplier;
 
                         return _frm.ShowDialog(owner);

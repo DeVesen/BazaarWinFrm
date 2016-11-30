@@ -1,6 +1,6 @@
 ﻿namespace DeVes.Bazaar.Server.CustControls
 {
-    partial class TitelBarCtrl
+    sealed partial class TitelBarCtrl
     {
         /// <summary> 
         /// Required designer variable.

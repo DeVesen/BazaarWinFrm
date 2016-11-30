@@ -30,18 +30,18 @@
         {
             this.bkGroupBox1 = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.m_httpComStremTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_httpComStremTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.m_serverPortTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_serverPortTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.m_serverIpTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_serverIpTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.m_saveSettingsBtn = new System.Windows.Forms.Button();
             this.bkGroupBox2 = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
             this.m_ipListLb = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.m_machineNameTb = new DeVes.Bazaar.Client.CustControls.DVTextBox();
+            this.m_machineNameTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).BeginInit();
             this.bkGroupBox1.SuspendLayout();
             this.bkGroupBox2.SuspendLayout();
@@ -92,7 +92,7 @@
             this.m_httpComStremTb.Location = new System.Drawing.Point(10, 89);
             this.m_httpComStremTb.Name = "m_httpComStremTb";
             this.m_httpComStremTb.ReadOnly = true;
-            this.m_httpComStremTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_httpComStremTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_httpComStremTb.Size = new System.Drawing.Size(398, 22);
             this.m_httpComStremTb.TabIndex = 10;
             // 
@@ -127,7 +127,7 @@
             this.m_serverPortTb.IsMargin = false;
             this.m_serverPortTb.Location = new System.Drawing.Point(212, 42);
             this.m_serverPortTb.Name = "m_serverPortTb";
-            this.m_serverPortTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_serverPortTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_serverPortTb.Size = new System.Drawing.Size(196, 22);
             this.m_serverPortTb.TabIndex = 2;
             this.m_serverPortTb.TextChanged += new System.EventHandler(this.OnServerAdressCtrlsChanged);
@@ -148,7 +148,7 @@
             this.m_serverIpTb.IsMargin = false;
             this.m_serverIpTb.Location = new System.Drawing.Point(10, 42);
             this.m_serverIpTb.Name = "m_serverIpTb";
-            this.m_serverIpTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_serverIpTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_serverIpTb.Size = new System.Drawing.Size(196, 22);
             this.m_serverIpTb.TabIndex = 0;
             this.m_serverIpTb.TextChanged += new System.EventHandler(this.OnServerAdressCtrlsChanged);
@@ -220,7 +220,7 @@
             this.m_machineNameTb.Location = new System.Drawing.Point(10, 42);
             this.m_machineNameTb.Name = "m_machineNameTb";
             this.m_machineNameTb.ReadOnly = true;
-            this.m_machineNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DVTextBox.ResultTypes.String;
+            this.m_machineNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
             this.m_machineNameTb.Size = new System.Drawing.Size(151, 22);
             this.m_machineNameTb.TabIndex = 0;
             // 
@@ -254,17 +254,17 @@
         private CustControls.BkGroupBox bkGroupBox1;
         private System.Windows.Forms.Button m_saveSettingsBtn;
         private System.Windows.Forms.Label label3;
-        private CustControls.DVTextBox m_httpComStremTb;
+        private CustControls.DvTextBox m_httpComStremTb;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
-        private CustControls.DVTextBox m_serverPortTb;
+        private CustControls.DvTextBox m_serverPortTb;
         private System.Windows.Forms.Label label1;
-        private CustControls.DVTextBox m_serverIpTb;
+        private CustControls.DvTextBox m_serverIpTb;
         private CustControls.BkGroupBox bkGroupBox2;
         private System.Windows.Forms.ListBox m_ipListLb;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private CustControls.DVTextBox m_machineNameTb;
+        private CustControls.DvTextBox m_machineNameTb;
 
     }
 }

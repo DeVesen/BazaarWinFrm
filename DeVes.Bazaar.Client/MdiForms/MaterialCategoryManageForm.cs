@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 
@@ -54,11 +48,11 @@ namespace DeVes.Bazaar.Client.MdiForms
 
             try
             {
-                BizMaterialCategory _newManuf = new BizMaterialCategory();
+                var _newManuf = new BizMaterialCategory();
                 _newManuf.Designation = this.m_catInputTb.Text;
 
-                bool _created = false;
-                bool _createdSpec = false;
+                var _created = false;
+                var _createdSpec = false;
 
                 GParams.Instance.BasarCom.MaterialCategoryCreate(_newManuf, out _created, out _createdSpec);
 
@@ -76,9 +70,9 @@ namespace DeVes.Bazaar.Client.MdiForms
                     MessageBox.Show("Hersteller konnte nicht erzeugt werden");
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
 
@@ -88,8 +82,8 @@ namespace DeVes.Bazaar.Client.MdiForms
             {
                 try
                 {
-                    bool _removed = false;
-                    bool _removedSpec = false;
+                    var _removed = false;
+                    var _removedSpec = false;
 
                     GParams.Instance.BasarCom.MaterialCategoryRemove(this.ActualSelectedItem.DataObj.Id, out _removed, out _removedSpec);
 
@@ -102,9 +96,9 @@ namespace DeVes.Bazaar.Client.MdiForms
                         MessageBox.Show("Hersteller konnte nicht gelöscht werden");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception _ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(_ex.Message);
                 }
             }
         }
@@ -131,19 +125,19 @@ namespace DeVes.Bazaar.Client.MdiForms
 
             try
             {
-                BizMaterialCategory[] _manufArray = GParams.Instance.BasarCom.MaterialCategoryGetAll();
+                var _manufArray = GParams.Instance.BasarCom.MaterialCategoryGetAll();
 
                 if (_manufArray != null && _manufArray.Length > 0)
                 {
-                    foreach (BizMaterialCategory _manuf in _manufArray)
+                    foreach (var _manuf in _manufArray)
                     {
                         this.m_catLv.Items.Add(new MaterialCategoryListViewItem(_manuf));
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
     }

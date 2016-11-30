@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ServiceModel;
 using DeVes.Bazaar.Data.Biz;
-using DeVes.Bazaar.Data.Tables;
 using DeVes.Bazaar.Data.DataObjekts;
 
 namespace DeVes.Bazaar.Server.Integrator
@@ -22,7 +18,7 @@ namespace DeVes.Bazaar.Server.Integrator
         #region . Material Category .
 
         [OperationContract]
-        BizMaterialCategory MaterialCategoryGet(Guid Id);
+        BizMaterialCategory MaterialCategoryGet(Guid id);
         [OperationContract]
         BizMaterialCategory[] MaterialCategoryGetAll();
 
@@ -39,7 +35,7 @@ namespace DeVes.Bazaar.Server.Integrator
         #region . Manufacturer .
 
         [OperationContract]
-        BizManufacturer ManufacturerGet(Guid Id);
+        BizManufacturer ManufacturerGet(Guid id);
         [OperationContract]
         BizManufacturer[] ManufacturerGetAll();
 

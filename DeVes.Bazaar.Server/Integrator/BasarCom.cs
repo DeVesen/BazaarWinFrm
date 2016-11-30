@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
 using DeVes.Bazaar.Data;
 using DeVes.Bazaar.Data.Biz;
-using DeVes.Bazaar.Data.Tables;
 using DeVes.Bazaar.Data.DataObjekts;
 
 namespace DeVes.Bazaar.Server.Integrator
 {
     class BasarCom : IBasarCom
     {
-        private static int ComCounter = 0;
         private static bool CheckComCounter()
         {
             //if (!Program.OptionExist("IsActivated"))
@@ -33,16 +27,19 @@ namespace DeVes.Bazaar.Server.Integrator
         {
             lock (GParams.Instance.ComLockObj)
             {
-                ParameterResult _result = new ParameterResult();
+                var _result = new ParameterResult
+                {
+                    ProzSoldGewein = 15,
+                    SellerInfoText =
+                        @"Die Abholung der nicht verkauften Ware, oder des Erlöses der verkauften Waren, muss am Samstag den 29.10.2011 bis 15:00 Uhr gegen Vorlage des Anmeldezettels erfolgen. Für abhanden gekommene Gegenstände wird von Seiten des Skiclubs Untergrombach e.V. keine Haftung übernommen. Der Verkauf der Ware erfolgt in fremden Namen und auf fremde Rechnung."
+                };
 
-                _result.ProzSoldGewein = 15;
-                _result.SellerInfoText = "Die Abholung der nicht verkauften Ware, oder des Erlöses der verkauften Waren, muss am Samstag den 29.10.2011 bis 15:00 Uhr gegen Vorlage des Anmeldezettels erfolgen. Für abhanden gekommene Gegenstände wird von Seiten des Skiclubs Untergrombach e.V. keine Haftung übernommen. Der Verkauf der Ware erfolgt in fremden Namen und auf fremde Rechnung.";
 
                 Program.CfgFile.Read();
 
-                _result.ProzSoldGewein = Program.CfgFile.getValue_AsdDouble("SellParams", "ProzGewin", _result.ProzSoldGewein).Value;
+                _result.ProzSoldGewein = Program.CfgFile.getValue_AsdDouble("SellParams", "ProzGewin", _result.ProzSoldGewein);
                 _result.SellerInfoText = Program.CfgFile.getValue_AsString("SellParams", "InfoMsgPosPrint", _result.SellerInfoText);
-                _result.PrintPev = Program.CfgFile.getValue_AsBool("General", "PrintPev", true).Value;
+                _result.PrintPev = Program.CfgFile.getValue_AsBool("General", "PrintPev", true);
 
                 return _result;
             }
@@ -58,9 +55,9 @@ namespace DeVes.Bazaar.Server.Integrator
 
         #region . Material Category .
 
-        public BizMaterialCategory MaterialCategoryGet(Guid Id)
+        public BizMaterialCategory MaterialCategoryGet(Guid id)
         {
-            return GParams.Instance.MasterData.MaterialCategoryGet(Id);
+            return GParams.Instance.MasterData.MaterialCategoryGet(id);
         }
         public BizMaterialCategory[] MaterialCategoryGetAll()
         {
@@ -100,9 +97,9 @@ namespace DeVes.Bazaar.Server.Integrator
 
         #region . Manufacturer .
 
-        public BizManufacturer ManufacturerGet(Guid Id)
+        public BizManufacturer ManufacturerGet(Guid id)
         {
-            return GParams.Instance.MasterData.ManufacturerGet(Id);
+            return GParams.Instance.MasterData.ManufacturerGet(id);
         }
         public BizManufacturer[] ManufacturerGetAll()
         {
@@ -167,7 +164,7 @@ namespace DeVes.Bazaar.Server.Integrator
                 throw new Exception("Maximale Anzahl der Aufrufe erreicht!");
             }
 
-            Guid? _result = GParams.Instance.Supplier.SupplierCreate(supplier);
+            var _result = GParams.Instance.Supplier.SupplierCreate(supplier);
             BasarCom.ShowStati();
             return _result;
         }
@@ -178,7 +175,7 @@ namespace DeVes.Bazaar.Server.Integrator
                 throw new Exception("Maximale Anzahl der Aufrufe erreicht!");
             }
 
-            bool _result = GParams.Instance.Supplier.SupplierUpdate(supplier);
+            var _result = GParams.Instance.Supplier.SupplierUpdate(supplier);
             BasarCom.ShowStati();
             return _result;
         }
@@ -189,7 +186,7 @@ namespace DeVes.Bazaar.Server.Integrator
                 throw new Exception("Maximale Anzahl der Aufrufe erreicht!");
             }
 
-            bool _result = GParams.Instance.Supplier.SupplierRemove(supplierId);
+            var _result = GParams.Instance.Supplier.SupplierRemove(supplierId);
             BasarCom.ShowStati();
             return _result;
         }
@@ -205,7 +202,7 @@ namespace DeVes.Bazaar.Server.Integrator
             if (isReturned)
                 _timeToSet = DateTime.Now;
 
-            bool _result = GParams.Instance.Supplier.SetSupplierToReturned(supplierId, _timeToSet);
+            var _result = GParams.Instance.Supplier.SetSupplierToReturned(supplierId, _timeToSet);
             BasarCom.ShowStati();
             return _result;
         }
@@ -231,32 +228,32 @@ namespace DeVes.Bazaar.Server.Integrator
 
         public PositionSellResult PositionSell(BizPosition[] position)
         {
-            PositionSellResult _result = GParams.Instance.Position.PositionSell(position);
+            var _result = GParams.Instance.Position.PositionSell(position);
             BasarCom.ShowStati();
             return _result;
         }
         public PositionReturnedResult PositionReturn(Guid supplierId)
         {
-            PositionReturnedResult _result = GParams.Instance.Position.PositionReturn(supplierId);
+            var _result = GParams.Instance.Position.PositionReturn(supplierId);
             BasarCom.ShowStati();
             return _result;
         }
 
         public BizPosition[] GetSoldPositions(Guid supplierId)
         {
-            BizPosition[] _result = GParams.Instance.Position.GetSoldPositions(supplierId);
+            var _result = GParams.Instance.Position.GetSoldPositions(supplierId);
             BasarCom.ShowStati();
             return _result;
         }
         public BizPosition[] GetSoldNotReturnedPositions(Guid supplierId)
         {
-            BizPosition[] _result = GParams.Instance.Position.GetSoldNotReturnedPositions(supplierId);
+            var _result = GParams.Instance.Position.GetSoldNotReturnedPositions(supplierId);
             BasarCom.ShowStati();
             return _result;
         }
         public BizPosition[] GetNotSoldNotReturnedPositions(Guid supplierId)
         {
-            BizPosition[] _result = GParams.Instance.Position.GetNotSoldNotReturnedPositions(supplierId);
+            var _result = GParams.Instance.Position.GetNotSoldNotReturnedPositions(supplierId);
             BasarCom.ShowStati();
             return _result;
         }
@@ -274,7 +271,7 @@ namespace DeVes.Bazaar.Server.Integrator
                 throw new Exception("Maximale Anzahl der Aufrufe erreicht!");
             }
 
-            bool _result = GParams.Instance.Position.PositionCreate(supplierPosition);
+            var _result = GParams.Instance.Position.PositionCreate(supplierPosition);
             BasarCom.ShowStati();
             return _result;
         }
@@ -285,7 +282,7 @@ namespace DeVes.Bazaar.Server.Integrator
                 throw new Exception("Maximale Anzahl der Aufrufe erreicht!");
             }
 
-            bool _result = GParams.Instance.Position.PositionUpdate(supplierPosition);
+            var _result = GParams.Instance.Position.PositionUpdate(supplierPosition);
             BasarCom.ShowStati();
             return _result;
         }
@@ -296,7 +293,7 @@ namespace DeVes.Bazaar.Server.Integrator
                 throw new Exception("Maximale Anzahl der Aufrufe erreicht!");
             }
 
-            bool _result = GParams.Instance.Position.PositionRemove(positionNo);
+            var _result = GParams.Instance.Position.PositionRemove(positionNo);
             BasarCom.ShowStati();
             return _result;
         }

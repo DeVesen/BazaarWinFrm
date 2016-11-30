@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.IO;
@@ -19,12 +17,12 @@ namespace GP.UI.Mobile2.AppParameter
         /// <summary>
         /// Inhalt der Datei
         /// </summary>
-        private List<String> lines = new List<string>();
+        private List<String> _lines = new List<string>();
 
         /// <summary>
         /// Voller Pfad und Name der Datei
         /// </summary>
-        private String FileName = "";
+        private String _fileName = "";
 
         /// <summary>
         /// Gibt an, welche Zeichen als Kommentarbeginn
@@ -32,31 +30,31 @@ namespace GP.UI.Mobile2.AppParameter
         /// Zeichen defaultmäßig für neue Kommentare
         /// verwendet.
         /// </summary>
-        private String CommentCharacters = "#;";
+        private String _commentCharacters = "#;";
 
         /// <summary>
         /// Regulärer Ausdruck für einen Kommentar in einer Zeile
         /// </summary>
-        private String regCommentStr = "";
+        private String _regCommentStr = "";
 
         /// <summary>
         /// Regulärer Ausdruck für einen Eintrag
         /// </summary>
-        private Regex regEntry = null;
+        private Regex _regEntry;
 
         /// <summary>
         /// Regulärer Ausdruck für einen Bereichskopf
         /// </summary>
-        private Regex regCaption = null;
+        private Regex _regCaption;
 
         /// <summary>
         /// Leerer Standard-Konstruktor
         /// </summary>
         public CfgFile()
         {
-            regCommentStr = @"(\s*[" + CommentCharacters + "](?<comment>.*))?";
-            regEntry = new Regex(@"^[ \t]*(?<entry>([^=])+)=(?<value>([^=" + CommentCharacters + "])+)" + regCommentStr + "$");
-            regCaption = new Regex(@"^[ \t]*(\[(?<caption>([^\]])+)\]){1}" + regCommentStr + "$");
+            _regCommentStr = @"(\s*[" + _commentCharacters + "](?<comment>.*))?";
+            _regEntry = new Regex(@"^[ \t]*(?<entry>([^=])+)=(?<value>([^=" + _commentCharacters + "])+)" + _regCommentStr + "$");
+            _regCaption = new Regex(@"^[ \t]*(\[(?<caption>([^\]])+)\]){1}" + _regCommentStr + "$");
         }
 
         /// <summary>
@@ -66,19 +64,19 @@ namespace GP.UI.Mobile2.AppParameter
         public CfgFile(string filename)
             : this()
         {
-            FileName = filename;
+            _fileName = filename;
         }
 
         public Boolean Read()
         {
-            if (!File.Exists(this.FileName))
+            if (!File.Exists(this._fileName))
                 return false;
 
-            using (StreamReader sr = new StreamReader(FileName))
+            using (var _sr = new StreamReader(_fileName))
             {
-                while (!sr.EndOfStream)
+                while (!_sr.EndOfStream)
                 {
-                    lines.Add(sr.ReadLine().TrimEnd());
+                    _lines.Add(_sr.ReadLine().TrimEnd());
                 }
             }
 
@@ -91,16 +89,16 @@ namespace GP.UI.Mobile2.AppParameter
         /// <returns></returns>
         public Boolean Save()
         {
-            if (FileName == "") return false;
+            if (_fileName == "") return false;
             try
             {
-                using (StreamWriter sw = new StreamWriter(FileName))
-                    foreach (String line in lines)
-                        sw.WriteLine(line);
+                using (var _sw = new StreamWriter(_fileName))
+                    foreach (var _line in _lines)
+                        _sw.WriteLine(_line);
             }
-            catch (IOException ex)
+            catch (IOException _ex)
             {
-                throw new IOException("Fehler beim Schreiben der Datei " + fileName, ex);
+                throw new IOException("Fehler beim Schreiben der Datei " + fileName, _ex);
             }
             catch
             {
@@ -115,37 +113,37 @@ namespace GP.UI.Mobile2.AppParameter
         /// <returns></returns>
         public String fileName
         {
-            get { return FileName; }
-            set { FileName = value; }
+            get { return _fileName; }
+            set { _fileName = value; }
         }
 
         /// <summary>
         /// Verzeichnis der Datei
         /// </summary>
         /// <returns></returns>
-        public String getDirectory()
+        public String GetDirectory()
         {
-            return Path.GetDirectoryName(FileName);
+            return Path.GetDirectoryName(_fileName);
         }
 
         /// <summary>
         /// Sucht die Zeilennummer (nullbasiert) 
         /// eines gewünschten Eintrages
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>Nummer der Zeile, sonst -1</returns>
-        private int SearchCaptionLine(String Caption, Boolean CaseSensitive)
+        private int SearchCaptionLine(String caption, Boolean caseSensitive)
         {
-            if (!CaseSensitive) Caption = Caption.ToLower();
-            for (int i = 0; i < lines.Count; i++)
+            if (!caseSensitive) caption = caption.ToLower();
+            for (var _i = 0; _i < _lines.Count; _i++)
             {
-                String line = lines[i].Trim();
-                if (line == "") continue;
-                if (!CaseSensitive) line = line.ToLower();
+                var _line = _lines[_i].Trim();
+                if (_line == "") continue;
+                if (!caseSensitive) _line = _line.ToLower();
                 // Erst den gewünschten Abschnitt suchen
-                if (line == "[" + Caption + "]")
-                    return i;
+                if (_line == "[" + caption + "]")
+                    return _i;
             }
             return -1;// Bereich nicht gefunden
         }
@@ -154,27 +152,27 @@ namespace GP.UI.Mobile2.AppParameter
         /// Sucht die Zeilennummer (nullbasiert) 
         /// eines gewünschten Eintrages
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="Entry">Name des Eintrages</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="entry">Name des Eintrages</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>Nummer der Zeile, sonst -1</returns>
-        private int SearchEntryLine(String Caption, String Entry, Boolean CaseSensitive)
+        private int SearchEntryLine(String caption, String entry, Boolean caseSensitive)
         {
-            Caption = Caption.ToLower();
-            if (!CaseSensitive) Entry = Entry.ToLower();
-            int CaptionStart = SearchCaptionLine(Caption, false);
-            if (CaptionStart < 0) return -1;
-            for (int i = CaptionStart + 1; i < lines.Count; i++)
+            caption = caption.ToLower();
+            if (!caseSensitive) entry = entry.ToLower();
+            var _captionStart = SearchCaptionLine(caption, false);
+            if (_captionStart < 0) return -1;
+            for (var _i = _captionStart + 1; _i < _lines.Count; _i++)
             {
-                String line = lines[i].Trim();
-                if (line == "") continue;
-                if (!CaseSensitive) line = line.ToLower();
-                if (line.StartsWith("["))
+                var _line = _lines[_i].Trim();
+                if (_line == "") continue;
+                if (!caseSensitive) _line = _line.ToLower();
+                if (_line.StartsWith("["))
                     return -1;// Ende, wenn der nächste Abschnitt beginnt
-                if (Regex.IsMatch(line, @"^[ \t]*[" + CommentCharacters + "]"))
+                if (Regex.IsMatch(_line, @"^[ \t]*[" + _commentCharacters + "]"))
                     continue; // Kommentar
-                if (line.StartsWith(Entry))
-                    return i;// Eintrag gefunden
+                if (_line.StartsWith(entry))
+                    return _i;// Eintrag gefunden
             }
             return -1;// Eintrag nicht gefunden
         }
@@ -182,30 +180,30 @@ namespace GP.UI.Mobile2.AppParameter
         /// <summary>
         /// Kommentiert einen Wert aus
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="Entry">Name des Eintrages</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="entry">Name des Eintrages</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>true = Eintrag gefunden und auskommentiert</returns>
-        public Boolean commentValue(String Caption, String Entry, Boolean CaseSensitive)
+        public Boolean CommentValue(String caption, String entry, Boolean caseSensitive)
         {
-            int line = SearchEntryLine(Caption, Entry, CaseSensitive);
-            if (line < 0) return false;
-            lines[line] = CommentCharacters[0] + lines[line];
+            var _line = SearchEntryLine(caption, entry, caseSensitive);
+            if (_line < 0) return false;
+            _lines[_line] = _commentCharacters[0] + _lines[_line];
             return true;
         }
 
         /// <summary>
         /// Löscht einen Wert
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="Entry">Name des Eintrages</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="entry">Name des Eintrages</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>true = Eintrag gefunden und gelöscht</returns>
-        public Boolean deleteValue(String Caption, String Entry, Boolean CaseSensitive)
+        public Boolean DeleteValue(String caption, String entry, Boolean caseSensitive)
         {
-            int line = SearchEntryLine(Caption, Entry, CaseSensitive);
-            if (line < 0) return false;
-            lines.RemoveAt(line);
+            var _line = SearchEntryLine(caption, entry, caseSensitive);
+            if (_line < 0) return false;
+            _lines.RemoveAt(_line);
             return true;
         }
 
@@ -213,17 +211,17 @@ namespace GP.UI.Mobile2.AppParameter
         /// Liest den Wert eines Eintrages aus
         /// (Erweiterung: case sensitive)
         /// </summary>
-        /// <param name="Caption">Name des Bereiches</param>
-        /// <param name="Entry">Name des Eintrages</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereiches</param>
+        /// <param name="entry">Name des Eintrages</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>Wert des Eintrags oder leer</returns>
-        public String getValue(String Caption, String Entry, Boolean CaseSensitive)
+        public String GetValue(String caption, String entry, Boolean caseSensitive)
         {
-            int line = SearchEntryLine(Caption, Entry, CaseSensitive);
-            if (line < 0) return "";
-            int pos = lines[line].IndexOf("=");
-            if (pos < 0) return "";
-            return lines[line].Substring(pos + 1).Trim();
+            var _line = SearchEntryLine(caption, entry, caseSensitive);
+            if (_line < 0) return "";
+            var _pos = _lines[_line].IndexOf("=");
+            if (_pos < 0) return "";
+            return _lines[_line].Substring(_pos + 1).Trim();
             // Evtl. noch abschliessende Kommentarbereiche entfernen
         }
 
@@ -232,77 +230,77 @@ namespace GP.UI.Mobile2.AppParameter
         /// (und der Bereich) noch nicht existiert, werden die
         /// entsprechenden Einträge erstellt.
         /// </summary>
-        /// <param name="Caption">Name des Bereichs</param>
-        /// <param name="Entry">name des Eintrags</param>
-        /// <param name="Value">Wert des Eintrags</param>
-        /// <param name="CaseSensitive">true = Gross-/Kleinschreibung beachten</param>
+        /// <param name="caption">Name des Bereichs</param>
+        /// <param name="entry">name des Eintrags</param>
+        /// <param name="value">Wert des Eintrags</param>
+        /// <param name="caseSensitive">true = Gross-/Kleinschreibung beachten</param>
         /// <returns>true = Eintrag erfolgreich gesetzt</returns>
-        public Boolean setValue(String Caption, String Entry, String Value, Boolean CaseSensitive)
+        public Boolean SetValue(String caption, String entry, String value, Boolean caseSensitive)
         {
-            Caption = Caption.ToLower();
-            if (!CaseSensitive) Entry = Entry.ToLower();
-            int lastCommentedFound = -1;
-            int CaptionStart = SearchCaptionLine(Caption, false);
-            if (CaptionStart < 0)
+            caption = caption.ToLower();
+            if (!caseSensitive) entry = entry.ToLower();
+            var _lastCommentedFound = -1;
+            var _captionStart = SearchCaptionLine(caption, false);
+            if (_captionStart < 0)
             {
-                lines.Add("[" + Caption + "]");
-                lines.Add(Entry + "=" + Value);
+                _lines.Add("[" + caption + "]");
+                _lines.Add(entry + "=" + value);
                 return true;
             }
-            int EntryLine = SearchEntryLine(Caption, Entry, CaseSensitive);
-            for (int i = CaptionStart + 1; i < lines.Count; i++)
+            var _entryLine = SearchEntryLine(caption, entry, caseSensitive);
+            for (var _i = _captionStart + 1; _i < _lines.Count; _i++)
             {
-                String line = lines[i].Trim();
-                if (!CaseSensitive) line = line.ToLower();
-                if (line == "") continue;
+                var _line = _lines[_i].Trim();
+                if (!caseSensitive) _line = _line.ToLower();
+                if (_line == "") continue;
                 // Ende, wenn der nächste Abschnitt beginnt
-                if (line.StartsWith("["))
+                if (_line.StartsWith("["))
                 {
-                    lines.Insert(i, Entry + "=" + Value);
+                    _lines.Insert(_i, entry + "=" + value);
                     return true;
                 }
                 // Suche aukommentierte, aber gesuchte Einträge
                 // (evtl. per Parameter bestimmen können?), falls
                 // der Eintrag noch nicht existiert.
-                if (EntryLine < 0)
-                    if (Regex.IsMatch(line, @"^[ \t]*[" + CommentCharacters + "]"))
+                if (_entryLine < 0)
+                    if (Regex.IsMatch(_line, @"^[ \t]*[" + _commentCharacters + "]"))
                     {
-                        String tmpLine = line.Substring(1).Trim();
-                        if (tmpLine.StartsWith(Entry))
+                        var _tmpLine = _line.Substring(1).Trim();
+                        if (_tmpLine.StartsWith(entry))
                         {
                             // Werte vergleichen, wenn gleich,
                             // nur Kommentarzeichen löschen
-                            int pos = tmpLine.IndexOf("=");
-                            if (pos > 0)
+                            var _pos = _tmpLine.IndexOf("=");
+                            if (_pos > 0)
                             {
-                                if (Value == tmpLine.Substring(pos + 1).Trim())
+                                if (value == _tmpLine.Substring(_pos + 1).Trim())
                                 {
-                                    lines[i] = tmpLine;
+                                    _lines[_i] = _tmpLine;
                                     return true;
                                 }
                             }
-                            lastCommentedFound = i;
+                            _lastCommentedFound = _i;
                         }
                         continue;// Kommentar
                     }
-                if (line.StartsWith(Entry))
+                if (_line.StartsWith(entry))
                 {
-                    lines[i] = Entry + "=" + Value;
+                    _lines[_i] = entry + "=" + value;
                     return true;
                 }
             }
-            if (lastCommentedFound > 0)
-                lines.Insert(lastCommentedFound + 1, Entry + "=" + Value);
+            if (_lastCommentedFound > 0)
+                _lines.Insert(_lastCommentedFound + 1, entry + "=" + value);
             else
-                lines.Insert(CaptionStart + 1, Entry + "=" + Value);
+                _lines.Insert(_captionStart + 1, entry + "=" + value);
             return true;
         }
 
-        public Boolean existValue(String Caption, String Entry, Boolean CaseSensitive)
+        public Boolean ExistValue(String caption, String entry, Boolean caseSensitive)
         {
-            if (this.SearchCaptionLine(Caption, CaseSensitive) >= 0)
+            if (this.SearchCaptionLine(caption, caseSensitive) >= 0)
             {
-                if (this.SearchEntryLine(Caption, Entry, CaseSensitive) >= 0)
+                if (this.SearchEntryLine(caption, entry, caseSensitive) >= 0)
                 {
                     return true;
                 }
@@ -313,51 +311,51 @@ namespace GP.UI.Mobile2.AppParameter
         /// <summary>
         /// Liest alle Einträge uns deren Werte eines Bereiches aus
         /// </summary>
-        /// <param name="Caption">Name des Bereichs</param>
+        /// <param name="caption">Name des Bereichs</param>
         /// <returns>Sortierte Liste mit Einträgen und Werten</returns>
-        public SortedList<String, String> getCaption(String Caption)
+        public SortedList<String, String> GetCaption(String caption)
         {
-            SortedList<String, String> result = new SortedList<string, string>();
-            Boolean CaptionFound = false;
-            for (int i = 0; i < lines.Count; i++)
+            var _result = new SortedList<string, string>();
+            var _captionFound = false;
+            for (var _i = 0; _i < _lines.Count; _i++)
             {
-                String line = lines[i].Trim();
-                if (line == "") continue;
+                var _line = _lines[_i].Trim();
+                if (_line == "") continue;
                 // Erst den gewünschten Abschnitt suchen
-                if (!CaptionFound)
-                    if (line.ToLower() != "[" + Caption + "]") continue;
+                if (!_captionFound)
+                    if (_line.ToLower() != "[" + caption + "]") continue;
                     else
                     {
-                        CaptionFound = true;
+                        _captionFound = true;
                         continue;
                     }
                 // Ende, wenn der nächste Abschnitt beginnt
-                if (line.StartsWith("[")) break;
-                if (Regex.IsMatch(line, @"^[ \t]*[" + CommentCharacters + "]")) continue; // Kommentar
-                int pos = line.IndexOf("=");
-                if (pos < 0)
-                    result.Add(line, "");
+                if (_line.StartsWith("[")) break;
+                if (Regex.IsMatch(_line, @"^[ \t]*[" + _commentCharacters + "]")) continue; // Kommentar
+                var _pos = _line.IndexOf("=");
+                if (_pos < 0)
+                    _result.Add(_line, "");
                 else
-                    result.Add(line.Substring(0, pos).Trim(), line.Substring(pos + 1).Trim());
+                    _result.Add(_line.Substring(0, _pos).Trim(), _line.Substring(_pos + 1).Trim());
             }
-            return result;
+            return _result;
         }
 
         /// <summary>
         /// Erstellt eine Liste aller enthaltenen Bereiche
         /// </summary>
         /// <returns>Liste mit gefundenen Bereichen</returns>
-        public List<string> getAllCaptions()
+        public List<string> GetAllCaptions()
         {
-            List<string> result = new List<string>();
-            for (int i = 0; i < lines.Count; i++)
+            var _result = new List<string>();
+            for (var _i = 0; _i < _lines.Count; _i++)
             {
-                String line = lines[i];
-                Match mCaption = regCaption.Match(lines[i]);
-                if (mCaption.Success)
-                    result.Add(mCaption.Groups["caption"].Value.Trim());
+                var _line = _lines[_i];
+                var _mCaption = _regCaption.Match(_lines[_i]);
+                if (_mCaption.Success)
+                    _result.Add(_mCaption.Groups["caption"].Value.Trim());
             }
-            return result;
+            return _result;
         }
 
         /// <summary>
@@ -365,34 +363,34 @@ namespace GP.UI.Mobile2.AppParameter
         /// in ein XML-Dokument
         /// </summary>
         /// <returns>XML-Dokument</returns>
-        public XmlDocument exportToXml()
+        public XmlDocument ExportToXml()
         {
-            XmlDocument doc = new XmlDocument();
-            XmlElement root = doc.CreateElement(
+            var _doc = new XmlDocument();
+            var _root = _doc.CreateElement(
                 Path.GetFileNameWithoutExtension(this.fileName));
-            doc.AppendChild(root);
-            XmlElement Caption = null;
-            for (int i = 0; i < lines.Count; i++)
+            _doc.AppendChild(_root);
+            XmlElement _caption = null;
+            for (var _i = 0; _i < _lines.Count; _i++)
             {
-                Match mEntry = regEntry.Match(lines[i]);
-                Match mCaption = regCaption.Match(lines[i]);
-                if (mCaption.Success)
+                var _mEntry = _regEntry.Match(_lines[_i]);
+                var _mCaption = _regCaption.Match(_lines[_i]);
+                if (_mCaption.Success)
                 {
-                    Caption = doc.CreateElement(mCaption.Groups["caption"].Value.Trim());
-                    root.AppendChild(Caption);
+                    _caption = _doc.CreateElement(_mCaption.Groups["caption"].Value.Trim());
+                    _root.AppendChild(_caption);
                     continue;
                 }
-                if (mEntry.Success)
+                if (_mEntry.Success)
                 {
-                    XmlElement xe = doc.CreateElement(mEntry.Groups["entry"].Value.Trim());
-                    xe.InnerXml = mEntry.Groups["value"].Value.Trim();
-                    if (Caption == null)
-                        root.AppendChild(xe);
+                    var _xe = _doc.CreateElement(_mEntry.Groups["entry"].Value.Trim());
+                    _xe.InnerXml = _mEntry.Groups["value"].Value.Trim();
+                    if (_caption == null)
+                        _root.AppendChild(_xe);
                     else
-                        Caption.AppendChild(xe);
+                        _caption.AppendChild(_xe);
                 }
             }
-            return doc;
+            return _doc;
         }
     }
 

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Data;
 using DeVes.Bazaar.Data.Biz;
-using DeVes.Bazaar.Data;
 
 namespace DeVes.Bazaar.Data.Working
 {
@@ -12,13 +9,13 @@ namespace DeVes.Bazaar.Data.Working
     {
         #region . Material Category .
 
-        public BizMaterialCategory MaterialCategoryGet(Guid Id)
+        public BizMaterialCategory MaterialCategoryGet(Guid id)
         {
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.MaterialCategoryTable.FetchById(Id);
+                    var _row = GParams.Instance.MaterialCategoryTable.FetchById(id);
                     if (_row != null)
                     {
                         return BizMaterialCategory.ConvertFromDataRow(_row);
@@ -26,6 +23,7 @@ namespace DeVes.Bazaar.Data.Working
                 }
                 catch
                 {
+                    // ignored
                 }
             }
 
@@ -33,16 +31,16 @@ namespace DeVes.Bazaar.Data.Working
         }
         public BizMaterialCategory[] MaterialCategoryGetAll()
         {
-            List<BizMaterialCategory> _result = new List<BizMaterialCategory>();
+            var _result = new List<BizMaterialCategory>();
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow[] _rows = GParams.Instance.MaterialCategoryTable.Select(string.Empty, "Designation ASC");
-                    if (_rows != null && _rows.Length > 0)
+                    var _rows = GParams.Instance.MaterialCategoryTable.Select(string.Empty, "Designation ASC");
+                    if (_rows.Length > 0)
                     {
-                        foreach (DataRow _row in _rows)
+                        foreach (var _row in _rows)
                         {
                             _result.Add(BizMaterialCategory.ConvertFromDataRow(_row));
                         }
@@ -59,7 +57,7 @@ namespace DeVes.Bazaar.Data.Working
 
         public bool MaterialCategoryCreate(BizMaterialCategory materialCategory)
         {
-            bool _result = true;
+            var _result = true;
 
             if (!materialCategory.Id.HasValue)
                 materialCategory.Id = Guid.NewGuid();
@@ -68,14 +66,14 @@ namespace DeVes.Bazaar.Data.Working
             {
                 try
                 {
-                    DataRow _newRow = GParams.Instance.MaterialCategoryTable.NewRow();
+                    var _newRow = GParams.Instance.MaterialCategoryTable.NewRow();
 
                     materialCategory.ConvertToDataRow(ref _newRow);
 
                     GParams.Instance.MaterialCategoryTable.Rows.Add(_newRow);
                     GParams.Instance.MaterialCategoryTable.SaveDataTable(GParams.Instance.ApplicationDataPath);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _result = false;
                 }
@@ -85,13 +83,13 @@ namespace DeVes.Bazaar.Data.Working
         }
         public bool MaterialCategoryUpdate(BizMaterialCategory materialCategory)
         {
-            bool _result = true;
+            var _result = true;
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.MaterialCategoryTable.FetchById(materialCategory.Id);
+                    var _row = GParams.Instance.MaterialCategoryTable.FetchById(materialCategory.Id);
                     if (_row != null)
                     {
                         materialCategory.ConvertToDataRow(ref _row);
@@ -109,13 +107,13 @@ namespace DeVes.Bazaar.Data.Working
         }
         public bool MaterialCategoryRemove(Guid matlCatId)
         {
-            bool _result = true;
+            var _result = true;
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.MaterialCategoryTable.FetchById(matlCatId);
+                    var _row = GParams.Instance.MaterialCategoryTable.FetchById(matlCatId);
                     if (_row != null)
                     {
                         _row.Delete();
@@ -137,13 +135,13 @@ namespace DeVes.Bazaar.Data.Working
 
         #region . Manufacturer .
 
-        public BizManufacturer ManufacturerGet(Guid Id)
+        public BizManufacturer ManufacturerGet(Guid id)
         {
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.ManufacturerTable.FetchById(Id);
+                    var _row = GParams.Instance.ManufacturerTable.FetchById(id);
                     if (_row != null)
                     {
                         return BizManufacturer.ConvertFromDataRow(_row);
@@ -151,6 +149,7 @@ namespace DeVes.Bazaar.Data.Working
                 }
                 catch
                 {
+                    // ignored
                 }
             }
 
@@ -158,19 +157,16 @@ namespace DeVes.Bazaar.Data.Working
         }
         public BizManufacturer[] ManufacturerGetAll()
         {
-            List<BizManufacturer> _result = new List<BizManufacturer>();
+            var _result = new List<BizManufacturer>();
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow[] _rows = GParams.Instance.ManufacturerTable.Select(string.Empty, "Designation ASC");
-                    if (_rows != null && _rows.Length > 0)
+                    var _rows = GParams.Instance.ManufacturerTable.Select(string.Empty, "Designation ASC");
+                    if (_rows.Length > 0)
                     {
-                        foreach (DataRow _row in _rows)
-                        {
-                            _result.Add(BizManufacturer.ConvertFromDataRow(_row));
-                        }
+                        _result.AddRange(_rows.Select(BizManufacturer.ConvertFromDataRow));
                     }
                 }
                 catch
@@ -184,7 +180,7 @@ namespace DeVes.Bazaar.Data.Working
 
         public bool ManufacturerCreate(BizManufacturer manufacturer)
         {
-            bool _result = true;
+            var _result = true;
 
             if (!manufacturer.Id.HasValue)
                 manufacturer.Id = Guid.NewGuid();
@@ -193,14 +189,14 @@ namespace DeVes.Bazaar.Data.Working
             {
                 try
                 {
-                    DataRow _newRow = GParams.Instance.ManufacturerTable.NewRow();
+                    var _newRow = GParams.Instance.ManufacturerTable.NewRow();
 
                     manufacturer.ConvertToDataRow(ref _newRow);
 
                     GParams.Instance.ManufacturerTable.Rows.Add(_newRow);
                     GParams.Instance.ManufacturerTable.SaveDataTable(GParams.Instance.ApplicationDataPath);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _result = false;
                 }
@@ -210,13 +206,13 @@ namespace DeVes.Bazaar.Data.Working
         }
         public bool ManufacturerUpdate(BizManufacturer materialCategory)
         {
-            bool _result = true;
+            var _result = true;
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.ManufacturerTable.FetchById(materialCategory.Id);
+                    var _row = GParams.Instance.ManufacturerTable.FetchById(materialCategory.Id);
                     if (_row != null)
                     {
                         materialCategory.ConvertToDataRow(ref _row);
@@ -234,13 +230,13 @@ namespace DeVes.Bazaar.Data.Working
         }
         public bool ManufacturerRemove(Guid matlCatId)
         {
-            bool _result = true;
+            var _result = true;
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.ManufacturerTable.FetchById(matlCatId);
+                    var _row = GParams.Instance.ManufacturerTable.FetchById(matlCatId);
                     if (_row != null)
                     {
                         _row.Delete();

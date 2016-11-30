@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 
@@ -12,11 +7,11 @@ namespace DeVes.Bazaar.Client.MdiForms.ScreenLists
 {
     public partial class ZusammenfassungScreenListForm : BaseScreenListForm
     {
-        private ListViewGroup m_notSoldItemsGroup = null;
-        private ListViewGroup m_soldItemsGroup = null;
-        private ListViewGroup m_summeryGroup = null;
+        private ListViewGroup m_notSoldItemsGroup;
+        private ListViewGroup m_soldItemsGroup;
+        private ListViewGroup m_summeryGroup;
 
-        private double m_soldProceSum = 0.0;
+        private double m_soldProceSum;
 
         public ZusammenfassungScreenListForm()
         {
@@ -36,7 +31,7 @@ namespace DeVes.Bazaar.Client.MdiForms.ScreenLists
         {
             if (supplierInfo.Positions != null && supplierInfo.Positions.Length > 0)
             {
-                foreach (BizPosition _position in supplierInfo.Positions)
+                foreach (var _position in supplierInfo.Positions)
                 {
                     this.AddListViewLine(supplierInfo.Supplier, _position);
                 }
@@ -44,7 +39,7 @@ namespace DeVes.Bazaar.Client.MdiForms.ScreenLists
         }
         private void AddListViewLine(BizSupplierer supplier, BizPosition position)
         {
-            ListViewItem _lvItem = new ListViewItem(position.PositionNo.ToString());
+            var _lvItem = new ListViewItem(position.PositionNo.ToString());
             _lvItem.SubItems.Add(position.Material);
             _lvItem.SubItems.Add(position.Category);
             _lvItem.SubItems.Add(position.Manufacturer);
@@ -71,7 +66,7 @@ namespace DeVes.Bazaar.Client.MdiForms.ScreenLists
         }
         private void SetSummeryLine(string text, string priceValue)
         {
-            ListViewItem _item001 = new ListViewItem("");
+            var _item001 = new ListViewItem("");
             _item001.SubItems.Add(text);
             _item001.SubItems.Add("");
             _item001.SubItems.Add("");
@@ -95,10 +90,10 @@ namespace DeVes.Bazaar.Client.MdiForms.ScreenLists
             this.ClearList();
             this.m_soldProceSum = 0.0;
 
-            AllPositionResult[] _allPosResults = GParams.Instance.BasarCom.AllSupplierAndPositions();
+            var _allPosResults = GParams.Instance.BasarCom.AllSupplierAndPositions();
             if (_allPosResults != null && _allPosResults.Length > 0)
             {
-                foreach (AllPositionResult _info in _allPosResults)
+                foreach (var _info in _allPosResults)
                 {
                     this.AddSupplierResult(_info);
                 }

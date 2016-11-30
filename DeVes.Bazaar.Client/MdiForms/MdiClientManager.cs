@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.MdiForms.ScreenLists;
 
@@ -10,7 +8,7 @@ namespace DeVes.Bazaar.Client.MdiForms
     public class MdiClientManager
     {
         private Dictionary<MdiClients, Form> m_codeToStarted = new Dictionary<MdiClients, Form>();
-        private Form m_parentMdiForm = null;
+        private Form m_parentMdiForm;
 
         public enum MdiClients
         {
@@ -21,7 +19,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             SearchMaterialInfo,
             Verkauf,
             ReturnToSupplier,
-            ScreenList_Summery,
+            ScreenListSummery,
             Settings
         }
 
@@ -78,7 +76,7 @@ namespace DeVes.Bazaar.Client.MdiForms
                         _newForm = new ReturnToSupplier();
                         break;
 
-                    case MdiClients.ScreenList_Summery:
+                    case MdiClients.ScreenListSummery:
                         _newForm = new ZusammenfassungScreenListForm();
                         break;
 
@@ -103,7 +101,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            foreach (MdiClients _code in this.m_codeToStarted.Keys)
+            foreach (var _code in this.m_codeToStarted.Keys)
             {
                 if (this.m_codeToStarted[_code] == sender)
                 {

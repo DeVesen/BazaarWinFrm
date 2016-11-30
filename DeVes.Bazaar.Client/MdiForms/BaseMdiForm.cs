@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DeVes.Bazaar.Client.MdiForms
@@ -20,7 +14,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         private void titelBarCtrl1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+            if (e.Button == MouseButtons.Middle)
             {
                 this.Close();
             }
@@ -68,21 +62,21 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         protected void PlayBadSound()
         {
-            System.Media.SoundPlayer _sp = new System.Media.SoundPlayer(Properties.Resources.Windows_Battery_Critical);
+            var _sp = new System.Media.SoundPlayer(Properties.Resources.Windows_Battery_Critical);
             _sp.Play();
             _sp.Dispose();
             _sp = null;
         }
         protected void PlayGoodSound()
         {
-            System.Media.SoundPlayer _sp = new System.Media.SoundPlayer(Properties.Resources.Windows_Print_complete);
+            var _sp = new System.Media.SoundPlayer(Properties.Resources.Windows_Print_complete);
             _sp.Play();
             _sp.Dispose();
             _sp = null;
         }
         protected void PlayConfirmedSound()
         {
-            System.Media.SoundPlayer _sp = new System.Media.SoundPlayer(Properties.Resources.Speech_Sleep);
+            var _sp = new System.Media.SoundPlayer(Properties.Resources.Speech_Sleep);
             _sp.Play();
             _sp.Dispose();
             _sp = null;

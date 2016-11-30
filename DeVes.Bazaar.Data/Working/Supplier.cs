@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
 using DeVes.Bazaar.Data.Biz;
 
 namespace DeVes.Bazaar.Data.Working
@@ -15,12 +12,13 @@ namespace DeVes.Bazaar.Data.Working
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.SupplierTable.FetchById(id);
+                    var _row = GParams.Instance.SupplierTable.FetchById(id);
 
                     return BizSupplierer.ConvertFromDataRow(_row);
                 }
                 catch
                 {
+                    // ignored
                 }
             }
 
@@ -32,12 +30,13 @@ namespace DeVes.Bazaar.Data.Working
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.SupplierTable.FetchByName(supplierName);
+                    var _row = GParams.Instance.SupplierTable.FetchByName(supplierName);
 
                     return BizSupplierer.ConvertFromDataRow(_row);
                 }
                 catch
                 {
+                    // ignored
                 }
             }
 
@@ -49,12 +48,13 @@ namespace DeVes.Bazaar.Data.Working
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.SupplierTable.FetchByNo(supplierNumber);
+                    var _row = GParams.Instance.SupplierTable.FetchByNo(supplierNumber);
 
                     return BizSupplierer.ConvertFromDataRow(_row);
                 }
                 catch
                 {
+                    // ignored
                 }
             }
 
@@ -63,16 +63,16 @@ namespace DeVes.Bazaar.Data.Working
 
         public BizSupplierer[] SupplierGetAll()
         {
-            List<BizSupplierer> _resultList = new List<BizSupplierer>();
+            var _resultList = new List<BizSupplierer>();
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow[] _rows = GParams.Instance.SupplierTable.Select(string.Empty, "SupplierNo ASC");
-                    if (_rows != null && _rows.Length > 0)
+                    var _rows = GParams.Instance.SupplierTable.Select(string.Empty, "SupplierNo ASC");
+                    if (_rows.Length > 0)
                     {
-                        foreach (DataRow _row in _rows)
+                        foreach (var _row in _rows)
                         {
                             _resultList.Add(BizSupplierer.ConvertFromDataRow(_row));
                         }
@@ -80,6 +80,7 @@ namespace DeVes.Bazaar.Data.Working
                 }
                 catch
                 {
+                    // ignored
                 }
             }
 
@@ -89,8 +90,8 @@ namespace DeVes.Bazaar.Data.Working
 
         public Guid? SupplierCreate(BizSupplierer supplier)
         {
-            if(!supplier.SupplierID.HasValue)
-                supplier.SupplierID = Guid.NewGuid();
+            if(!supplier.SupplierId.HasValue)
+                supplier.SupplierId = Guid.NewGuid();
 
             supplier.SupplierNo = GParams.Instance.SupplierTable.GetNextSupplierNo();
 
@@ -98,30 +99,30 @@ namespace DeVes.Bazaar.Data.Working
             {
                 try
                 {
-                    DataRow _newRow = GParams.Instance.SupplierTable.NewRow();
+                    var _newRow = GParams.Instance.SupplierTable.NewRow();
 
                     supplier.ConvertToDataRow(ref _newRow);
 
                     GParams.Instance.SupplierTable.Rows.Add(_newRow);
                     GParams.Instance.SupplierTable.SaveDataTable(GParams.Instance.ApplicationDataPath);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    supplier.SupplierID = null;
+                    supplier.SupplierId = null;
                 }
             }
 
-            return supplier.SupplierID;
+            return supplier.SupplierId;
         }
         public bool SupplierUpdate(BizSupplierer supplier)
         {
-            bool _result = true;
+            var _result = true;
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.SupplierTable.FetchById(supplier.SupplierID);
+                    var _row = GParams.Instance.SupplierTable.FetchById(supplier.SupplierId);
                     if (_row != null)
                     {
                         supplier.ConvertToDataRow(ref _row);
@@ -139,13 +140,13 @@ namespace DeVes.Bazaar.Data.Working
         }
         public bool SupplierRemove(Guid supplierId)
         {
-            bool _result = true;
+            var _result = true;
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.SupplierTable.FetchById(supplierId);
+                    var _row = GParams.Instance.SupplierTable.FetchById(supplierId);
                     if (_row != null)
                     {
                         _row.Delete();
@@ -171,16 +172,16 @@ namespace DeVes.Bazaar.Data.Working
 
         public bool SetSupplierToReturned(Guid? supplierId, DateTime? dateTime)
         {
-            bool _result = true;
+            var _result = true;
 
             lock (GParams.Instance.ComLockObj)
             {
                 try
                 {
-                    DataRow _row = GParams.Instance.SupplierTable.FetchById(supplierId);
+                    var _row = GParams.Instance.SupplierTable.FetchById(supplierId);
                     if (_row != null)
                     {
-                        BizSupplierer _supplierObj = BizSupplierer.ConvertFromDataRow(_row);
+                        var _supplierObj = BizSupplierer.ConvertFromDataRow(_row);
 
                         if (dateTime.HasValue)
                         {

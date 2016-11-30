@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 
@@ -12,11 +9,11 @@ namespace DeVes.Bazaar.Client.SubForms
 {
     public partial class ReturnPositionsForm : BaseSubForm
     {
-        public class PositionLVI : ListViewItem
+        public class PositionLvi : ListViewItem
         {
             public BizPosition DataObj { get; set; }
 
-            public PositionLVI(BizPosition position)
+            public PositionLvi(BizPosition position)
             {
                 this.DataObj = position;
 
@@ -29,10 +26,10 @@ namespace DeVes.Bazaar.Client.SubForms
             }
         }
 
-        private List<PositionLVI> m_globalList = new List<PositionLVI>();
+        private List<PositionLvi> m_globalList = new List<PositionLvi>();
         private DataTable m_importTable = new DataTable();
 
-        private BizSupplierer m_supplier = null;
+        private BizSupplierer m_supplier;
 
         public ReturnPositionsForm()
         {
@@ -52,10 +49,10 @@ namespace DeVes.Bazaar.Client.SubForms
                 {
                     foreach (ListViewItem _lvItem in this.m_matlPosLv.Items)
                     {
-                        PositionLVI _posItem = _lvItem as PositionLVI;
+                        var _posItem = _lvItem as PositionLvi;
                         if (_posItem != null && _posItem.DataObj.PositionNo.ToString() == this.dvTextBox1.Text)
                         {
-                            this.ReturnLineToSupplier(this.m_matlPosLv.Items[0] as PositionLVI);
+                            this.ReturnLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
                             this.PlayGoodSound();
                             break;
                         }
@@ -65,11 +62,11 @@ namespace DeVes.Bazaar.Client.SubForms
                         }
                     }
                 }
-                else if (this.m_matlPosLv.Items.Count == 1 && this.m_matlPosLv.Items[0] is PositionLVI)
+                else if (this.m_matlPosLv.Items.Count == 1 && this.m_matlPosLv.Items[0] is PositionLvi)
                 {
-                    if (((PositionLVI)this.m_matlPosLv.Items[0]).DataObj.PositionNo == this.dvTextBox1.IntValue)
+                    if (((PositionLvi)this.m_matlPosLv.Items[0]).DataObj.PositionNo == this.dvTextBox1.IntValue)
                     {
-                        this.ReturnLineToSupplier(this.m_matlPosLv.Items[0] as PositionLVI);
+                        this.ReturnLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
                         this.PlayGoodSound();
                     }
                     else
@@ -90,24 +87,24 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             this.m_matlPosLv.Items.Clear();
 
-            string _enteredValue = this.dvTextBox1.Text.ToLower().Trim();
+            var _enteredValue = this.dvTextBox1.Text.ToLower().Trim();
 
             if (!string.IsNullOrEmpty(_enteredValue))
             {
                 var _items =
-                    from I in this.m_globalList
-                    where I.DataObj.PositionNo.ToString().IndexOf(_enteredValue) >= 0 ||
-                          I.DataObj.Material.ToString().ToLower().IndexOf(_enteredValue) >= 0
-                    select I;
+                    from _ in this.m_globalList
+                    where _.DataObj.PositionNo.ToString().IndexOf(_enteredValue) >= 0 ||
+                          _.DataObj.Material.ToString().ToLower().IndexOf(_enteredValue) >= 0
+                    select _;
 
-                foreach (PositionLVI _row in _items)
+                foreach (var _row in _items)
                 {
                     this.m_matlPosLv.Items.Add(_row);
                 }
             }
             else
             {
-                foreach (PositionLVI _row in this.m_globalList)
+                foreach (var _row in this.m_globalList)
                 {
                     this.m_matlPosLv.Items.Add(_row);
                 }
@@ -116,9 +113,9 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private void m_matlPosLv_DoubleClick(object sender, EventArgs e)
         {
-            if (this.m_matlPosLv.SelectedItems.Count == 1 && this.m_matlPosLv.SelectedItems[0] is PositionLVI)
+            if (this.m_matlPosLv.SelectedItems.Count == 1 && this.m_matlPosLv.SelectedItems[0] is PositionLvi)
             {
-                this.ReturnLineToSupplier(this.m_matlPosLv.SelectedItems[0] as PositionLVI);
+                this.ReturnLineToSupplier(this.m_matlPosLv.SelectedItems[0] as PositionLvi);
             }
         }
 
@@ -131,11 +128,11 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private void m_confirmAllBtn_Click(object sender, EventArgs e)
         {
-            foreach (PositionLVI _lvItem in this.m_globalList)
+            foreach (var _lvItem in this.m_globalList)
             {
                 try
                 {
-                    BizPosition _posToReturn = GParams.Instance.BasarCom.PositionGet(_lvItem.DataObj.PositionNo, true);
+                    var _posToReturn = GParams.Instance.BasarCom.PositionGet(_lvItem.DataObj.PositionNo, true);
                     if (_posToReturn != null)
                     {
                         if (_posToReturn.ReturnedToSupplierAt.HasValue && _posToReturn.ReturnedToSupplierAtSpecified)
@@ -146,8 +143,8 @@ namespace DeVes.Bazaar.Client.SubForms
                         {
                             _posToReturn.ReturnedToSupplierAt = DateTime.Now;
 
-                            bool _updateDone = false;
-                            bool _updateDoneSpec = false;
+                            var _updateDone = false;
+                            var _updateDoneSpec = false;
 
                             GParams.Instance.BasarCom.PositionUpdate(_posToReturn, out _updateDone, out _updateDoneSpec);
 
@@ -165,9 +162,9 @@ namespace DeVes.Bazaar.Client.SubForms
                         //MessageBox.Show("Positionsnummer existiert nicht!");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception _ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(_ex.Message);
                 }
             }
 
@@ -200,26 +197,26 @@ namespace DeVes.Bazaar.Client.SubForms
 
             if (positions != null && positions.Length > 0)
             {
-                foreach (BizPosition _position in positions)
+                foreach (var _position in positions)
                 {
-                    this.m_globalList.Add(new PositionLVI(_position));
-                    this.m_matlPosLv.Items.Add(new PositionLVI(_position));
+                    this.m_globalList.Add(new PositionLvi(_position));
+                    this.m_matlPosLv.Items.Add(new PositionLvi(_position));
                 }
             }
 
             return (positions != null) ? positions.Length : 0;
         }
-        private void ReturnLineToSupplier(PositionLVI line)
+        private void ReturnLineToSupplier(PositionLvi line)
         {
             if (line == null)
                 return;
 
             try
             {
-                BizPosition _newPosition = line.DataObj;
+                var _newPosition = line.DataObj;
                 _newPosition.SupplierId = this.m_supplier.SupplierID;
 
-                BizPosition _posToReturn = GParams.Instance.BasarCom.PositionGet(_newPosition.PositionNo, true);
+                var _posToReturn = GParams.Instance.BasarCom.PositionGet(_newPosition.PositionNo, true);
                 if (_posToReturn != null)
                 {
                     if (_posToReturn.ReturnedToSupplierAt.HasValue && _posToReturn.ReturnedToSupplierAtSpecified)
@@ -230,8 +227,8 @@ namespace DeVes.Bazaar.Client.SubForms
                     {
                         _posToReturn.ReturnedToSupplierAt = DateTime.Now;
 
-                        bool _updateDone = false;
-                        bool _updateDoneSpec = false;
+                        var _updateDone = false;
+                        var _updateDoneSpec = false;
 
                         GParams.Instance.BasarCom.PositionUpdate(_posToReturn, out _updateDone, out _updateDoneSpec);
 
@@ -249,9 +246,9 @@ namespace DeVes.Bazaar.Client.SubForms
                     MessageBox.Show("Positionsnummer existiert nicht!");
                 }
             }
-            catch(Exception ex)
+            catch(Exception _ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
 
             if (this.ReLoadhRestScreen(null) > 0)
@@ -268,12 +265,12 @@ namespace DeVes.Bazaar.Client.SubForms
             }
         }
 
-        public static DialogResult HandleReturn(IWin32Window owner, BizSupplierer supplier, BizPosition[] _positions)
+        public static DialogResult HandleReturn(IWin32Window owner, BizSupplierer supplier, BizPosition[] positions)
         {
-            ReturnPositionsForm _frm = new ReturnPositionsForm();
+            var _frm = new ReturnPositionsForm();
             _frm.m_supplier = supplier;
 
-            if (_frm.ReLoadhRestScreen(_positions) > 0)
+            if (_frm.ReLoadhRestScreen(positions) > 0)
             {
                 _frm.ShowDialog(owner);
                 return DialogResult.OK;

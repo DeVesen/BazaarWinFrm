@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using DeVes.Bazaar.Data;
@@ -9,7 +6,7 @@ using System.Globalization;
 
 namespace DeVes.Bazaar.Server.CustControls
 {
-    public class DVTextBox : TextBox
+    public sealed class DvTextBox : TextBox
     {
         public enum ResultTypes
         {
@@ -20,7 +17,7 @@ namespace DeVes.Bazaar.Server.CustControls
         }
 
         private Color m_orgBkColor;
-        private bool m_isMargin = false;
+        private bool m_isMargin;
         public bool IsMargin
         {
             get
@@ -60,12 +57,11 @@ namespace DeVes.Bazaar.Server.CustControls
         {
             get
             {
-                bool _result = true;
+                var _result = true;
 
                 switch (this.m_resultType)
                 {
                     case ResultTypes.String:
-                        _result = true;
                         break;
                     case ResultTypes.Int32:
                         _result = GParams.ToInt32(this.Text).HasValue;
@@ -105,7 +101,7 @@ namespace DeVes.Bazaar.Server.CustControls
                 }
                 catch
                 {
-
+                    // ignored
                 }
                 return null;
             }
@@ -121,28 +117,28 @@ namespace DeVes.Bazaar.Server.CustControls
                 }
                 catch
                 {
-
+                    // ignored
                 }
                 return null;
             }
         }
 
-        bool allowSpace = false;
+        bool _allowSpace;
         public bool AllowSpace
         {
             set
             {
-                this.allowSpace = value;
+                this._allowSpace = value;
             }
 
             get
             {
-                return this.allowSpace;
+                return this._allowSpace;
             }
         }
 
 
-        public DVTextBox()
+        public DvTextBox()
         {
             this.m_resultType = ResultTypes.String;
         }
@@ -155,19 +151,19 @@ namespace DeVes.Bazaar.Server.CustControls
 
             if (this.m_resultType == ResultTypes.Double || this.m_resultType == ResultTypes.Int32)
             {
-                NumberFormatInfo numberFormatInfo = System.Globalization.CultureInfo.CurrentCulture.NumberFormat;
-                string decimalSeparator = numberFormatInfo.NumberDecimalSeparator;
-                string groupSeparator = numberFormatInfo.NumberGroupSeparator;
-                string negativeSign = numberFormatInfo.NegativeSign;
+                var _numberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
+                var _decimalSeparator = _numberFormatInfo.NumberDecimalSeparator;
+                var _groupSeparator = _numberFormatInfo.NumberGroupSeparator;
+                var _negativeSign = _numberFormatInfo.NegativeSign;
 
-                string keyInput = e.KeyChar.ToString();
+                var _keyInput = e.KeyChar.ToString();
 
                 if (Char.IsDigit(e.KeyChar))
                 {
                     // Digits are OK
                 }
                 else if (this.m_resultType == ResultTypes.Double &&
-                        (keyInput.Equals(decimalSeparator) || keyInput.Equals(groupSeparator) || keyInput.Equals(negativeSign)))
+                        (_keyInput.Equals(_decimalSeparator) || _keyInput.Equals(_groupSeparator) || _keyInput.Equals(_negativeSign)))
                 {
                     // Decimal separator is OK
                 }
@@ -179,7 +175,7 @@ namespace DeVes.Bazaar.Server.CustControls
                 //    {
                 //     // Let the edit control handle control and alt key combinations
                 //    }
-                else if (this.allowSpace && e.KeyChar == ' ')
+                else if (this._allowSpace && e.KeyChar == ' ')
                 {
 
                 }

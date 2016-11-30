@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.Serialization;
 
 namespace DeVes.Bazaar.Data.Biz
@@ -68,8 +65,9 @@ namespace DeVes.Bazaar.Data.Biz
 
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception)
             {
+                // ignored
             }
             return false;
         }
@@ -84,16 +82,16 @@ namespace DeVes.Bazaar.Data.Biz
 
                 try
                 {
-                    _result.SupplierId = BizBase.ToGuid(row["SupplierId"]).Value;
+                    _result.SupplierId = BizBase.ToGuid(row["SupplierId"]) ?? Guid.Empty;
 
-                    _result.PositionNo = BizBase.ToInt32(row["PositionNo"]).Value;
+                    _result.PositionNo = BizBase.ToInt32(row["PositionNo"]) ?? 0;
 
                     _result.Material = BizBase.ToString(row["Material"]);
                     _result.Category = BizBase.ToString(row["Category"]);
                     _result.Manufacturer = BizBase.ToString(row["Manufacturer"]);
 
                     _result.PriceMin = BizBase.ToDouble(row["PriceMin"]);
-                    _result.PriceMax = BizBase.ToDouble(row["PriceMax"]).Value;
+                    _result.PriceMax = BizBase.ToDouble(row["PriceMax"]) ?? 0;
 
                     _result.SoldFor = BizBase.ToDouble(row["SoldFor"]);
                     _result.SoldAt = BizBase.ToDateTime(row["SoldAt"]);
@@ -104,7 +102,7 @@ namespace DeVes.Bazaar.Data.Biz
 
                     _result.LastChange = BizBase.ToDateTime(row["LastChange"]);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _result = null;
                 }
@@ -115,10 +113,7 @@ namespace DeVes.Bazaar.Data.Biz
 
         public bool CheckForMin()
         {
-            bool _result = true;
-
-            //_result = _result && this.SupplierId != Guid.Empty;
-            _result = _result && this.PositionNo > 0;
+            var _result = this.PositionNo > 0;
             _result = _result && !string.IsNullOrEmpty(this.Material) && !string.IsNullOrEmpty(this.Material.Trim());
             _result = _result && PriceMax > 0;
 

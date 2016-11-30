@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 
@@ -12,7 +7,7 @@ namespace DeVes.Bazaar.Client.SubForms
 {
     public partial class SellerSearchForm : BaseSubForm
     {
-        private BizSupplierer[] m_actualKnownSupl = null;
+        private BizSupplierer[] m_actualKnownSupl;
 
         public SellerSearchForm()
         {
@@ -40,12 +35,12 @@ namespace DeVes.Bazaar.Client.SubForms
                     MessageBox.Show("Keine Verkäufer gefunden!");
                 }
             }
-            catch(Exception ex)
+            catch(Exception _ex)
             {
                 this.m_searchValTb.Enabled = false;
                 this.m_takeBtn.Enabled = false;
 
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(_ex.Message);
             }
         }
 
@@ -53,14 +48,14 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             if (this.m_takeBtn.Tag != null && this.m_takeBtn.Tag is SupplierLvItem)
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
 
         private void m_cancelBtn_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -71,7 +66,7 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private void m_filterResListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            SupplierLvItem _selItem = e.Item as SupplierLvItem;
+            var _selItem = e.Item as SupplierLvItem;
             if (e.IsSelected && _selItem != null)
             {
                 this.m_takeBtn.Enabled = true;
@@ -83,7 +78,7 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             if (this.m_takeBtn.Tag != null && this.m_takeBtn.Tag is SupplierLvItem)
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
@@ -95,18 +90,18 @@ namespace DeVes.Bazaar.Client.SubForms
             if (!string.IsNullOrEmpty(this.m_searchValTb.Text))
             {
                 var _qResult =
-                    from a in m_actualKnownSupl
-                    where (a.LastName.ToLower().IndexOf(this.m_searchValTb.Text) >= 0 || a.FirstName.ToLower().IndexOf(this.m_searchValTb.Text) >= 0)
-                    select a;
+                    from _a in m_actualKnownSupl
+                    where (_a.LastName.ToLower().IndexOf(this.m_searchValTb.Text) >= 0 || _a.FirstName.ToLower().IndexOf(this.m_searchValTb.Text) >= 0)
+                    select _a;
 
-                foreach (BizSupplierer _supl in _qResult)
+                foreach (var _supl in _qResult)
                 {
                     this.m_filterResListView.Items.Add(new SupplierLvItem(_supl));
                 }
             }
             else
             {
-                foreach (BizSupplierer _supl in m_actualKnownSupl)
+                foreach (var _supl in m_actualKnownSupl)
                 {
                     this.m_filterResListView.Items.Add(new SupplierLvItem(_supl));
                 }
@@ -117,10 +112,10 @@ namespace DeVes.Bazaar.Client.SubForms
 
         public static BizSupplierer SearchSupl(IWin32Window owner)
         {
-            SellerSearchForm _frm = new SellerSearchForm();
+            var _frm = new SellerSearchForm();
             BizSupplierer _result = null;
 
-            if (_frm.ShowDialog(owner) == System.Windows.Forms.DialogResult.OK)
+            if (_frm.ShowDialog(owner) == DialogResult.OK)
             {
                 _result = ((SupplierLvItem)_frm.m_takeBtn.Tag).DataObj;
             }
