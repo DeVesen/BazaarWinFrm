@@ -1,6 +1,7 @@
-DVes.Basar.Server/obj/
-DVes.Basar.Client/obj/
-DVes.Basar.Data/obj/
-DVes.Basar.Activate/obj/
-DVes.Barsar.ClientExt/obj/
 BIN/
+DVes.Basar.v12.suo
+DVes.Basar.Activate/obj/
+DVes.Basar.Client/obj/
+DVes.Basar.ClientExt/obj/
+DVes.Basar.Data/obj/
+DVes.Basar.Server/obj/
