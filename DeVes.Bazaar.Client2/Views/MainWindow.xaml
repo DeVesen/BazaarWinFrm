@@ -1,0 +1,88 @@
+﻿<ribbon:RibbonWindow
+        x:Class="DeVes.Bazaar.Client2.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:DeVes.Bazaar.Client2.ViewModels"
+        xmlns:ribbon="clr-namespace:System.Windows.Controls.Ribbon;assembly=System.Windows.Controls.Ribbon"
+        xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:controls="clr-namespace:DeVes.Extension.UI.Controls;assembly=DeVes.Extension"
+        Title="MainWindow" Height="893" Width="984">
+
+    <Window.DataContext>
+        <viewModels:MainWindowPresenter/>
+    </Window.DataContext>
+
+    <intr:Interaction.Triggers>
+        <intr:EventTrigger EventName="Loaded">
+            <intr:InvokeCommandAction Command="{Binding WndLoad}" />
+        </intr:EventTrigger>
+        <intr:EventTrigger EventName="Closing">
+            <intr:InvokeCommandAction Command="{Binding WndClosing}" />
+        </intr:EventTrigger>
+    </intr:Interaction.Triggers>
+
+    <DockPanel>
+        <ribbon:Ribbon SelectedIndex="0" DockPanel.Dock="Top">
+
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar>
+                    <RibbonButton Label="Save" Command="{Binding OnSaveTimeItems}"/>
+                    <RibbonButton Label="Load" Command="{Binding OnReLoadTimeItems}"/>
+                    <RibbonButton Label="Averp" />
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+
+            <!--<Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu SmallImageSource="pack://siteoforigin:,,,/Resources/Stopwatch_16x16.png">
+                    <RibbonApplicationMenuItem Header="Item01" />
+                    <RibbonApplicationMenuItem Header="Item02" />
+                    <RibbonApplicationMenuItem Header="Item03" />
+
+                    <RibbonApplicationMenu.AuxiliaryPaneContent>
+                        <RibbonGallery>
+                            <RibbonGalleryCategory>
+                                <RibbonGalleryItem Content="Sven Reichert spass" />
+                            </RibbonGalleryCategory>
+                        </RibbonGallery>
+                    </RibbonApplicationMenu.AuxiliaryPaneContent>
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>-->
+
+            <ribbon:RibbonTab Header="Home">
+                <ribbon:RibbonGroup Margin="0,1" Header="Material" Width="125">
+                    <ribbon:RibbonButton Label="Subhen" Command="{Binding SearchMaterial}" LargeImageSource="pack://siteoforigin:,,,/Resources/FileSearch_48x48.png"/>
+                    <ribbon:RibbonButton Label="Erfassung" Command="{Binding MaterialManagement}" LargeImageSource="pack://siteoforigin:,,,/Resources/FileEdit_48x48.png"/>
+                </ribbon:RibbonGroup>
+
+                <ribbon:RibbonGroup Margin="0,1" Header="Verkauf" Width="125">
+                    <ribbon:RibbonButton Label="Verkauf" Command="{Binding Selling}" LargeImageSource="pack://siteoforigin:,,,/Resources/Cart_48x48.png"/>
+                    <ribbon:RibbonButton Label="Abholung" Command="{Binding ReturnToSeller}" LargeImageSource="pack://siteoforigin:,,,/Resources/Elevator_48x48.png"/>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+
+            <ribbon:RibbonTab Header="Erfassung">
+                <ribbon:RibbonGroup Margin="0,1" Header="Material" Width="125">
+                    <ribbon:RibbonButton Label="Subhen" Command="{Binding SearchMaterial}" LargeImageSource="pack://siteoforigin:,,,/Resources/FileSearch_48x48.png"/>
+                    <ribbon:RibbonButton Label="Erfassung" Command="{Binding MaterialManagement}" LargeImageSource="pack://siteoforigin:,,,/Resources/FileEdit_48x48.png"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup Margin="0,1" Header="Lieferant" Width="125">
+                    <ribbon:RibbonButton Label="Verwaltung" Command="{Binding SellerManagement}" LargeImageSource="pack://siteoforigin:,,,/Resources/FileEdit_48x48.png"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup Margin="0,1" Header="Stammdaten" Width="125">
+                    <ribbon:RibbonButton Label="Kategorien" Command="{Binding BrandManagement}" LargeImageSource="pack://siteoforigin:,,,/Resources/Category_32x32.png"/>
+                    <ribbon:RibbonButton Label="Hersteller" Command="{Binding ManufacturerManagement}" LargeImageSource="pack://siteoforigin:,,,/Resources/Wheelbarrow_48x48.png"/>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+
+            <ribbon:RibbonTab Header="Statistik">
+            </ribbon:RibbonTab>
+
+            <ribbon:RibbonTab Header="Einstellungen">
+            </ribbon:RibbonTab>
+
+        </ribbon:Ribbon>
+
+        <controls:PageContainer x:Name="PageCtrl" Background="#FFD4EAF7"/>
+
+    </DockPanel>
+</ribbon:RibbonWindow>
