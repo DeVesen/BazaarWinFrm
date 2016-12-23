@@ -23,20 +23,12 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_IBasarCom", Namespace="http://tempuri.org/")]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BizBase))]
     public partial class BasarCom : System.Web.Services.Protocols.SoapHttpClientProtocol {
-        
-        private System.Threading.SendOrPostCallback SetPositionsAsReturnedOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback PositionGetOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback PositionGetAllOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback AllSupplierAndPositionsOperationCompleted;
         
         private System.Threading.SendOrPostCallback CheckAliveOperationCompleted;
         
@@ -94,6 +86,16 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private System.Threading.SendOrPostCallback GetNotSoldNotReturnedPositionsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SetPositionsAsReturnedOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PositionGetOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PositionGetAllOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PositionGetAllBySupplierNumOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AllSupplierAndPositionsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -131,18 +133,6 @@ namespace DeVes.Bazaar.Client.IBasarCom {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
-        
-        /// <remarks/>
-        public event SetPositionsAsReturnedCompletedEventHandler SetPositionsAsReturnedCompleted;
-        
-        /// <remarks/>
-        public event PositionGetCompletedEventHandler PositionGetCompleted;
-        
-        /// <remarks/>
-        public event PositionGetAllCompletedEventHandler PositionGetAllCompleted;
-        
-        /// <remarks/>
-        public event AllSupplierAndPositionsCompletedEventHandler AllSupplierAndPositionsCompleted;
         
         /// <remarks/>
         public event CheckAliveCompletedEventHandler CheckAliveCompleted;
@@ -229,130 +219,25 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         public event GetNotSoldNotReturnedPositionsCompletedEventHandler GetNotSoldNotReturnedPositionsCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SetPositionsAsReturned", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void SetPositionsAsReturned([System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")] BizPosition[] positions) {
-            this.Invoke("SetPositionsAsReturned", new object[] {
-                        positions});
-        }
+        public event SetPositionsAsReturnedCompletedEventHandler SetPositionsAsReturnedCompleted;
         
         /// <remarks/>
-        public void SetPositionsAsReturnedAsync(BizPosition[] positions) {
-            this.SetPositionsAsReturnedAsync(positions, null);
-        }
+        public event PositionGetCompletedEventHandler PositionGetCompleted;
         
         /// <remarks/>
-        public void SetPositionsAsReturnedAsync(BizPosition[] positions, object userState) {
-            if ((this.SetPositionsAsReturnedOperationCompleted == null)) {
-                this.SetPositionsAsReturnedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetPositionsAsReturnedOperationCompleted);
-            }
-            this.InvokeAsync("SetPositionsAsReturned", new object[] {
-                        positions}, this.SetPositionsAsReturnedOperationCompleted, userState);
-        }
-        
-        private void OnSetPositionsAsReturnedOperationCompleted(object arg) {
-            if ((this.SetPositionsAsReturnedCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.SetPositionsAsReturnedCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
+        public event PositionGetAllCompletedEventHandler PositionGetAllCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionGet", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public BizPosition PositionGet(int positionNo, [System.Xml.Serialization.XmlIgnoreAttribute()] bool positionNoSpecified) {
-            var results = this.Invoke("PositionGet", new object[] {
-                        positionNo,
-                        positionNoSpecified});
-            return ((BizPosition)(results[0]));
-        }
+        public event PositionGetAllBySupplierNumCompletedEventHandler PositionGetAllBySupplierNumCompleted;
         
         /// <remarks/>
-        public void PositionGetAsync(int positionNo, bool positionNoSpecified) {
-            this.PositionGetAsync(positionNo, positionNoSpecified, null);
-        }
-        
-        /// <remarks/>
-        public void PositionGetAsync(int positionNo, bool positionNoSpecified, object userState) {
-            if ((this.PositionGetOperationCompleted == null)) {
-                this.PositionGetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPositionGetOperationCompleted);
-            }
-            this.InvokeAsync("PositionGet", new object[] {
-                        positionNo,
-                        positionNoSpecified}, this.PositionGetOperationCompleted, userState);
-        }
-        
-        private void OnPositionGetOperationCompleted(object arg) {
-            if ((this.PositionGetCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.PositionGetCompleted(this, new PositionGetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionGetAll", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
-        public BizPosition[] PositionGetAll(string supplierId) {
-            var results = this.Invoke("PositionGetAll", new object[] {
-                        supplierId});
-            return ((BizPosition[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void PositionGetAllAsync(string supplierId) {
-            this.PositionGetAllAsync(supplierId, null);
-        }
-        
-        /// <remarks/>
-        public void PositionGetAllAsync(string supplierId, object userState) {
-            if ((this.PositionGetAllOperationCompleted == null)) {
-                this.PositionGetAllOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPositionGetAllOperationCompleted);
-            }
-            this.InvokeAsync("PositionGetAll", new object[] {
-                        supplierId}, this.PositionGetAllOperationCompleted, userState);
-        }
-        
-        private void OnPositionGetAllOperationCompleted(object arg) {
-            if ((this.PositionGetAllCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.PositionGetAllCompleted(this, new PositionGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/AllSupplierAndPositions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts")]
-        public AllPositionResult[] AllSupplierAndPositions() {
-            var results = this.Invoke("AllSupplierAndPositions", new object[0]);
-            return ((AllPositionResult[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void AllSupplierAndPositionsAsync() {
-            this.AllSupplierAndPositionsAsync(null);
-        }
-        
-        /// <remarks/>
-        public void AllSupplierAndPositionsAsync(object userState) {
-            if ((this.AllSupplierAndPositionsOperationCompleted == null)) {
-                this.AllSupplierAndPositionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAllSupplierAndPositionsOperationCompleted);
-            }
-            this.InvokeAsync("AllSupplierAndPositions", new object[0], this.AllSupplierAndPositionsOperationCompleted, userState);
-        }
-        
-        private void OnAllSupplierAndPositionsOperationCompleted(object arg) {
-            if ((this.AllSupplierAndPositionsCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.AllSupplierAndPositionsCompleted(this, new AllSupplierAndPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
+        public event AllSupplierAndPositionsCompletedEventHandler AllSupplierAndPositionsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/CheckAlive", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string CheckAlive() {
-            var results = this.Invoke("CheckAlive", new object[0]);
+            object[] results = this.Invoke("CheckAlive", new object[0]);
             return ((string)(results[0]));
         }
         
@@ -371,7 +256,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnCheckAliveOperationCompleted(object arg) {
             if ((this.CheckAliveCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CheckAliveCompleted(this, new CheckAliveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -380,7 +265,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/GetParameters", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public ParameterResult GetParameters() {
-            var results = this.Invoke("GetParameters", new object[0]);
+            object[] results = this.Invoke("GetParameters", new object[0]);
             return ((ParameterResult)(results[0]));
         }
         
@@ -399,7 +284,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnGetParametersOperationCompleted(object arg) {
             if ((this.GetParametersCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetParametersCompleted(this, new GetParametersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -407,29 +292,29 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/MaterialCategoryGet", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public BizMaterialCategory MaterialCategoryGet(string Id) {
-            var results = this.Invoke("MaterialCategoryGet", new object[] {
-                        Id});
+        public BizMaterialCategory MaterialCategoryGet(string id) {
+            object[] results = this.Invoke("MaterialCategoryGet", new object[] {
+                        id});
             return ((BizMaterialCategory)(results[0]));
         }
         
         /// <remarks/>
-        public void MaterialCategoryGetAsync(string Id) {
-            this.MaterialCategoryGetAsync(Id, null);
+        public void MaterialCategoryGetAsync(string id) {
+            this.MaterialCategoryGetAsync(id, null);
         }
         
         /// <remarks/>
-        public void MaterialCategoryGetAsync(string Id, object userState) {
+        public void MaterialCategoryGetAsync(string id, object userState) {
             if ((this.MaterialCategoryGetOperationCompleted == null)) {
                 this.MaterialCategoryGetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMaterialCategoryGetOperationCompleted);
             }
             this.InvokeAsync("MaterialCategoryGet", new object[] {
-                        Id}, this.MaterialCategoryGetOperationCompleted, userState);
+                        id}, this.MaterialCategoryGetOperationCompleted, userState);
         }
         
         private void OnMaterialCategoryGetOperationCompleted(object arg) {
             if ((this.MaterialCategoryGetCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryGetCompleted(this, new MaterialCategoryGetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -439,7 +324,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizMaterialCategory[] MaterialCategoryGetAll() {
-            var results = this.Invoke("MaterialCategoryGetAll", new object[0]);
+            object[] results = this.Invoke("MaterialCategoryGetAll", new object[0]);
             return ((BizMaterialCategory[])(results[0]));
         }
         
@@ -458,7 +343,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryGetAllOperationCompleted(object arg) {
             if ((this.MaterialCategoryGetAllCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryGetAllCompleted(this, new MaterialCategoryGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -466,7 +351,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/MaterialCategoryCreate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void MaterialCategoryCreate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizMaterialCategory materialCategory, out bool MaterialCategoryCreateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool MaterialCategoryCreateResultSpecified) {
-            var results = this.Invoke("MaterialCategoryCreate", new object[] {
+            object[] results = this.Invoke("MaterialCategoryCreate", new object[] {
                         materialCategory});
             MaterialCategoryCreateResult = ((bool)(results[0]));
             MaterialCategoryCreateResultSpecified = ((bool)(results[1]));
@@ -488,7 +373,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryCreateOperationCompleted(object arg) {
             if ((this.MaterialCategoryCreateCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryCreateCompleted(this, new MaterialCategoryCreateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -496,7 +381,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/MaterialCategoryUpdate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void MaterialCategoryUpdate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizMaterialCategory materialCategory, out bool MaterialCategoryUpdateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool MaterialCategoryUpdateResultSpecified) {
-            var results = this.Invoke("MaterialCategoryUpdate", new object[] {
+            object[] results = this.Invoke("MaterialCategoryUpdate", new object[] {
                         materialCategory});
             MaterialCategoryUpdateResult = ((bool)(results[0]));
             MaterialCategoryUpdateResultSpecified = ((bool)(results[1]));
@@ -518,7 +403,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryUpdateOperationCompleted(object arg) {
             if ((this.MaterialCategoryUpdateCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryUpdateCompleted(this, new MaterialCategoryUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -526,7 +411,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/MaterialCategoryRemove", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void MaterialCategoryRemove(string matlCatId, out bool MaterialCategoryRemoveResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool MaterialCategoryRemoveResultSpecified) {
-            var results = this.Invoke("MaterialCategoryRemove", new object[] {
+            object[] results = this.Invoke("MaterialCategoryRemove", new object[] {
                         matlCatId});
             MaterialCategoryRemoveResult = ((bool)(results[0]));
             MaterialCategoryRemoveResultSpecified = ((bool)(results[1]));
@@ -548,7 +433,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnMaterialCategoryRemoveOperationCompleted(object arg) {
             if ((this.MaterialCategoryRemoveCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MaterialCategoryRemoveCompleted(this, new MaterialCategoryRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -556,29 +441,29 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/ManufacturerGet", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public BizManufacturer ManufacturerGet(string Id) {
-            var results = this.Invoke("ManufacturerGet", new object[] {
-                        Id});
+        public BizManufacturer ManufacturerGet(string id) {
+            object[] results = this.Invoke("ManufacturerGet", new object[] {
+                        id});
             return ((BizManufacturer)(results[0]));
         }
         
         /// <remarks/>
-        public void ManufacturerGetAsync(string Id) {
-            this.ManufacturerGetAsync(Id, null);
+        public void ManufacturerGetAsync(string id) {
+            this.ManufacturerGetAsync(id, null);
         }
         
         /// <remarks/>
-        public void ManufacturerGetAsync(string Id, object userState) {
+        public void ManufacturerGetAsync(string id, object userState) {
             if ((this.ManufacturerGetOperationCompleted == null)) {
                 this.ManufacturerGetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnManufacturerGetOperationCompleted);
             }
             this.InvokeAsync("ManufacturerGet", new object[] {
-                        Id}, this.ManufacturerGetOperationCompleted, userState);
+                        id}, this.ManufacturerGetOperationCompleted, userState);
         }
         
         private void OnManufacturerGetOperationCompleted(object arg) {
             if ((this.ManufacturerGetCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerGetCompleted(this, new ManufacturerGetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -588,7 +473,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizManufacturer[] ManufacturerGetAll() {
-            var results = this.Invoke("ManufacturerGetAll", new object[0]);
+            object[] results = this.Invoke("ManufacturerGetAll", new object[0]);
             return ((BizManufacturer[])(results[0]));
         }
         
@@ -607,7 +492,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerGetAllOperationCompleted(object arg) {
             if ((this.ManufacturerGetAllCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerGetAllCompleted(this, new ManufacturerGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -615,7 +500,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/ManufacturerCreate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void ManufacturerCreate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizManufacturer manufacturer, out bool ManufacturerCreateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool ManufacturerCreateResultSpecified) {
-            var results = this.Invoke("ManufacturerCreate", new object[] {
+            object[] results = this.Invoke("ManufacturerCreate", new object[] {
                         manufacturer});
             ManufacturerCreateResult = ((bool)(results[0]));
             ManufacturerCreateResultSpecified = ((bool)(results[1]));
@@ -637,7 +522,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerCreateOperationCompleted(object arg) {
             if ((this.ManufacturerCreateCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerCreateCompleted(this, new ManufacturerCreateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -645,7 +530,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/ManufacturerUpdate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void ManufacturerUpdate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizManufacturer materialCategory, out bool ManufacturerUpdateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool ManufacturerUpdateResultSpecified) {
-            var results = this.Invoke("ManufacturerUpdate", new object[] {
+            object[] results = this.Invoke("ManufacturerUpdate", new object[] {
                         materialCategory});
             ManufacturerUpdateResult = ((bool)(results[0]));
             ManufacturerUpdateResultSpecified = ((bool)(results[1]));
@@ -667,7 +552,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerUpdateOperationCompleted(object arg) {
             if ((this.ManufacturerUpdateCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerUpdateCompleted(this, new ManufacturerUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -675,7 +560,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/ManufacturerRemove", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void ManufacturerRemove(string matlCatId, out bool ManufacturerRemoveResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool ManufacturerRemoveResultSpecified) {
-            var results = this.Invoke("ManufacturerRemove", new object[] {
+            object[] results = this.Invoke("ManufacturerRemove", new object[] {
                         matlCatId});
             ManufacturerRemoveResult = ((bool)(results[0]));
             ManufacturerRemoveResultSpecified = ((bool)(results[1]));
@@ -697,7 +582,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnManufacturerRemoveOperationCompleted(object arg) {
             if ((this.ManufacturerRemoveCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ManufacturerRemoveCompleted(this, new ManufacturerRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -706,7 +591,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierGet_ByID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizSupplierer SupplierGet_ByID(string id) {
-            var results = this.Invoke("SupplierGet_ByID", new object[] {
+            object[] results = this.Invoke("SupplierGet_ByID", new object[] {
                         id});
             return ((BizSupplierer)(results[0]));
         }
@@ -727,7 +612,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierGet_ByIDOperationCompleted(object arg) {
             if ((this.SupplierGet_ByIDCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierGet_ByIDCompleted(this, new SupplierGet_ByIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -736,7 +621,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierGet_ByName", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizSupplierer SupplierGet_ByName([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string supplierName) {
-            var results = this.Invoke("SupplierGet_ByName", new object[] {
+            object[] results = this.Invoke("SupplierGet_ByName", new object[] {
                         supplierName});
             return ((BizSupplierer)(results[0]));
         }
@@ -757,7 +642,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierGet_ByNameOperationCompleted(object arg) {
             if ((this.SupplierGet_ByNameCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierGet_ByNameCompleted(this, new SupplierGet_ByNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -766,7 +651,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierGet_No", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public BizSupplierer SupplierGet_No(int supplierNumber, [System.Xml.Serialization.XmlIgnoreAttribute()] bool supplierNumberSpecified) {
-            var results = this.Invoke("SupplierGet_No", new object[] {
+            object[] results = this.Invoke("SupplierGet_No", new object[] {
                         supplierNumber,
                         supplierNumberSpecified});
             return ((BizSupplierer)(results[0]));
@@ -789,7 +674,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierGet_NoOperationCompleted(object arg) {
             if ((this.SupplierGet_NoCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierGet_NoCompleted(this, new SupplierGet_NoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -799,7 +684,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizSupplierer[] SupplierGetAll() {
-            var results = this.Invoke("SupplierGetAll", new object[0]);
+            object[] results = this.Invoke("SupplierGetAll", new object[0]);
             return ((BizSupplierer[])(results[0]));
         }
         
@@ -818,7 +703,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierGetAllOperationCompleted(object arg) {
             if ((this.SupplierGetAllCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierGetAllCompleted(this, new SupplierGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -827,7 +712,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierCreate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string SupplierCreate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizSupplierer supplier) {
-            var results = this.Invoke("SupplierCreate", new object[] {
+            object[] results = this.Invoke("SupplierCreate", new object[] {
                         supplier});
             return ((string)(results[0]));
         }
@@ -848,7 +733,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierCreateOperationCompleted(object arg) {
             if ((this.SupplierCreateCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierCreateCompleted(this, new SupplierCreateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -856,7 +741,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierUpdate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void SupplierUpdate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizSupplierer supplier, out bool SupplierUpdateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool SupplierUpdateResultSpecified) {
-            var results = this.Invoke("SupplierUpdate", new object[] {
+            object[] results = this.Invoke("SupplierUpdate", new object[] {
                         supplier});
             SupplierUpdateResult = ((bool)(results[0]));
             SupplierUpdateResultSpecified = ((bool)(results[1]));
@@ -878,7 +763,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierUpdateOperationCompleted(object arg) {
             if ((this.SupplierUpdateCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierUpdateCompleted(this, new SupplierUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -886,7 +771,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SupplierRemove", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void SupplierRemove(string supplierId, out bool SupplierRemoveResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool SupplierRemoveResultSpecified) {
-            var results = this.Invoke("SupplierRemove", new object[] {
+            object[] results = this.Invoke("SupplierRemove", new object[] {
                         supplierId});
             SupplierRemoveResult = ((bool)(results[0]));
             SupplierRemoveResultSpecified = ((bool)(results[1]));
@@ -908,7 +793,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSupplierRemoveOperationCompleted(object arg) {
             if ((this.SupplierRemoveCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SupplierRemoveCompleted(this, new SupplierRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -916,7 +801,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SetSupplierToReturned", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void SetSupplierToReturned([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string supplierId, bool isReturned, [System.Xml.Serialization.XmlIgnoreAttribute()] bool isReturnedSpecified, out bool SetSupplierToReturnedResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool SetSupplierToReturnedResultSpecified) {
-            var results = this.Invoke("SetSupplierToReturned", new object[] {
+            object[] results = this.Invoke("SetSupplierToReturned", new object[] {
                         supplierId,
                         isReturned,
                         isReturnedSpecified});
@@ -942,7 +827,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnSetSupplierToReturnedOperationCompleted(object arg) {
             if ((this.SetSupplierToReturnedCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SetSupplierToReturnedCompleted(this, new SetSupplierToReturnedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -950,7 +835,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionCreate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void PositionCreate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizPosition supplierPosition, out bool PositionCreateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool PositionCreateResultSpecified) {
-            var results = this.Invoke("PositionCreate", new object[] {
+            object[] results = this.Invoke("PositionCreate", new object[] {
                         supplierPosition});
             PositionCreateResult = ((bool)(results[0]));
             PositionCreateResultSpecified = ((bool)(results[1]));
@@ -972,7 +857,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionCreateOperationCompleted(object arg) {
             if ((this.PositionCreateCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionCreateCompleted(this, new PositionCreateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -980,7 +865,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionUpdate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void PositionUpdate([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] BizPosition supplierPosition, out bool PositionUpdateResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool PositionUpdateResultSpecified) {
-            var results = this.Invoke("PositionUpdate", new object[] {
+            object[] results = this.Invoke("PositionUpdate", new object[] {
                         supplierPosition});
             PositionUpdateResult = ((bool)(results[0]));
             PositionUpdateResultSpecified = ((bool)(results[1]));
@@ -1002,7 +887,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionUpdateOperationCompleted(object arg) {
             if ((this.PositionUpdateCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionUpdateCompleted(this, new PositionUpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1010,7 +895,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionRemove", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void PositionRemove(int positionNo, [System.Xml.Serialization.XmlIgnoreAttribute()] bool positionNoSpecified, out bool PositionRemoveResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool PositionRemoveResultSpecified) {
-            var results = this.Invoke("PositionRemove", new object[] {
+            object[] results = this.Invoke("PositionRemove", new object[] {
                         positionNo,
                         positionNoSpecified});
             PositionRemoveResult = ((bool)(results[0]));
@@ -1034,7 +919,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionRemoveOperationCompleted(object arg) {
             if ((this.PositionRemoveCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionRemoveCompleted(this, new PositionRemoveCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1043,7 +928,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionSell", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public PositionSellResult PositionSell([System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")] BizPosition[] position) {
-            var results = this.Invoke("PositionSell", new object[] {
+            object[] results = this.Invoke("PositionSell", new object[] {
                         position});
             return ((PositionSellResult)(results[0]));
         }
@@ -1064,7 +949,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionSellOperationCompleted(object arg) {
             if ((this.PositionSellCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionSellCompleted(this, new PositionSellCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1073,7 +958,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionReturn", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public PositionReturnedResult PositionReturn(string supplierId) {
-            var results = this.Invoke("PositionReturn", new object[] {
+            object[] results = this.Invoke("PositionReturn", new object[] {
                         supplierId});
             return ((PositionReturnedResult)(results[0]));
         }
@@ -1094,7 +979,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnPositionReturnOperationCompleted(object arg) {
             if ((this.PositionReturnCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PositionReturnCompleted(this, new PositionReturnCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1104,7 +989,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizPosition[] GetSoldPositions(string supplierId) {
-            var results = this.Invoke("GetSoldPositions", new object[] {
+            object[] results = this.Invoke("GetSoldPositions", new object[] {
                         supplierId});
             return ((BizPosition[])(results[0]));
         }
@@ -1125,7 +1010,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnGetSoldPositionsOperationCompleted(object arg) {
             if ((this.GetSoldPositionsCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetSoldPositionsCompleted(this, new GetSoldPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1135,7 +1020,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizPosition[] GetSoldNotReturnedPositions(string supplierId) {
-            var results = this.Invoke("GetSoldNotReturnedPositions", new object[] {
+            object[] results = this.Invoke("GetSoldNotReturnedPositions", new object[] {
                         supplierId});
             return ((BizPosition[])(results[0]));
         }
@@ -1156,7 +1041,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnGetSoldNotReturnedPositionsOperationCompleted(object arg) {
             if ((this.GetSoldNotReturnedPositionsCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetSoldNotReturnedPositionsCompleted(this, new GetSoldNotReturnedPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
@@ -1166,7 +1051,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
         public BizPosition[] GetNotSoldNotReturnedPositions(string supplierId) {
-            var results = this.Invoke("GetNotSoldNotReturnedPositions", new object[] {
+            object[] results = this.Invoke("GetNotSoldNotReturnedPositions", new object[] {
                         supplierId});
             return ((BizPosition[])(results[0]));
         }
@@ -1187,8 +1072,161 @@ namespace DeVes.Bazaar.Client.IBasarCom {
         
         private void OnGetNotSoldNotReturnedPositionsOperationCompleted(object arg) {
             if ((this.GetNotSoldNotReturnedPositionsCompleted != null)) {
-                var invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetNotSoldNotReturnedPositionsCompleted(this, new GetNotSoldNotReturnedPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/SetPositionsAsReturned", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void SetPositionsAsReturned([System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")] BizPosition[] positions) {
+            this.Invoke("SetPositionsAsReturned", new object[] {
+                        positions});
+        }
+        
+        /// <remarks/>
+        public void SetPositionsAsReturnedAsync(BizPosition[] positions) {
+            this.SetPositionsAsReturnedAsync(positions, null);
+        }
+        
+        /// <remarks/>
+        public void SetPositionsAsReturnedAsync(BizPosition[] positions, object userState) {
+            if ((this.SetPositionsAsReturnedOperationCompleted == null)) {
+                this.SetPositionsAsReturnedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetPositionsAsReturnedOperationCompleted);
+            }
+            this.InvokeAsync("SetPositionsAsReturned", new object[] {
+                        positions}, this.SetPositionsAsReturnedOperationCompleted, userState);
+        }
+        
+        private void OnSetPositionsAsReturnedOperationCompleted(object arg) {
+            if ((this.SetPositionsAsReturnedCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SetPositionsAsReturnedCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionGet", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public BizPosition PositionGet(int positionNo, [System.Xml.Serialization.XmlIgnoreAttribute()] bool positionNoSpecified) {
+            object[] results = this.Invoke("PositionGet", new object[] {
+                        positionNo,
+                        positionNoSpecified});
+            return ((BizPosition)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PositionGetAsync(int positionNo, bool positionNoSpecified) {
+            this.PositionGetAsync(positionNo, positionNoSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void PositionGetAsync(int positionNo, bool positionNoSpecified, object userState) {
+            if ((this.PositionGetOperationCompleted == null)) {
+                this.PositionGetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPositionGetOperationCompleted);
+            }
+            this.InvokeAsync("PositionGet", new object[] {
+                        positionNo,
+                        positionNoSpecified}, this.PositionGetOperationCompleted, userState);
+        }
+        
+        private void OnPositionGetOperationCompleted(object arg) {
+            if ((this.PositionGetCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PositionGetCompleted(this, new PositionGetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionGetAll", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
+        public BizPosition[] PositionGetAll(string supplierId) {
+            object[] results = this.Invoke("PositionGetAll", new object[] {
+                        supplierId});
+            return ((BizPosition[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PositionGetAllAsync(string supplierId) {
+            this.PositionGetAllAsync(supplierId, null);
+        }
+        
+        /// <remarks/>
+        public void PositionGetAllAsync(string supplierId, object userState) {
+            if ((this.PositionGetAllOperationCompleted == null)) {
+                this.PositionGetAllOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPositionGetAllOperationCompleted);
+            }
+            this.InvokeAsync("PositionGetAll", new object[] {
+                        supplierId}, this.PositionGetAllOperationCompleted, userState);
+        }
+        
+        private void OnPositionGetAllOperationCompleted(object arg) {
+            if ((this.PositionGetAllCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PositionGetAllCompleted(this, new PositionGetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/PositionGetAllBySupplierNum", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
+        public BizPosition[] PositionGetAllBySupplierNum(int supplier, [System.Xml.Serialization.XmlIgnoreAttribute()] bool supplierSpecified) {
+            object[] results = this.Invoke("PositionGetAllBySupplierNum", new object[] {
+                        supplier,
+                        supplierSpecified});
+            return ((BizPosition[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PositionGetAllBySupplierNumAsync(int supplier, bool supplierSpecified) {
+            this.PositionGetAllBySupplierNumAsync(supplier, supplierSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void PositionGetAllBySupplierNumAsync(int supplier, bool supplierSpecified, object userState) {
+            if ((this.PositionGetAllBySupplierNumOperationCompleted == null)) {
+                this.PositionGetAllBySupplierNumOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPositionGetAllBySupplierNumOperationCompleted);
+            }
+            this.InvokeAsync("PositionGetAllBySupplierNum", new object[] {
+                        supplier,
+                        supplierSpecified}, this.PositionGetAllBySupplierNumOperationCompleted, userState);
+        }
+        
+        private void OnPositionGetAllBySupplierNumOperationCompleted(object arg) {
+            if ((this.PositionGetAllBySupplierNumCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PositionGetAllBySupplierNumCompleted(this, new PositionGetAllBySupplierNumCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IBasarCom/AllSupplierAndPositions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts")]
+        public AllPositionResult[] AllSupplierAndPositions() {
+            object[] results = this.Invoke("AllSupplierAndPositions", new object[0]);
+            return ((AllPositionResult[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AllSupplierAndPositionsAsync() {
+            this.AllSupplierAndPositionsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void AllSupplierAndPositionsAsync(object userState) {
+            if ((this.AllSupplierAndPositionsOperationCompleted == null)) {
+                this.AllSupplierAndPositionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAllSupplierAndPositionsOperationCompleted);
+            }
+            this.InvokeAsync("AllSupplierAndPositions", new object[0], this.AllSupplierAndPositionsOperationCompleted, userState);
+        }
+        
+        private void OnAllSupplierAndPositionsOperationCompleted(object arg) {
+            if ((this.AllSupplierAndPositionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AllSupplierAndPositionsCompleted(this, new AllSupplierAndPositionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1202,7 +1240,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
                         || (url == string.Empty))) {
                 return false;
             }
-            var wsUri = new System.Uri(url);
+            System.Uri wsUri = new System.Uri(url);
             if (((wsUri.Port >= 1024) 
                         && (string.Compare(wsUri.Host, "localHost", System.StringComparison.OrdinalIgnoreCase) == 0))) {
                 return true;
@@ -1212,7 +1250,115 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts")]
+    public partial class ParameterResult {
+        
+        private bool printPevField;
+        
+        private bool printPevFieldSpecified;
+        
+        private double prozSoldGeweinField;
+        
+        private bool prozSoldGeweinFieldSpecified;
+        
+        private string sellerInfoTextField;
+        
+        /// <remarks/>
+        public bool PrintPev {
+            get {
+                return this.printPevField;
+            }
+            set {
+                this.printPevField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool PrintPevSpecified {
+            get {
+                return this.printPevFieldSpecified;
+            }
+            set {
+                this.printPevFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ProzSoldGewein {
+            get {
+                return this.prozSoldGeweinField;
+            }
+            set {
+                this.prozSoldGeweinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ProzSoldGeweinSpecified {
+            get {
+                return this.prozSoldGeweinFieldSpecified;
+            }
+            set {
+                this.prozSoldGeweinFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string SellerInfoText {
+            get {
+                return this.sellerInfoTextField;
+            }
+            set {
+                this.sellerInfoTextField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts")]
+    public partial class AllPositionResult {
+        
+        private BizPosition[] positionsField;
+        
+        private BizSupplierer supplierField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
+        public BizPosition[] Positions {
+            get {
+                return this.positionsField;
+            }
+            set {
+                this.positionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public BizSupplierer Supplier {
+            get {
+                return this.supplierField;
+            }
+            set {
+                this.supplierField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1465,11 +1611,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BizPosition))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BizSupplierer))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BizManufacturer))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BizMaterialCategory))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BizSupplierer))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BizPosition))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1478,7 +1624,267 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
+    public partial class BizSupplierer : BizBase {
+        
+        private string adressField;
+        
+        private string eMail01Field;
+        
+        private string firstNameField;
+        
+        private string lastNameField;
+        
+        private string memoField;
+        
+        private string phone01Field;
+        
+        private System.Nullable<System.DateTime> returnedToSupplierField;
+        
+        private bool returnedToSupplierFieldSpecified;
+        
+        private string salutationField;
+        
+        private string supplierIdField;
+        
+        private int supplierNoField;
+        
+        private bool supplierNoFieldSpecified;
+        
+        private string townField;
+        
+        private string zipCodeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Adress {
+            get {
+                return this.adressField;
+            }
+            set {
+                this.adressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string EMail01 {
+            get {
+                return this.eMail01Field;
+            }
+            set {
+                this.eMail01Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string FirstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string LastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Memo {
+            get {
+                return this.memoField;
+            }
+            set {
+                this.memoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Phone01 {
+            get {
+                return this.phone01Field;
+            }
+            set {
+                this.phone01Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> ReturnedToSupplier {
+            get {
+                return this.returnedToSupplierField;
+            }
+            set {
+                this.returnedToSupplierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ReturnedToSupplierSpecified {
+            get {
+                return this.returnedToSupplierFieldSpecified;
+            }
+            set {
+                this.returnedToSupplierFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Salutation {
+            get {
+                return this.salutationField;
+            }
+            set {
+                this.salutationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string SupplierId {
+            get {
+                return this.supplierIdField;
+            }
+            set {
+                this.supplierIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int SupplierNo {
+            get {
+                return this.supplierNoField;
+            }
+            set {
+                this.supplierNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool SupplierNoSpecified {
+            get {
+                return this.supplierNoFieldSpecified;
+            }
+            set {
+                this.supplierNoFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Town {
+            get {
+                return this.townField;
+            }
+            set {
+                this.townField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ZipCode {
+            get {
+                return this.zipCodeField;
+            }
+            set {
+                this.zipCodeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
+    public partial class BizManufacturer : BizBase {
+        
+        private string designationField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Designation {
+            get {
+                return this.designationField;
+            }
+            set {
+                this.designationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
+    public partial class BizMaterialCategory : BizBase {
+        
+        private string designationField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Designation {
+            get {
+                return this.designationField;
+            }
+            set {
+                this.designationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1629,7 +2035,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1679,7 +2085,7 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1590.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(TypeName="PositionSellResult.NotSoldPosReasonTypes", Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts")]
     public enum PositionSellResultNotSoldPosReasonTypes {
@@ -1698,461 +2104,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts")]
-    public partial class ParameterResult {
-        
-        private bool printPevField;
-        
-        private bool printPevFieldSpecified;
-        
-        private double prozSoldGeweinField;
-        
-        private bool prozSoldGeweinFieldSpecified;
-        
-        private string sellerInfoTextField;
-        
-        /// <remarks/>
-        public bool PrintPev {
-            get {
-                return this.printPevField;
-            }
-            set {
-                this.printPevField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool PrintPevSpecified {
-            get {
-                return this.printPevFieldSpecified;
-            }
-            set {
-                this.printPevFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double ProzSoldGewein {
-            get {
-                return this.prozSoldGeweinField;
-            }
-            set {
-                this.prozSoldGeweinField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ProzSoldGeweinSpecified {
-            get {
-                return this.prozSoldGeweinFieldSpecified;
-            }
-            set {
-                this.prozSoldGeweinFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string SellerInfoText {
-            get {
-                return this.sellerInfoTextField;
-            }
-            set {
-                this.sellerInfoTextField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts")]
-    public partial class AllPositionResult {
-        
-        private BizPosition[] positionsField;
-        
-        private BizSupplierer supplierField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
-        public BizPosition[] Positions {
-            get {
-                return this.positionsField;
-            }
-            set {
-                this.positionsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public BizSupplierer Supplier {
-            get {
-                return this.supplierField;
-            }
-            set {
-                this.supplierField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
-    public partial class BizSupplierer : BizBase {
-        
-        private string adressField;
-        
-        private string eMail01Field;
-        
-        private string firstNameField;
-        
-        private string lastNameField;
-        
-        private string memoField;
-        
-        private string phone01Field;
-        
-        private System.Nullable<System.DateTime> returnedToSupplierField;
-        
-        private bool returnedToSupplierFieldSpecified;
-        
-        private string salutationField;
-        
-        private string supplierIDField;
-        
-        private int supplierNoField;
-        
-        private bool supplierNoFieldSpecified;
-        
-        private string townField;
-        
-        private string zIPCodeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Adress {
-            get {
-                return this.adressField;
-            }
-            set {
-                this.adressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string EMail01 {
-            get {
-                return this.eMail01Field;
-            }
-            set {
-                this.eMail01Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string FirstName {
-            get {
-                return this.firstNameField;
-            }
-            set {
-                this.firstNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string LastName {
-            get {
-                return this.lastNameField;
-            }
-            set {
-                this.lastNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Memo {
-            get {
-                return this.memoField;
-            }
-            set {
-                this.memoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Phone01 {
-            get {
-                return this.phone01Field;
-            }
-            set {
-                this.phone01Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> ReturnedToSupplier {
-            get {
-                return this.returnedToSupplierField;
-            }
-            set {
-                this.returnedToSupplierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ReturnedToSupplierSpecified {
-            get {
-                return this.returnedToSupplierFieldSpecified;
-            }
-            set {
-                this.returnedToSupplierFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Salutation {
-            get {
-                return this.salutationField;
-            }
-            set {
-                this.salutationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string SupplierID {
-            get {
-                return this.supplierIDField;
-            }
-            set {
-                this.supplierIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int SupplierNo {
-            get {
-                return this.supplierNoField;
-            }
-            set {
-                this.supplierNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool SupplierNoSpecified {
-            get {
-                return this.supplierNoFieldSpecified;
-            }
-            set {
-                this.supplierNoFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Town {
-            get {
-                return this.townField;
-            }
-            set {
-                this.townField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string ZIPCode {
-            get {
-                return this.zIPCodeField;
-            }
-            set {
-                this.zIPCodeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
-    public partial class BizManufacturer : BizBase {
-        
-        private string designationField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Designation {
-            get {
-                return this.designationField;
-            }
-            set {
-                this.designationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz")]
-    public partial class BizMaterialCategory : BizBase {
-        
-        private string designationField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Designation {
-            get {
-                return this.designationField;
-            }
-            set {
-                this.designationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void SetPositionsAsReturnedCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void PositionGetCompletedEventHandler(object sender, PositionGetCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class PositionGetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal PositionGetCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public BizPosition Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((BizPosition)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void PositionGetAllCompletedEventHandler(object sender, PositionGetAllCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class PositionGetAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal PositionGetAllCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public BizPosition[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((BizPosition[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void AllSupplierAndPositionsCompletedEventHandler(object sender, AllSupplierAndPositionsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class AllSupplierAndPositionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal AllSupplierAndPositionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public AllPositionResult[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((AllPositionResult[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void CheckAliveCompletedEventHandler(object sender, CheckAliveCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckAliveCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2174,11 +2130,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void GetParametersCompletedEventHandler(object sender, GetParametersCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetParametersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2200,11 +2156,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void MaterialCategoryGetCompletedEventHandler(object sender, MaterialCategoryGetCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MaterialCategoryGetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2226,11 +2182,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void MaterialCategoryGetAllCompletedEventHandler(object sender, MaterialCategoryGetAllCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MaterialCategoryGetAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2252,11 +2208,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void MaterialCategoryCreateCompletedEventHandler(object sender, MaterialCategoryCreateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MaterialCategoryCreateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2286,11 +2242,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void MaterialCategoryUpdateCompletedEventHandler(object sender, MaterialCategoryUpdateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MaterialCategoryUpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2320,11 +2276,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void MaterialCategoryRemoveCompletedEventHandler(object sender, MaterialCategoryRemoveCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class MaterialCategoryRemoveCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2354,11 +2310,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void ManufacturerGetCompletedEventHandler(object sender, ManufacturerGetCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ManufacturerGetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2380,11 +2336,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void ManufacturerGetAllCompletedEventHandler(object sender, ManufacturerGetAllCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ManufacturerGetAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2406,11 +2362,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void ManufacturerCreateCompletedEventHandler(object sender, ManufacturerCreateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ManufacturerCreateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2440,11 +2396,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void ManufacturerUpdateCompletedEventHandler(object sender, ManufacturerUpdateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ManufacturerUpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2474,11 +2430,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void ManufacturerRemoveCompletedEventHandler(object sender, ManufacturerRemoveCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ManufacturerRemoveCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2508,11 +2464,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void SupplierGet_ByIDCompletedEventHandler(object sender, SupplierGet_ByIDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierGet_ByIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2534,11 +2490,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void SupplierGet_ByNameCompletedEventHandler(object sender, SupplierGet_ByNameCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierGet_ByNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2560,11 +2516,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void SupplierGet_NoCompletedEventHandler(object sender, SupplierGet_NoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierGet_NoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2586,11 +2542,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void SupplierGetAllCompletedEventHandler(object sender, SupplierGetAllCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierGetAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2612,11 +2568,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void SupplierCreateCompletedEventHandler(object sender, SupplierCreateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierCreateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2638,11 +2594,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void SupplierUpdateCompletedEventHandler(object sender, SupplierUpdateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierUpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2672,11 +2628,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void SupplierRemoveCompletedEventHandler(object sender, SupplierRemoveCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierRemoveCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2706,11 +2662,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void SetSupplierToReturnedCompletedEventHandler(object sender, SetSupplierToReturnedCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SetSupplierToReturnedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2740,11 +2696,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void PositionCreateCompletedEventHandler(object sender, PositionCreateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PositionCreateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2774,11 +2730,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void PositionUpdateCompletedEventHandler(object sender, PositionUpdateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PositionUpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2808,11 +2764,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void PositionRemoveCompletedEventHandler(object sender, PositionRemoveCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PositionRemoveCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2842,11 +2798,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void PositionSellCompletedEventHandler(object sender, PositionSellCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PositionSellCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2868,11 +2824,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void PositionReturnCompletedEventHandler(object sender, PositionReturnCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PositionReturnCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2894,11 +2850,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void GetSoldPositionsCompletedEventHandler(object sender, GetSoldPositionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetSoldPositionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2920,11 +2876,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void GetSoldNotReturnedPositionsCompletedEventHandler(object sender, GetSoldNotReturnedPositionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetSoldNotReturnedPositionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2946,11 +2902,11 @@ namespace DeVes.Bazaar.Client.IBasarCom {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     public delegate void GetNotSoldNotReturnedPositionsCompletedEventHandler(object sender, GetNotSoldNotReturnedPositionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetNotSoldNotReturnedPositionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2967,6 +2923,114 @@ namespace DeVes.Bazaar.Client.IBasarCom {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((BizPosition[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void SetPositionsAsReturnedCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PositionGetCompletedEventHandler(object sender, PositionGetCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PositionGetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PositionGetCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BizPosition Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BizPosition)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PositionGetAllCompletedEventHandler(object sender, PositionGetAllCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PositionGetAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PositionGetAllCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BizPosition[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BizPosition[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void PositionGetAllBySupplierNumCompletedEventHandler(object sender, PositionGetAllBySupplierNumCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PositionGetAllBySupplierNumCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PositionGetAllBySupplierNumCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BizPosition[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BizPosition[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    public delegate void AllSupplierAndPositionsCompletedEventHandler(object sender, AllSupplierAndPositionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AllSupplierAndPositionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AllSupplierAndPositionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public AllPositionResult[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((AllPositionResult[])(this.results[0]));
             }
         }
     }

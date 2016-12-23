@@ -60,7 +60,7 @@ namespace DeVes.Bazaar.Client.SubForms
                 _result.FirstName = _frm.m_sellerVNameTb.Text;
 
                 _result.Adress = _frm.m_sellerStreetTb.Text;
-                _result.ZIPCode = _frm.m_sellerZipTb.Text;
+                _result.ZipCode = _frm.m_sellerZipTb.Text;
                 _result.Town = _frm.m_sellerTownTb.Text;
 
                 _result.Phone01 = _frm.m_sellerPhoneTb.Text;

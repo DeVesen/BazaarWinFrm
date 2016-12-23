@@ -28,7 +28,6 @@ namespace DeVes.Bazaar.Client2.Pages
 
         public void PostConstruct(object parameter)
         {
-            throw new NotImplementedException();
         }
     }
 }

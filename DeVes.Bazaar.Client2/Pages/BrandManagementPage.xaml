@@ -5,8 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:viewModels="clr-namespace:DeVes.Bazaar.Client2.ViewModels"
-      mc:Ignorable="d"
-	Title="BrandManagementPage" Width="392.5" Height="314">
+      xmlns:presenterHelper="clr-namespace:DeVes.Extension.UI.PresenterHelper;assembly=DeVes.Extension"
+      mc:Ignorable="d" 
+	Title="ManufacturerManagementPage" Width="392.5" Height="314">
 
     <Page.DataContext>
         <viewModels:BrandManagementPresenter/>
@@ -22,6 +23,16 @@
     </intr:Interaction.Triggers>
 
     <Grid>
+        <Grid.Style>
+            <Style>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding CategoryInput.UserShouldEditValueNow}" Value="True">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=InputField}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+
         <Rectangle Height="60" VerticalAlignment="Top">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -34,31 +45,38 @@
             </Rectangle.Fill>
         </Rectangle>
         <Image Source="pack://siteoforigin:,,,/Resources/Category_32x32.png" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Margin="10,10,0,0"/>
-        <Label Content="Material Kategorie Verwaltung" Margin="51,10,10,0" VerticalAlignment="Top" Height="36" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Kategorie Verwaltung" Margin="51,10,10,0" VerticalAlignment="Top" Height="36" FontSize="18" FontWeight="Bold"/>
         <Label Content="Kategorie:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
-        <TextBox Height="34" Margin="10,86,108,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="{Binding BrandInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Margin="0,65,10,0" VerticalAlignment="Top" Height="85" HorizontalAlignment="Right" Width="85" Command="{Binding BrandOnAdd}">
+        <TextBox Name="InputField" Height="34" Margin="10,86,108,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="{Binding CategoryInput.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding Path=CategoryOnAdd}" Key="Enter" />
+            </TextBox.InputBindings>
+        </TextBox>
+
+        <Button Margin="0,65,10,0" VerticalAlignment="Top" Height="85" HorizontalAlignment="Right" Width="85" Command="{Binding CategoryOnAdd}">
             <StackPanel>
                 <Image Source="pack://siteoforigin:,,,/Resources/Add_48x48.png" Stretch="Fill"  Height="45" Width="45" />
                 <TextBlock>Hinzufügen</TextBlock>
             </StackPanel>
         </Button>
-        <Button Margin="0,155,10,0" VerticalAlignment="Top" Height="85" HorizontalAlignment="Right" Width="85" Command="{Binding BrandOnRemove}">
+        <Button Margin="0,155,10,0" VerticalAlignment="Top" Height="85" HorizontalAlignment="Right" Width="85" Command="{Binding CategoryOnRemove}">
             <StackPanel>
                 <Image Source="pack://siteoforigin:,,,/Resources/Cancel_48x48.png" Stretch="Fill"  Height="45" Width="45" />
                 <TextBlock>Löschen</TextBlock>
             </StackPanel>
         </Button>
-        <ListView Margin="10,125,108,10" FontSize="20" ItemsSource="{Binding BrandItemLst}" SelectedItem="{Binding SelectedItem}">
+        <ListView Margin="10,125,108,10" FontSize="20" ItemsSource="{Binding CategoryItemLst}" SelectedItem="{Binding SelectedItem}"
+                  IsSynchronizedWithCurrentItem="True"
+                  presenterHelper:ListViewScrollToCurrentItem.AutoScrollToCurrentItem="True">
             <intr:Interaction.Triggers>
                 <intr:EventTrigger EventName="SelectionChanged">
-                    <intr:InvokeCommandAction Command="{Binding BandItemSelectionChanged}"
+                    <intr:InvokeCommandAction Command="{Binding CategoryItemSelectionChanged}"
                                               CommandParameter="{Binding SelectedItem}"/>
                 </intr:EventTrigger>
             </intr:Interaction.Triggers>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Kategorie" Width="Auto" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Header="Kategorie" Width="Auto" DisplayMemberBinding="{Binding Path=Designation}" />
                 </GridView>
             </ListView.View>
         </ListView>

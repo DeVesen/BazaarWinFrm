@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DeVes.Bazaar.Client2.BasarComServiceReference;
+using DeVes.Bazaar.Client2.Content;
 using DeVes.Extension.UI.Controls;
+using DeVes.Extension.UI.PresenterHelper;
 using DeVes.Extension.UI.WPF;
 
 namespace DeVes.Bazaar.Client2.ViewModels
@@ -26,23 +29,7 @@ namespace DeVes.Bazaar.Client2.ViewModels
 
         private void OnWndLoad()
         {
-            this.m_brandItemLst.Add(new BrandItem()
-            {
-                Id = Guid.NewGuid(),
-                Name = "K1"
-            });
-
-            this.m_brandItemLst.Add(new BrandItem()
-            {
-                Id = Guid.NewGuid(),
-                Name = "K2"
-            });
-
-            this.m_brandItemLst.Add(new BrandItem()
-            {
-                Id = Guid.NewGuid(),
-                Name = "k3"
-            });
+            this.OnRefreshManuf();
         }
 
         private void OnWndClosing()
@@ -52,19 +39,14 @@ namespace DeVes.Bazaar.Client2.ViewModels
 
 
 
-        private string m_brandInput;
-        public string BrandInput
+        private readonly TextBoxPresenter m_categoryInput = new TextBoxPresenter();
+        public TextBoxPresenter CategoryInput
         {
-            get { return this.m_brandInput; }
-            set
-            {
-                this.m_brandInput = value; 
-                this.RaisePropertyChangedEvent();
-            }
+            get { return this.m_categoryInput; }
         }
 
-        private BrandItem m_selectedItem;
-        public BrandItem SelectedItem
+        private BizMaterialCategory m_selectedItem;
+        public BizMaterialCategory SelectedItem
         {
             get { return this.m_selectedItem; }
             set
@@ -74,60 +56,95 @@ namespace DeVes.Bazaar.Client2.ViewModels
             }
         }
 
-        private readonly ObservableCollection<BrandItem> m_brandItemLst = new ObservableCollection<BrandItem>();
-        public ObservableCollection<BrandItem> BrandItemLst
+        private readonly ObservableCollectionEx<BizMaterialCategory> m_categoryItemLst = new ObservableCollectionEx<BizMaterialCategory>();
+        public ObservableCollectionEx<BizMaterialCategory> CategoryItemLst
         {
-            get { return this.m_brandItemLst; }
+            get { return this.m_categoryItemLst; }
         }
 
 
 
-        public ICommand BrandOnAdd { get { return new DelegateCommand(OnAddBrand); } }
+        public ICommand CategoryOnAdd { get { return new DelegateCommand(OnAddCategory); } }
 
-        public ICommand BrandOnRemove { get { return new DelegateCommand(OnRemoveBrand); } }
+        public ICommand CategoryOnRemove { get { return new DelegateCommand(OnRemoveCategory); } }
 
-        public ICommand BandItemSelectionChanged { get { return new RelayCommand(OnBandItemSelectionChanged); } }
+        public ICommand CategoryItemSelectionChanged { get { return new RelayCommand(OnCategoryItemSelectionChanged); } }
 
 
 
-        private void OnAddBrand()
+        private bool DoSelectItem(string name)
         {
-            var _item =
-                this.m_brandItemLst.FirstOrDefault(
-                    p => string.Compare(p.Name, this.BrandInput, StringComparison.OrdinalIgnoreCase) == 0);
+            var _element =
+                this.CategoryItemLst.FirstOrDefault(
+                    p => string.Compare(p.Designation, name, StringComparison.OrdinalIgnoreCase) == 0);
 
-            if (_item != null) return;
+            this.SelectedItem = _element;
 
-            this.m_brandItemLst.Add(new BrandItem()
+            return (_element != null);
+        }
+
+
+
+        private void OnAddCategory()
+        {
+            if (this.DoSelectItem(this.CategoryInput.Text)) return;
+
+            var _newItem = new BizMaterialCategory()
             {
                 Id = Guid.NewGuid(),
-                Name = this.BrandInput
-            });
+                Designation = this.CategoryInput.Text
+            };
 
-            this.BrandInput = string.Empty;
+            MaterialCategoryProxi.Instance.MaterialCategoryCreate(_newItem);
+            this.OnRefreshManuf();
+
+            this.DoSelectItem(_newItem.Designation);
+
+            this.CategoryInput.ResetText();
+            this.CategoryInput.SetFocus();
         }
 
-        private void OnRemoveBrand()
+        private void OnRefreshManuf()
+        {
+            var _serverList = MaterialCategoryProxi.Instance.MaterialCategoryGetAll();
+
+            if (!_serverList.Any())
+            {
+                this.CategoryItemLst.Clear();
+                return;
+            }
+
+            foreach (var _bizManufacturer in _serverList.Where(p => this.CategoryItemLst.All(z => z.Id != p.Id)))
+            {
+                this.CategoryItemLst.Add(_bizManufacturer);
+            }
+
+            foreach (var _bizManufacturer in this.CategoryItemLst.Where(p => _serverList.All(z => z.Id != p.Id)).ToArray())
+            {
+                this.CategoryItemLst.Remove(_bizManufacturer);
+            }
+
+            CategoryItemLst.Sort(p => p.Designation);
+        }
+
+        private void OnRemoveCategory()
         {
             if (this.SelectedItem == null) return;
 
-            if (!this.m_brandItemLst.Contains(this.SelectedItem)) return;
+            if (!this.CategoryItemLst.Contains(this.SelectedItem)) return;
 
-            this.m_brandItemLst.Remove(this.SelectedItem);
+            MaterialCategoryProxi.Instance.MaterialCategoryRemove(this.SelectedItem);
 
-            this.BrandInput = string.Empty;
+            this.OnRefreshManuf();
+
+            this.CategoryInput.ResetText();
+            this.CategoryInput.SetFocus();
         }
 
-        private void OnBandItemSelectionChanged(object args)
+        private void OnCategoryItemSelectionChanged(object args)
         {
-            
+            if (this.SelectedItem != null)
+                this.CategoryInput.ResetText();
         }
-    }
-
-    public class BrandItem
-    {
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
     }
 }

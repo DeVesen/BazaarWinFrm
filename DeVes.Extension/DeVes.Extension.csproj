@@ -55,9 +55,12 @@
     <Compile Include="UI\Controls\PageContainer.xaml.cs">
       <DependentUpon>PageContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\PresenterHelper\ListViewScrollToCurrentItem.cs" />
+    <Compile Include="UI\PresenterHelper\TextBoxPresenter.cs" />
     <Compile Include="UI\WPF\DelegateCommand.cs" />
     <Compile Include="UI\WPF\GlassEffectHelper.cs" />
     <Compile Include="UI\WPF\MARGINS.cs" />
+    <Compile Include="UI\WPF\ObservableCollectionEx.cs" />
     <Compile Include="UI\WPF\ObservableObject.cs" />
     <Compile Include="UI\WPF\VersionHelper.cs" />
     <Compile Include="UI\WPF\WindowPresenter.cs" />

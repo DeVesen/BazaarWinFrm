@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DeVes.Bazaar.Client2.BasarComServiceReference;
+using DeVes.Bazaar.Client2.Content;
 using DeVes.Extension.UI.Controls;
+using DeVes.Extension.UI.PresenterHelper;
 using DeVes.Extension.UI.WPF;
 
 namespace DeVes.Bazaar.Client2.ViewModels
@@ -26,23 +29,7 @@ namespace DeVes.Bazaar.Client2.ViewModels
 
         private void OnWndLoad()
         {
-            this.m_manufacturerItemLst.Add(new ManufItem()
-            {
-                Id = Guid.NewGuid(),
-                Name = "H1"
-            });
-
-            this.m_manufacturerItemLst.Add(new ManufItem()
-            {
-                Id = Guid.NewGuid(),
-                Name = "H2"
-            });
-
-            this.m_manufacturerItemLst.Add(new ManufItem()
-            {
-                Id = Guid.NewGuid(),
-                Name = "H3"
-            });
+            this.OnRefreshManuf();
         }
 
         private void OnWndClosing()
@@ -52,19 +39,14 @@ namespace DeVes.Bazaar.Client2.ViewModels
 
 
 
-        private string m_manufacturerInput;
-        public string ManufacturerInput
+        private readonly TextBoxPresenter m_manufacturerInput = new TextBoxPresenter();
+        public TextBoxPresenter ManufacturerInput
         {
             get { return this.m_manufacturerInput; }
-            set
-            {
-                this.m_manufacturerInput = value; 
-                this.RaisePropertyChangedEvent();
-            }
         }
 
-        private ManufItem m_selectedItem;
-        public ManufItem SelectedItem
+        private BizManufacturer m_selectedItem;
+        public BizManufacturer SelectedItem
         {
             get { return this.m_selectedItem; }
             set
@@ -74,8 +56,8 @@ namespace DeVes.Bazaar.Client2.ViewModels
             }
         }
 
-        private readonly ObservableCollection<ManufItem> m_manufacturerItemLst = new ObservableCollection<ManufItem>();
-        public ObservableCollection<ManufItem> ManufacturerItemLst
+        private readonly ObservableCollectionEx<BizManufacturer> m_manufacturerItemLst = new ObservableCollectionEx<BizManufacturer>();
+        public ObservableCollectionEx<BizManufacturer> ManufacturerItemLst
         {
             get { return this.m_manufacturerItemLst; }
         }
@@ -90,44 +72,74 @@ namespace DeVes.Bazaar.Client2.ViewModels
 
 
 
+        private bool DoSelectItem(string name)
+        {
+            this.SelectedItem = this.ManufacturerItemLst.FirstOrDefault(p => string.Compare(p.Designation, name, StringComparison.OrdinalIgnoreCase) == 0);
+            return this.SelectedItem != null;
+        }
+
+
+
         private void OnAddManuf()
         {
-            var _item =
-                this.m_manufacturerItemLst.FirstOrDefault(
-                    p => string.Compare(p.Name, this.ManufacturerInput, StringComparison.OrdinalIgnoreCase) == 0);
+            if (this.DoSelectItem(this.ManufacturerInput.Text)) return;
 
-            if (_item != null) return;
-
-            this.m_manufacturerItemLst.Add(new ManufItem()
+            var _newItem = new BizManufacturer()
             {
                 Id = Guid.NewGuid(),
-                Name = this.ManufacturerInput
-            });
+                Designation = this.ManufacturerInput.Text
+            };
 
-            this.ManufacturerInput = string.Empty;
+            MaterialManufacturerProxi.Instance.MaterialManufacturerCreate(_newItem);
+            this.OnRefreshManuf();
+
+            this.DoSelectItem(_newItem.Designation);
+
+            this.ManufacturerInput.ResetText();
+            this.ManufacturerInput.SetFocus();
+        }
+
+        private void OnRefreshManuf()
+        {
+            var _serverList = MaterialManufacturerProxi.Instance.MaterialManufacturerGetAll();
+
+            if (!_serverList.Any())
+            {
+                this.ManufacturerItemLst.Clear();
+                return;
+            }
+
+            foreach (var _bizManufacturer in _serverList.Where(p => this.ManufacturerItemLst.All(z => z.Id != p.Id)))
+            {
+                this.ManufacturerItemLst.Add(_bizManufacturer);
+            }
+
+            foreach (var _bizManufacturer in this.ManufacturerItemLst.Where(p => _serverList.All(z => z.Id != p.Id)).ToArray())
+            {
+                this.ManufacturerItemLst.Remove(_bizManufacturer);
+            }
+
+            ManufacturerItemLst.Sort(p => p.Designation);
         }
 
         private void OnRemoveManuf()
         {
             if (this.SelectedItem == null) return;
 
-            if (!this.m_manufacturerItemLst.Contains(this.SelectedItem)) return;
+            if (!this.ManufacturerItemLst.Contains(this.SelectedItem)) return;
 
-            this.m_manufacturerItemLst.Remove(this.SelectedItem);
+            MaterialManufacturerProxi.Instance.MaterialManufacturerRemove(this.SelectedItem);
 
-            this.ManufacturerInput = string.Empty;
+            this.OnRefreshManuf();
+
+            this.ManufacturerInput.ResetText();
+            this.ManufacturerInput.SetFocus();
         }
 
         private void OnManufItemSelectionChanged(object args)
         {
-            
+            if (this.SelectedItem != null)
+                this.ManufacturerInput.ResetText();
         }
-    }
-
-    public class ManufItem
-    {
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
@@ -38,11 +39,14 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private void ImportPositionForm_Load(object sender, EventArgs e)
         {
+            this.m_lbErrorMsg.ResetText();
             this.ReLoadhRestScreen(null);
         }
 
         private void dvTextBox1_KeyUp(object sender, KeyEventArgs e)
         {
+            this.m_lbErrorMsg.ResetText();
+
             if (e.KeyCode == Keys.Return)
             {
                 if (this.m_matlPosLv.Items.Count > 1)
@@ -53,6 +57,8 @@ namespace DeVes.Bazaar.Client.SubForms
                         if (_posItem != null && _posItem.DataObj.PositionNo.ToString() == this.dvTextBox1.Text)
                         {
                             this.ReturnLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
+                            this.m_lbErrorMsg.Text = @"Position gefunden ...";
+                            this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 100, 255, 100);
                             this.PlayGoodSound();
                             break;
                         }
@@ -67,15 +73,38 @@ namespace DeVes.Bazaar.Client.SubForms
                     if (((PositionLvi)this.m_matlPosLv.Items[0]).DataObj.PositionNo == this.dvTextBox1.IntValue)
                     {
                         this.ReturnLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
+                        this.m_lbErrorMsg.Text = @"Position gefunden ...";
+                        this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 100, 255, 100);
                         this.PlayGoodSound();
                     }
                     else
                     {
+                        this.m_lbErrorMsg.Text = @"Position nicht gefunden ...";
+                        this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 255, 100, 100);
                         this.PlayBadSound();
                     }
                 }
                 else
                 {
+                    var _posNum = 0;
+                    if (!int.TryParse(this.dvTextBox1.Text, out _posNum))
+                        _posNum = 0;
+
+                    var _posInfo = GParams.Instance.BasarCom.PositionGet(_posNum, true);
+
+                    if (_posInfo != null && _posInfo.ReturnedToSupplierAt.HasValue)
+                    {
+                        this.m_lbErrorMsg.Text = @"Position bereits zurückgegeben ...";
+                    }
+                    else if (_posInfo != null && _posInfo.SupplierId != m_supplier.SupplierId)
+                    {
+                        this.m_lbErrorMsg.Text = @"Position gehört zu anderem Händler ...";
+                    }
+                    else
+                    {
+                        this.m_lbErrorMsg.Text = @"Position nicht gefunden ...";
+                    }
+                    this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 255, 100, 100);
                     this.PlayBadSound();
                 }
 
@@ -86,6 +115,7 @@ namespace DeVes.Bazaar.Client.SubForms
         private void dvTextBox1_TextChanged(object sender, EventArgs e)
         {
             this.m_matlPosLv.Items.Clear();
+            this.m_lbErrorMsg.BackColor = Color.Transparent;
 
             var _enteredValue = this.dvTextBox1.Text.ToLower().Trim();
 
@@ -185,11 +215,11 @@ namespace DeVes.Bazaar.Client.SubForms
         {
             if (positions == null)
             {
-                positions = GParams.Instance.BasarCom.GetNotSoldNotReturnedPositions(this.m_supplier.SupplierID);
+                positions = GParams.Instance.BasarCom.GetNotSoldNotReturnedPositions(this.m_supplier.SupplierId);
             }
             else if (positions.Length <= 0)
             {
-                positions = GParams.Instance.BasarCom.GetNotSoldNotReturnedPositions(this.m_supplier.SupplierID);
+                positions = GParams.Instance.BasarCom.GetNotSoldNotReturnedPositions(this.m_supplier.SupplierId);
             }
 
             this.m_globalList.Clear();
@@ -214,7 +244,7 @@ namespace DeVes.Bazaar.Client.SubForms
             try
             {
                 var _newPosition = line.DataObj;
-                _newPosition.SupplierId = this.m_supplier.SupplierID;
+                _newPosition.SupplierId = this.m_supplier.SupplierId;
 
                 var _posToReturn = GParams.Instance.BasarCom.PositionGet(_newPosition.PositionNo, true);
                 if (_posToReturn != null)
@@ -253,8 +283,9 @@ namespace DeVes.Bazaar.Client.SubForms
 
             if (this.ReLoadhRestScreen(null) > 0)
             {
-                this.dvTextBox1.ResetText();
                 this.dvTextBox1.Focus();
+                this.dvTextBox1.Focus();
+                this.dvTextBox1.SelectAll();
             }
             else
             {

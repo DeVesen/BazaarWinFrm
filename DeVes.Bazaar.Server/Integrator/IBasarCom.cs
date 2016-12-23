@@ -101,6 +101,8 @@ namespace DeVes.Bazaar.Server.Integrator
         [OperationContract]
         BizPosition[] PositionGetAll(Guid supplierId);
         [OperationContract]
+        BizPosition[] PositionGetAllBySupplierNum(int supplier);
+        [OperationContract]
         AllPositionResult[] AllSupplierAndPositions();
 
         #endregion . Supplierer Position .

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using DeVes.Bazaar.Client2.Content;
 using DeVes.Bazaar.Client2.Pages;
 using DeVes.Extension.UI.Controls;
 using DeVes.Extension.UI.WPF;
@@ -61,6 +62,8 @@ namespace DeVes.Bazaar.Client2.ViewModels
 
         private void OnWndLoad()
         {
+            MaterialCategoryProxi.Inistialize();
+            MaterialManufacturerProxi.Inistialize();
         }
 
         private void OnWndClosing()

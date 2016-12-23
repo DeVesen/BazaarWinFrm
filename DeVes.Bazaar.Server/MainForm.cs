@@ -272,7 +272,7 @@ namespace DeVes.Bazaar.Server
 
         private void button4_Click(object sender, EventArgs e)
         {
-            RemoveSoldFromPosition.AskForNumber(this, RemoveSoldFromPosition.FrmTypes.RemoveReturned);
+            RemoveSoldFromPosition.AskForNumber(this, RemoveSoldFromPosition.FrmTypes.RemoveReturnedPos);
 
             this.ShowStatic();
         }
@@ -280,6 +280,13 @@ namespace DeVes.Bazaar.Server
         private void button5_Click(object sender, EventArgs e)
         {
             RemoveSoldFromPosition.AskForNumber(this, RemoveSoldFromPosition.FrmTypes.RemoveSuplPos);
+
+            this.ShowStatic();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            RemoveSoldFromPosition.AskForNumber(this, RemoveSoldFromPosition.FrmTypes.RemoveReturnedSeller);
 
             this.ShowStatic();
         }

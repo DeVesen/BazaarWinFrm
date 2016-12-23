@@ -32,6 +32,7 @@ namespace DeVes.Bazaar.Client
         {
             GParams.Instance.ServerAdress = "127.0.0.1";
             GParams.Instance.PortAdress = 1353;
+            GParams.Instance.TimeOut = int.MaxValue;
 
 
 

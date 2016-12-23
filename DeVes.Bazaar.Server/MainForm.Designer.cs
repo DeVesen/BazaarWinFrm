@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.m_notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.m_startUpTimer = new System.Windows.Forms.Timer(this.components);
             this.bkGroupBox4 = new DeVes.Bazaar.Server.CustControls.BkGroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.bkGroupBox3 = new DeVes.Bazaar.Server.CustControls.BkGroupBox();
@@ -74,7 +75,7 @@
             this.m_prozGewinTb = new DeVes.Bazaar.Server.CustControls.DvTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.titelBarCtrl1 = new DeVes.Bazaar.Server.CustControls.TitelBarCtrl();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.bkGroupBox4.SuspendLayout();
             this.bkGroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_lizPb)).BeginInit();
@@ -99,6 +100,7 @@
             // 
             // bkGroupBox4
             // 
+            this.bkGroupBox4.Controls.Add(this.button6);
             this.bkGroupBox4.Controls.Add(this.button5);
             this.bkGroupBox4.Controls.Add(this.button4);
             this.bkGroupBox4.Controls.Add(this.button3);
@@ -109,13 +111,23 @@
             this.bkGroupBox4.TabStop = false;
             this.bkGroupBox4.Text = "Datenbereinigung:";
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(15, 185);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(108, 45);
+            this.button5.TabIndex = 20;
+            this.button5.Text = "Alle Positionen von Verkäufer löschen";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(15, 74);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(108, 45);
             this.button4.TabIndex = 19;
-            this.button4.Text = "Rückgabe löschen";
+            this.button4.Text = "Rückgabe löschen (Position)";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -587,15 +599,15 @@
             this.titelBarCtrl1.TabIndex = 0;
             this.titelBarCtrl1.TitelText = "DeVes.Bazaar.Server";
             // 
-            // button5
+            // button6
             // 
-            this.button5.Location = new System.Drawing.Point(15, 148);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(108, 45);
-            this.button5.TabIndex = 20;
-            this.button5.Text = "Alle Positionen von Verkäufer löschen";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button6.Location = new System.Drawing.Point(15, 121);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(108, 45);
+            this.button6.TabIndex = 21;
+            this.button6.Text = "Rückgabe löschen (Händler)";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // MainForm
             // 
@@ -678,5 +690,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

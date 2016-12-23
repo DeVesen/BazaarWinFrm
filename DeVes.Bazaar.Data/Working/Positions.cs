@@ -54,6 +54,14 @@ namespace DeVes.Bazaar.Data.Working
 
             return _result.Count > 0 ? _result.ToArray() : null;
         }
+        public BizPosition[] PositionsGet(int supplierNum)
+        {
+            var _supplier = GParams.Instance.Supplier.SupplierGet_No(supplierNum);
+
+            if (_supplier == null) return new BizPosition[0];
+
+            return PositionGet(_supplier.SupplierId);
+        }
 
         public PositionSellResult PositionSell(BizPosition[] position)
         {

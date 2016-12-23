@@ -79,6 +79,7 @@
             this.dvTextBox2.Size = new System.Drawing.Size(256, 20);
             this.dvTextBox2.TabIndex = 2;
             this.dvTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.dvTextBox2.TextChanged += new System.EventHandler(this.dvTextBox2_TextChanged);
             this.dvTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dvTextBox2_KeyDown);
             this.dvTextBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dvTextBox2_KeyUp);
             // 

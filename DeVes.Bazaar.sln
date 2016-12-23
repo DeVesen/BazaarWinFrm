@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeVes.Bazaar.Client2", "DeV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeVes.Extension", "DeVes.Extension\DeVes.Extension.csproj", "{05ECC13F-2258-4214-B861-5B0BA524386B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeVes.WebApp", "DeVes.WebApp\DeVes.WebApp.csproj", "{1FBB122B-6207-4E78-B81B-1F6675D1C39A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{05ECC13F-2258-4214-B861-5B0BA524386B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05ECC13F-2258-4214-B861-5B0BA524386B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05ECC13F-2258-4214-B861-5B0BA524386B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FBB122B-6207-4E78-B81B-1F6675D1C39A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FBB122B-6207-4E78-B81B-1F6675D1C39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FBB122B-6207-4E78-B81B-1F6675D1C39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FBB122B-6207-4E78-B81B-1F6675D1C39A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

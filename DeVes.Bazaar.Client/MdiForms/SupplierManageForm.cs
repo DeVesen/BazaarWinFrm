@@ -19,7 +19,7 @@ namespace DeVes.Bazaar.Client.MdiForms
                 this.SubItems.Add(supl.Salutation);
                 this.SubItems.Add(supl.LastName + ", " + supl.FirstName);
                 this.SubItems.Add(supl.Adress);
-                this.SubItems.Add(supl.ZIPCode);
+                this.SubItems.Add(supl.ZipCode);
                 this.SubItems.Add(supl.Town);
             }
         }
@@ -82,7 +82,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             _supplierBiz.LastName = this.m_sellerNameTb.Text;
             _supplierBiz.FirstName = this.m_sellerVNameTb.Text;
             _supplierBiz.Adress = this.m_sellerStreetTb.Text;
-            _supplierBiz.ZIPCode = this.m_sellerZipTb.Text;
+            _supplierBiz.ZipCode = this.m_sellerZipTb.Text;
             _supplierBiz.Town = this.m_sellerTownTb.Text;
             _supplierBiz.Phone01 = this.m_sellerPhoneTb.Text;
             _supplierBiz.Memo = this.m_sellerDescRtb.Text;
@@ -115,7 +115,7 @@ namespace DeVes.Bazaar.Client.MdiForms
                         var _removed = false;
                         var _removedSpecified = false;
 
-                        GParams.Instance.BasarCom.SupplierRemove(this.ActiveSupplierLv.DataObj.SupplierID, out _removed, out _removedSpecified);
+                        GParams.Instance.BasarCom.SupplierRemove(this.ActiveSupplierLv.DataObj.SupplierId, out _removed, out _removedSpecified);
                     }
                     catch(Exception _ex)
                     {
@@ -184,7 +184,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.m_sellerNameTb.Text = supplierLv.DataObj.LastName;
             this.m_sellerVNameTb.Text = supplierLv.DataObj.FirstName;
             this.m_sellerStreetTb.Text = supplierLv.DataObj.Adress;
-            this.m_sellerZipTb.Text = supplierLv.DataObj.ZIPCode;
+            this.m_sellerZipTb.Text = supplierLv.DataObj.ZipCode;
             this.m_sellerTownTb.Text = supplierLv.DataObj.Town;
             this.m_sellerPhoneTb.Text = supplierLv.DataObj.Phone01;
             this.m_sellerDescRtb.Text = supplierLv.DataObj.Memo;

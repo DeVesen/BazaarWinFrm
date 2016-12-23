@@ -26,7 +26,7 @@ namespace DeVes.Bazaar.Client.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom")]
         public string DVes_Basar_Client_IBasarCom_BasarCom {
             get {
                 return ((string)(this["DVes_Basar_Client_IBasarCom_BasarCom"]));

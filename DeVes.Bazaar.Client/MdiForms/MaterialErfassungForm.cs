@@ -140,7 +140,7 @@ namespace DeVes.Bazaar.Client.MdiForms
                     var _updated = true;
                     var _updatedSpec = true;
 
-                    _positionToChange.SupplierId = this.m_supplierSelection.ActualSupplier.SupplierID;
+                    _positionToChange.SupplierId = this.m_supplierSelection.ActualSupplier.SupplierId;
                     GParams.Instance.BasarCom.PositionCreate(_positionToChange, out _updated, out _updatedSpec);
 
                     if (_updated && _updatedSpec)
@@ -313,7 +313,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             _printDocument.SellerAdress.VName = this.m_supplierSelection.ActualSupplier.FirstName;
             _printDocument.SellerAdress.NName = this.m_supplierSelection.ActualSupplier.LastName;
             _printDocument.SellerAdress.Street = this.m_supplierSelection.ActualSupplier.Adress;
-            _printDocument.SellerAdress.Zip = this.m_supplierSelection.ActualSupplier.ZIPCode;
+            _printDocument.SellerAdress.Zip = this.m_supplierSelection.ActualSupplier.ZipCode;
             _printDocument.SellerAdress.Town = this.m_supplierSelection.ActualSupplier.Town;
 
             if (GParams.Instance.SystemParameters.PrintPev)
@@ -401,7 +401,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             {
                 if (this.m_supplierSelection.ActualSupplier != null)
                 {
-                    var _positionArray = GParams.Instance.BasarCom.PositionGetAll(this.m_supplierSelection.ActualSupplier.SupplierID);
+                    var _positionArray = GParams.Instance.BasarCom.PositionGetAll(this.m_supplierSelection.ActualSupplier.SupplierId);
 
                     if (_positionArray != null && _positionArray.Length > 0)
                     {

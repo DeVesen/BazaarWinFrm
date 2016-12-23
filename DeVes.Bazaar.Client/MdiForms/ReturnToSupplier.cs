@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
 using BHApp.Printing;
@@ -78,7 +80,7 @@ namespace DeVes.Bazaar.Client.MdiForms
                     var _soldTotalPrice = 0.0;
 
                     var _positions =
-                        GParams.Instance.BasarCom.PositionGetAll(this.m_supplierSelection.ActualSupplier.SupplierID);
+                        GParams.Instance.BasarCom.PositionGetAll(this.m_supplierSelection.ActualSupplier.SupplierId);
 
                     if (_positions != null && _positions.Length > 0)
                     {
@@ -134,11 +136,20 @@ namespace DeVes.Bazaar.Client.MdiForms
         private void PrintRueckgabe(List<BizPosition> itemsToPrint)
         {
             var _tableInfo = new TablePrintDef();
-            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Pos Nr.", 10.00F));
-            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Bezeichnung", 50.00F));
-            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Regel Preis", 11.00F));
-            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Min. Preis", 11.00F));
-            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Verk. Preis", 11.00F));
+            //_tableInfo.AddColumn(new TablePrintDef.ColumnItem("Pos Nr.", 10.00F));
+            //_tableInfo.AddColumn(new TablePrintDef.ColumnItem("Bezeichnung", 20.00F));
+            //_tableInfo.AddColumn(new TablePrintDef.ColumnItem("Kategorie", 14.50F));
+            //_tableInfo.AddColumn(new TablePrintDef.ColumnItem("Hersteller", 14.50F));
+            //_tableInfo.AddColumn(new TablePrintDef.ColumnItem("Regel Preis", 11.00F));
+            //_tableInfo.AddColumn(new TablePrintDef.ColumnItem("Min. Preis", 11.00F));
+            //_tableInfo.AddColumn(new TablePrintDef.ColumnItem("Verk. Preis", 11.00F));
+            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Pos Nr.", 8.00F));
+            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Kategorie", 14.00F));
+            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Hersteller", 14.00F));
+            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Bezeichnung", 32));
+            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Regel Preis", 11));
+            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Min. Preis", 11));
+            _tableInfo.AddColumn(new TablePrintDef.ColumnItem("Verk. Preis", 11));
 
             var _soldTotalPrice = 0.0;
 
@@ -154,13 +165,15 @@ namespace DeVes.Bazaar.Client.MdiForms
 
             foreach (var _position in itemsToPrint)
             {
-                _soldTotalPrice += _position.SoldFor.Value;
+                _soldTotalPrice += _position.SoldFor ?? 0;
 
                 _tableInfo.AddLine(new TablePrintDef.FieldDef(_position.PositionNo.ToString()),
                                     new TablePrintDef.FieldDef(_position.Material),
-                                    new TablePrintDef.FieldDef(_position.PriceMax.ToString()),
-                                    new TablePrintDef.FieldDef(_position.PriceMin.ToString()),
-                                    new TablePrintDef.FieldDef(_position.SoldFor.ToString()));
+                                    new TablePrintDef.FieldDef(_position.Category),
+                                    new TablePrintDef.FieldDef(_position.Manufacturer),
+                                    new TablePrintDef.FieldDef(_position.PriceMax + " €"),
+                                    new TablePrintDef.FieldDef((_position.PriceMin ?? 0) + " €"),
+                                    new TablePrintDef.FieldDef((_position.SoldFor ?? 0) + " €"));
             }
 
             var _emptyPlace = new TablePrintDef.FieldDef("  ");
@@ -198,7 +211,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             _printDocument.SellerAdress.VName = this.m_supplierSelection.ActualSupplier.FirstName;
             _printDocument.SellerAdress.NName = this.m_supplierSelection.ActualSupplier.LastName;
             _printDocument.SellerAdress.Street = this.m_supplierSelection.ActualSupplier.Adress;
-            _printDocument.SellerAdress.Zip = this.m_supplierSelection.ActualSupplier.ZIPCode;
+            _printDocument.SellerAdress.Zip = this.m_supplierSelection.ActualSupplier.ZipCode;
             _printDocument.SellerAdress.Town = this.m_supplierSelection.ActualSupplier.Town;
 
             if (GParams.Instance.SystemParameters.PrintPev)
@@ -220,7 +233,7 @@ namespace DeVes.Bazaar.Client.MdiForms
 
         private void m_confirmAbhulungBtn_Click(object sender, EventArgs e)
         {
-            var _positions = GParams.Instance.BasarCom.GetNotSoldNotReturnedPositions(this.m_supplierSelection.ActualSupplier.SupplierID);
+            var _positions = GParams.Instance.BasarCom.GetNotSoldNotReturnedPositions(this.m_supplierSelection.ActualSupplier.SupplierId);
             if (_positions != null && _positions.Length > 0)
             {
                 this.m_printNotSoldPositionsBtn_Click(sender, e);
@@ -238,8 +251,8 @@ namespace DeVes.Bazaar.Client.MdiForms
                     }
                 }
 
-                var _soldLines = GParams.Instance.BasarCom.GetSoldPositions(this.m_supplierSelection.ActualSupplier.SupplierID);
-                var _soldNotReturnedLines = GParams.Instance.BasarCom.GetSoldNotReturnedPositions(this.m_supplierSelection.ActualSupplier.SupplierID);
+                var _soldLines = GParams.Instance.BasarCom.GetSoldPositions(this.m_supplierSelection.ActualSupplier.SupplierId);
+                var _soldNotReturnedLines = GParams.Instance.BasarCom.GetSoldNotReturnedPositions(this.m_supplierSelection.ActualSupplier.SupplierId);
 
                 if (_soldNotReturnedLines != null && _soldNotReturnedLines.Length > 0)
                 {
@@ -250,6 +263,12 @@ namespace DeVes.Bazaar.Client.MdiForms
                 else if (_soldLines != null && _soldLines.Length > 0)
                 {
                     MessageBox.Show("Auszahlung bereits erfolgt ...", "Rückgabe Kontrolle...", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    var _supplierPositions = GParams.Instance.BasarCom.PositionGetAll(this.m_supplierSelection.ActualSupplier.SupplierId);
+                    if (_supplierPositions != null && _supplierPositions.Any())
+                    {
+                        this.PrintRueckgabe(new List<BizPosition>(_supplierPositions));
+                    }
                 }
                 else
                 {
@@ -377,13 +396,26 @@ namespace DeVes.Bazaar.Client.MdiForms
                     _printDocument.SellerAdress.VName = this.m_supplierSelection.ActualSupplier.FirstName;
                     _printDocument.SellerAdress.NName = this.m_supplierSelection.ActualSupplier.LastName;
                     _printDocument.SellerAdress.Street = this.m_supplierSelection.ActualSupplier.Adress;
-                    _printDocument.SellerAdress.Zip = this.m_supplierSelection.ActualSupplier.ZIPCode;
+                    _printDocument.SellerAdress.Zip = this.m_supplierSelection.ActualSupplier.ZipCode;
                     _printDocument.SellerAdress.Town = this.m_supplierSelection.ActualSupplier.Town;
 
                     if (GParams.Instance.SystemParameters.PrintPev)
                     {
                         var _printPrevDlg = new PrintPreviewDialog();
+
+                        var _leiste = _printPrevDlg.Controls.Cast<object>().FirstOrDefault(p => p is ToolStrip) as ToolStrip;
+                        if (_leiste != null)
+                        {
+                            _leiste.Height = 60;
+
+                            _leiste.Items[0].AutoSize = false;
+                            _leiste.Items[0].DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+                            _leiste.Items[0].Size = new Size(80, 60);
+                            //_leiste.Items[0].Image = DeVes.Bazaar.Client.Properties.Resources.printer_60x60;
+                        }
+
                         _printPrevDlg.Document = _printDocument;
+                        _printPrevDlg.Size = new Size(800, 600);
                         _printPrevDlg.ShowDialog();
                     }
                     else

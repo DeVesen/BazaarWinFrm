@@ -220,6 +220,10 @@ namespace DeVes.Bazaar.Server.Integrator
         {
             return GParams.Instance.Position.PositionGet(supplierId);
         }
+        public BizPosition[] PositionGetAllBySupplierNum(int supplier)
+        {
+            return GParams.Instance.Position.PositionsGet(supplier);
+        }
 
         public AllPositionResult[] AllSupplierAndPositions()
         {

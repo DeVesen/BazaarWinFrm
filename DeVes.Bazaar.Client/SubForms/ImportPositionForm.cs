@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DeVes.Bazaar.Client.IBasarCom;
@@ -39,6 +40,8 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private void ImportPositionForm_Load(object sender, EventArgs e)
         {
+            this.m_lbErrorMsg.ResetText();
+
             foreach (DataRow _row in this.m_importTable.Rows)
             {
                 var _bizPos = this.ConvertFromDataRow(_row);
@@ -52,6 +55,9 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private void dvTextBox1_KeyUp(object sender, KeyEventArgs e)
         {
+            this.m_lbErrorMsg.ResetText();
+            this.m_lbErrorMsg.BackColor = Color.Transparent;
+
             if (e.KeyCode == Keys.Return)
             {
                 if (this.m_matlPosLv.Items.Count > 1)
@@ -77,8 +83,22 @@ namespace DeVes.Bazaar.Client.SubForms
                 {
                     this.ImportLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
                 }
-                else 
+                else
                 {
+                    var _posNum = 0;
+                    if (!int.TryParse(this.dvTextBox1.Text, out _posNum))
+                        _posNum = 0;
+
+                    if (GParams.Instance.BasarCom.PositionGet(_posNum, true) == null)
+                    {
+                        this.m_lbErrorMsg.Text = @"Positionsnummer nicht gefunden!";
+                    }
+                    else
+                    {
+                        this.m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
+                    }
+                    this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 255, 100, 100);
+
                     this.dvTextBox1.Focus();
                     this.dvTextBox1.SelectAll();
                     this.PlayBadSound();
@@ -302,7 +322,7 @@ namespace DeVes.Bazaar.Client.SubForms
             try
             {
                 var _newPosition = line.DataObj;
-                _newPosition.SupplierId = this.m_supplier.SupplierID;
+                _newPosition.SupplierId = this.m_supplier.SupplierId;
 
                 if (GParams.Instance.BasarCom.PositionGet(_newPosition.PositionNo, true) == null)
                 {
@@ -313,19 +333,28 @@ namespace DeVes.Bazaar.Client.SubForms
 
                     if (_created && _createdSpec)
                     {
+                        this.m_lbErrorMsg.Text = @"Position angenommen...";
+                        this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 100, 255, 100);
+
                         this.m_globalList.Remove(line);
                         this.PlayConfirmedSound();
                     }
                     else
                     {
+                        this.m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
+                        this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 100, 255, 100);
+
+                        this.m_globalList.Remove(line);
                         this.PlayBadSound();
-                        MessageBox.Show("Position konnte nicht erstellt werden");
                     }
                 }
                 else
                 {
+                    this.m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
+                    this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 255, 100, 100);
+
+                    this.m_globalList.Remove(line);
                     this.PlayBadSound();
-                    MessageBox.Show("Positionsnummer existiert bereits!");
                 }
             }
             catch(Exception _ex)
@@ -333,8 +362,8 @@ namespace DeVes.Bazaar.Client.SubForms
                 MessageBox.Show(_ex.Message);
             }
 
-            this.dvTextBox1.ResetText();
             this.dvTextBox1.Focus();
+            this.dvTextBox1.SelectAll();
         }
 
 

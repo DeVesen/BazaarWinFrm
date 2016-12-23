@@ -475,10 +475,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://127.0.0.1:1353/DVes.Basar.Integrator/IBasarCom%3fwsdl">
+    <WebReferenceUrl Include="http://127.0.0.1:1353/DeVes.Bazaar.Integrator/IBasarCom">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\IBasarCom\</RelPath>
-      <UpdateFromURL>http://127.0.0.1:1353/DVes.Basar.Integrator/IBasarCom%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://127.0.0.1:1353/DeVes.Bazaar.Integrator/IBasarCom</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -486,6 +486,12 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>DVes_Basar_Client_IBasarCom_BasarCom</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer_60x60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\IBasarCom\IBasarCom.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

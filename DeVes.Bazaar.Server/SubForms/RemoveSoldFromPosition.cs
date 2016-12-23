@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using DeVes.Bazaar.Data;
+using DeVes.Bazaar.Data.Biz;
+using System.Linq;
 
 namespace DeVes.Bazaar.Server.SubForms
 {
@@ -10,7 +12,8 @@ namespace DeVes.Bazaar.Server.SubForms
         {
             RemoveSuplPos,
             RemoveSold,
-            RemoveReturned
+            RemoveReturnedPos,
+            RemoveReturnedSeller
         }
 
 
@@ -33,9 +36,13 @@ namespace DeVes.Bazaar.Server.SubForms
                     this.titelBarCtrl1.TitelText = "Verkauf zurücksetzten:";
                     this.label2.Text = @"Positionsnummer:";
                     break;
-                case FrmTypes.RemoveReturned:
+                case FrmTypes.RemoveReturnedPos:
                     this.titelBarCtrl1.TitelText = "Rückgabe zurücksetzten:";
                     this.label2.Text = @"Positionsnummer:";
+                    break;
+                case FrmTypes.RemoveReturnedSeller:
+                    this.titelBarCtrl1.TitelText = "Rückgabe zurücksetzten:";
+                    this.label2.Text = @"Verkäufer:";
                     break;
             }
         }
@@ -55,8 +62,14 @@ namespace DeVes.Bazaar.Server.SubForms
                         GParams.Instance.Position.RemoveSoldFromPosition(dvTextBox2.IntValue.Value);
                         Console.Beep(1000, 500);
                         break;
-                    case FrmTypes.RemoveReturned:
+                    case FrmTypes.RemoveReturnedPos:
                         GParams.Instance.Position.RemoveReturnedFromPosition(dvTextBox2.IntValue.Value);
+                        Console.Beep(1000, 500);
+                        break;
+
+                    case FrmTypes.RemoveReturnedSeller:
+                        var _positions = GParams.Instance.Position.PositionsGet(dvTextBox2.IntValue.Value) ?? new BizPosition[0];
+                        _positions.ToList().ForEach(fe => GParams.Instance.Position.RemoveReturnedFromPosition(fe.PositionNo));
                         Console.Beep(1000, 500);
                         break;
                 }
@@ -94,6 +107,11 @@ namespace DeVes.Bazaar.Server.SubForms
                 this.button1_Click(sender, e);
                 e.Handled = true;
             }
+        }
+
+        private void dvTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

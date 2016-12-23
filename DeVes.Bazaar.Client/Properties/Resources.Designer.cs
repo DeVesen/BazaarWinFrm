@@ -39,7 +39,7 @@ namespace DeVes.Bazaar.Client.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    var temp = new global::System.Resources.ResourceManager("DeVes.Bazaar.Client.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DeVes.Bazaar.Client.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,7 +65,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap add2_32x32 {
             get {
-                var obj = ResourceManager.GetObject("add2_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("add2_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap box_32x32 {
             get {
-                var obj = ResourceManager.GetObject("box_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("box_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap box_into_32x32 {
             get {
-                var obj = ResourceManager.GetObject("box_into_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("box_into_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +95,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap cashier_32x32 {
             get {
-                var obj = ResourceManager.GetObject("cashier_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("cashier_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap delete2_32x32 {
             get {
-                var obj = ResourceManager.GetObject("delete2_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("delete2_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap disk_blue_32x32 {
             get {
-                var obj = ResourceManager.GetObject("disk_blue_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("disk_blue_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -125,7 +125,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap factory_32x32 {
             get {
-                var obj = ResourceManager.GetObject("factory_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("factory_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,7 +135,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap factory_add_32x32 {
             get {
-                var obj = ResourceManager.GetObject("factory_add_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("factory_add_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -145,7 +145,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap factory_delete_32x32 {
             get {
-                var obj = ResourceManager.GetObject("factory_delete_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("factory_delete_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -155,7 +155,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap find {
             get {
-                var obj = ResourceManager.GetObject("find", resourceCulture);
+                object obj = ResourceManager.GetObject("find", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -165,7 +165,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap handshake_32x32 {
             get {
-                var obj = ResourceManager.GetObject("handshake_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("handshake_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -175,7 +175,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap harddisk_network_32x32 {
             get {
-                var obj = ResourceManager.GetObject("harddisk_network_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("harddisk_network_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -185,7 +185,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap id_card_32x32 {
             get {
-                var obj = ResourceManager.GetObject("id_card_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("id_card_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -195,7 +195,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap id_card_add_32x32 {
             get {
-                var obj = ResourceManager.GetObject("id_card_add_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("id_card_add_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -205,7 +205,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap id_card_delete_32x32 {
             get {
-                var obj = ResourceManager.GetObject("id_card_delete_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("id_card_delete_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -215,7 +215,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap id_card_new_32x32 {
             get {
-                var obj = ResourceManager.GetObject("id_card_new_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("id_card_new_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -225,7 +225,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap id_card_preferences_32x32 {
             get {
-                var obj = ResourceManager.GetObject("id_card_preferences_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("id_card_preferences_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -235,7 +235,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap id_card_view_32x32 {
             get {
-                var obj = ResourceManager.GetObject("id_card_view_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("id_card_view_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -245,7 +245,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap index_32x32 {
             get {
-                var obj = ResourceManager.GetObject("index_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("index_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -255,7 +255,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap index_add_32x32 {
             get {
-                var obj = ResourceManager.GetObject("index_add_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("index_add_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -265,7 +265,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap index_delete_32x32 {
             get {
-                var obj = ResourceManager.GetObject("index_delete_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("index_delete_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -275,7 +275,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap line_chart_32x32 {
             get {
-                var obj = ResourceManager.GetObject("line_chart_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("line_chart_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -285,7 +285,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap moneybag_euro_32x32 {
             get {
-                var obj = ResourceManager.GetObject("moneybag_euro_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("moneybag_euro_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -295,7 +295,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap navigate_end_32x32 {
             get {
-                var obj = ResourceManager.GetObject("navigate_end_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("navigate_end_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -305,7 +305,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap note_32x32 {
             get {
-                var obj = ResourceManager.GetObject("note_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("note_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -315,7 +315,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap note_add_32x32 {
             get {
-                var obj = ResourceManager.GetObject("note_add_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("note_add_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -325,7 +325,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap note_delete_32x32 {
             get {
-                var obj = ResourceManager.GetObject("note_delete_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("note_delete_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -335,7 +335,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap note_edit_32x32 {
             get {
-                var obj = ResourceManager.GetObject("note_edit_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("note_edit_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -345,7 +345,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap note_new_32x32 {
             get {
-                var obj = ResourceManager.GetObject("note_new_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("note_new_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -355,7 +355,17 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap note_pinned_32x32 {
             get {
-                var obj = ResourceManager.GetObject("note_pinned_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("note_pinned_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap printer_60x60 {
+            get {
+                object obj = ResourceManager.GetObject("printer_60x60", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -365,7 +375,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap printer2_32x32 {
             get {
-                var obj = ResourceManager.GetObject("printer2_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("printer2_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -375,7 +385,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap refresh_32x32 {
             get {
-                var obj = ResourceManager.GetObject("refresh_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("refresh_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -385,7 +395,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap server_32x32 {
             get {
-                var obj = ResourceManager.GetObject("server_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("server_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -395,7 +405,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap shoppingcart_32x32 {
             get {
-                var obj = ResourceManager.GetObject("shoppingcart_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("shoppingcart_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -414,7 +424,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap table_sql_32x32 {
             get {
-                var obj = ResourceManager.GetObject("table_sql_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("table_sql_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -424,7 +434,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Untitled {
             get {
-                var obj = ResourceManager.GetObject("Untitled", resourceCulture);
+                object obj = ResourceManager.GetObject("Untitled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -434,7 +444,7 @@ namespace DeVes.Bazaar.Client.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Untitled1 {
             get {
-                var obj = ResourceManager.GetObject("Untitled1", resourceCulture);
+                object obj = ResourceManager.GetObject("Untitled1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

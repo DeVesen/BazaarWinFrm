@@ -136,7 +136,7 @@ namespace DeVes.Bazaar.Client.SubForms
             this.SubItems.Add(supl.Salutation);
             this.SubItems.Add(supl.LastName + ", " + supl.FirstName);
             this.SubItems.Add(supl.Adress);
-            this.SubItems.Add(supl.ZIPCode);
+            this.SubItems.Add(supl.ZipCode);
             this.SubItems.Add(supl.Town);
         }
     }

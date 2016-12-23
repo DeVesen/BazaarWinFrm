@@ -75,10 +75,10 @@ namespace DeVes.Bazaar.Client.CustControls
                 var _supplier = NewSellerform.EnterNewSupplier(this);
                 if (_supplier != null)
                 {
-                    _supplier.SupplierID = GParams.Instance.BasarCom.SupplierCreate(_supplier);
-                    if (!string.IsNullOrEmpty(_supplier.SupplierID))
+                    _supplier.SupplierId = GParams.Instance.BasarCom.SupplierCreate(_supplier);
+                    if (!string.IsNullOrEmpty(_supplier.SupplierId))
                     {
-                        _supplier = GParams.Instance.BasarCom.SupplierGet_ByID(_supplier.SupplierID);
+                        _supplier = GParams.Instance.BasarCom.SupplierGet_ByID(_supplier.SupplierId);
                         if (_supplier != null)
                         {
                             this.SetActualSupplier(_supplier);
@@ -134,7 +134,7 @@ namespace DeVes.Bazaar.Client.CustControls
                 this.m_supplierNoTb.Text = supplier.SupplierNo.ToString();
                 this.m_suplTitelTb.Text = supplier.Salutation;
                 this.m_suplNameTb.Text = string.Format("{0}, {1}", supplier.LastName, supplier.FirstName);
-                this.m_suplAdressTb.Text = string.Format("{0}\r\n{1} {2}", supplier.Adress, supplier.ZIPCode, supplier.Town);
+                this.m_suplAdressTb.Text = string.Format("{0}\r\n{1} {2}", supplier.Adress, supplier.ZipCode, supplier.Town);
 
                 this.m_returnedTb.Text = "Rückgabe am / um:   " + supplier.ReturnedToSupplier.ToString();
                 this.m_returnedTb.Visible = supplier.ReturnedToSupplier.HasValue;

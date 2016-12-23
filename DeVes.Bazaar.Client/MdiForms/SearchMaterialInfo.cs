@@ -61,7 +61,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.m_supplierNoTb.Text = supplier.SupplierNo.ToString();
             this.m_suplTitelTb.Text = supplier.Salutation;
             this.m_suplNameTb.Text = string.Format("{0}, {1}", supplier.LastName, supplier.FirstName);
-            this.m_suplAdressTb.Text = string.Format("{0}\r\n{1} {2}", supplier.Adress, supplier.ZIPCode, supplier.Town);
+            this.m_suplAdressTb.Text = string.Format("{0}\r\n{1} {2}", supplier.Adress, supplier.ZipCode, supplier.Town);
         }
         private void PositionsToSceen(BizPosition positionBiz)
         {

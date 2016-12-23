@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bb9a3f36-f56a-40bc-9c4b-0d10660db417" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="IBasarCom.xsd" MetadataType="Schema" ID="15c07f2a-34a9-4c92-b978-c6a03359cca3" SourceId="1" SourceUrl="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd1" />
+    <MetadataFile FileName="BasarCom.wsdl" MetadataType="Wsdl" ID="1470ce6d-872e-4d5c-9fa7-2cceaa2f872b" SourceId="1" SourceUrl="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?wsdl" />
+    <MetadataFile FileName="IBasarCom1.xsd" MetadataType="Schema" ID="1f9616fa-a4da-409c-a5cb-2d7d3521d0ab" SourceId="1" SourceUrl="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd2" />
+    <MetadataFile FileName="IBasarCom2.xsd" MetadataType="Schema" ID="0558fd77-9b6f-4a95-8dd7-59cac6246799" SourceId="1" SourceUrl="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd3" />
+    <MetadataFile FileName="IBasarCom3.xsd" MetadataType="Schema" ID="284f0c0d-7afb-4d31-9a67-cab30702b9b2" SourceId="1" SourceUrl="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

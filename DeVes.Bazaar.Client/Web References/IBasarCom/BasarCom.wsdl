@@ -1,37 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BasarCom" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BasarCom" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz" />
-      <xsd:import schemaLocation="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts" />
+      <xsd:import schemaLocation="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.DataObjekts" />
+      <xsd:import schemaLocation="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/DeVes.Bazaar.Data.Biz" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBasarCom_SetPositionsAsReturned_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetPositionsAsReturned" />
-  </wsdl:message>
-  <wsdl:message name="IBasarCom_SetPositionsAsReturned_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetPositionsAsReturnedResponse" />
-  </wsdl:message>
-  <wsdl:message name="IBasarCom_PositionGet_InputMessage">
-    <wsdl:part name="parameters" element="tns:PositionGet" />
-  </wsdl:message>
-  <wsdl:message name="IBasarCom_PositionGet_OutputMessage">
-    <wsdl:part name="parameters" element="tns:PositionGetResponse" />
-  </wsdl:message>
-  <wsdl:message name="IBasarCom_PositionGetAll_InputMessage">
-    <wsdl:part name="parameters" element="tns:PositionGetAll" />
-  </wsdl:message>
-  <wsdl:message name="IBasarCom_PositionGetAll_OutputMessage">
-    <wsdl:part name="parameters" element="tns:PositionGetAllResponse" />
-  </wsdl:message>
-  <wsdl:message name="IBasarCom_AllSupplierAndPositions_InputMessage">
-    <wsdl:part name="parameters" element="tns:AllSupplierAndPositions" />
-  </wsdl:message>
-  <wsdl:message name="IBasarCom_AllSupplierAndPositions_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AllSupplierAndPositionsResponse" />
-  </wsdl:message>
   <wsdl:message name="IBasarCom_CheckAlive_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckAlive" />
   </wsdl:message>
@@ -200,23 +176,37 @@
   <wsdl:message name="IBasarCom_GetNotSoldNotReturnedPositions_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetNotSoldNotReturnedPositionsResponse" />
   </wsdl:message>
+  <wsdl:message name="IBasarCom_SetPositionsAsReturned_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPositionsAsReturned" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_SetPositionsAsReturned_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPositionsAsReturnedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_PositionGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:PositionGet" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_PositionGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PositionGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_PositionGetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:PositionGetAll" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_PositionGetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PositionGetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_PositionGetAllBySupplierNum_InputMessage">
+    <wsdl:part name="parameters" element="tns:PositionGetAllBySupplierNum" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_PositionGetAllBySupplierNum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PositionGetAllBySupplierNumResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_AllSupplierAndPositions_InputMessage">
+    <wsdl:part name="parameters" element="tns:AllSupplierAndPositions" />
+  </wsdl:message>
+  <wsdl:message name="IBasarCom_AllSupplierAndPositions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AllSupplierAndPositionsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBasarCom">
-    <wsdl:operation name="SetPositionsAsReturned">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/SetPositionsAsReturned" message="tns:IBasarCom_SetPositionsAsReturned_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/SetPositionsAsReturnedResponse" message="tns:IBasarCom_SetPositionsAsReturned_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="PositionGet">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/PositionGet" message="tns:IBasarCom_PositionGet_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/PositionGetResponse" message="tns:IBasarCom_PositionGet_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="PositionGetAll">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/PositionGetAll" message="tns:IBasarCom_PositionGetAll_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/PositionGetAllResponse" message="tns:IBasarCom_PositionGetAll_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AllSupplierAndPositions">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/AllSupplierAndPositions" message="tns:IBasarCom_AllSupplierAndPositions_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/AllSupplierAndPositionsResponse" message="tns:IBasarCom_AllSupplierAndPositions_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="CheckAlive">
       <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/CheckAlive" message="tns:IBasarCom_CheckAlive_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/CheckAliveResponse" message="tns:IBasarCom_CheckAlive_OutputMessage" />
@@ -329,45 +319,29 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/GetNotSoldNotReturnedPositions" message="tns:IBasarCom_GetNotSoldNotReturnedPositions_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/GetNotSoldNotReturnedPositionsResponse" message="tns:IBasarCom_GetNotSoldNotReturnedPositions_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetPositionsAsReturned">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/SetPositionsAsReturned" message="tns:IBasarCom_SetPositionsAsReturned_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/SetPositionsAsReturnedResponse" message="tns:IBasarCom_SetPositionsAsReturned_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PositionGet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/PositionGet" message="tns:IBasarCom_PositionGet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/PositionGetResponse" message="tns:IBasarCom_PositionGet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PositionGetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/PositionGetAll" message="tns:IBasarCom_PositionGetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/PositionGetAllResponse" message="tns:IBasarCom_PositionGetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PositionGetAllBySupplierNum">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/PositionGetAllBySupplierNum" message="tns:IBasarCom_PositionGetAllBySupplierNum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/PositionGetAllBySupplierNumResponse" message="tns:IBasarCom_PositionGetAllBySupplierNum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AllSupplierAndPositions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBasarCom/AllSupplierAndPositions" message="tns:IBasarCom_AllSupplierAndPositions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBasarCom/AllSupplierAndPositionsResponse" message="tns:IBasarCom_AllSupplierAndPositions_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBasarCom" type="tns:IBasarCom">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SetPositionsAsReturned">
-      <soap:operation soapAction="http://tempuri.org/IBasarCom/SetPositionsAsReturned" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="PositionGet">
-      <soap:operation soapAction="http://tempuri.org/IBasarCom/PositionGet" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="PositionGetAll">
-      <soap:operation soapAction="http://tempuri.org/IBasarCom/PositionGetAll" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AllSupplierAndPositions">
-      <soap:operation soapAction="http://tempuri.org/IBasarCom/AllSupplierAndPositions" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="CheckAlive">
       <soap:operation soapAction="http://tempuri.org/IBasarCom/CheckAlive" style="document" />
       <wsdl:input>
@@ -620,10 +594,55 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetPositionsAsReturned">
+      <soap:operation soapAction="http://tempuri.org/IBasarCom/SetPositionsAsReturned" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PositionGet">
+      <soap:operation soapAction="http://tempuri.org/IBasarCom/PositionGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PositionGetAll">
+      <soap:operation soapAction="http://tempuri.org/IBasarCom/PositionGetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PositionGetAllBySupplierNum">
+      <soap:operation soapAction="http://tempuri.org/IBasarCom/PositionGetAllBySupplierNum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllSupplierAndPositions">
+      <soap:operation soapAction="http://tempuri.org/IBasarCom/AllSupplierAndPositions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="BasarCom">
     <wsdl:port name="BasicHttpBinding_IBasarCom" binding="tns:BasicHttpBinding_IBasarCom">
-      <soap:address location="http://de6-nb-pe002:1353/DeVes.Bazaar.Integrator/IBasarCom" />
+      <soap:address location="http://de6-nb-pe017:1353/DeVes.Bazaar.Integrator/IBasarCom" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

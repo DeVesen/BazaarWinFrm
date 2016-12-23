@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceModel;
+using System.ServiceModel.Web;
 using System.Windows.Forms;
 using DeVes.Bazaar.Server.Parameter;
 
@@ -49,11 +51,19 @@ namespace DeVes.Bazaar.Server
             Program.PcCode = Data.Security.GandingSecurity.CreateBaseAccessCode();
             Program.ActivateLizence();
 
+            ServiceHost _serviceHost = new WebServiceHost(new RestService());
+            var _serviceEndBpoint = _serviceHost.AddServiceEndpoint(typeof(IRestService), new WebHttpBinding(), new Uri("http://localhost:8181/DEMOService"));
+            _serviceEndBpoint.Behaviors.Add(new EnableCrossOriginResourceSharingBehavior());
+            _serviceHost.Open();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             Program.MainFormHwnd = new MainForm();
             Application.Run(Program.MainFormHwnd);
+
+
+            _serviceHost.Close();
         }
 
         public static bool OptionExist(string key)
