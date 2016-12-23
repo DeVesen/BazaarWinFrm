@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Windows.Forms;
-using DeVes.Bazaar.DataModel;
 using DeVes.Bazaar.Server.Parameter;
 
 namespace DeVes.Bazaar.Server
@@ -45,10 +44,6 @@ namespace DeVes.Bazaar.Server
         [STAThread]
         static void Main()
         {
-            var _dataModel = new BazzarSrvDataModel();
-
-
-
             Data.GParams.Instance.Initialice(Program.LocalAppDir, Program.LocalAppDataDir);
 
             Program.CfgFile = new CfgFile(System.IO.Path.Combine(Program.LocalAppDir, "Params.xml"));
