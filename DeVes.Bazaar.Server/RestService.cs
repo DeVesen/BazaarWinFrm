@@ -19,6 +19,10 @@ namespace DeVes.Bazaar.Server
     public interface IRestService
     {
         [OperationContract]
+        RestCurrentSituation GetActualSituation();
+
+
+        [OperationContract]
         RestSupplierItem GetSupplier(string suppNum);
 
 
@@ -34,6 +38,32 @@ namespace DeVes.Bazaar.Server
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class RestService : IRestService
     {
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "stats/ActualSituation")]
+        public RestCurrentSituation GetActualSituation()
+        {
+            int _supplCount, _positionsCount;
+            int _notSold, _isSold, _isReturn;
+            double _soldBetrag, _eigenBetrag;
+
+            lock (GParams.Instance.ComLockObj)
+            {
+                GParams.Instance.Supplier.SupplierStats(out _supplCount);
+
+                GParams.Instance.Position.PositionsStats(out _positionsCount, out _notSold, out _isSold, out _isReturn,
+                                                         out _soldBetrag);
+
+                var _prozValue = Program.CfgFile.getValue_AsdDouble("SellParams", "ProzGewin", 15);
+                _eigenBetrag = _soldBetrag * _prozValue / 100;
+            }
+
+            return new RestCurrentSituation()
+            {
+                SupplierCount = _supplCount,
+                PositionCount = _positionsCount
+            };
+        }
+
+
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "data/Supplier/{suppNum}")]
         public RestSupplierItem GetSupplier(string suppNum)
         {
@@ -144,6 +174,14 @@ namespace DeVes.Bazaar.Server
                 Message = string.Format("Position '{0}' zurück gebucht...", _positionNum)
             };
         }
+    }
+
+
+    public class RestCurrentSituation
+    {
+        public int SupplierCount { get; set; }
+
+        public int PositionCount { get; set; }
     }
 
 
