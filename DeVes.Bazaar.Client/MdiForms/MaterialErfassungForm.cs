@@ -451,8 +451,6 @@ namespace DeVes.Bazaar.Client.MdiForms
             positionBiz.PriceMaxSpecified = true;
             positionBiz.PriceMin = GParams.ToDouble(this.m_posMinPriceTb.Text);
             positionBiz.PriceMinSpecified = GParams.ToDouble(this.m_posMinPriceTb.Text).HasValue;
-
-            positionBiz.Memo = this.m_posDescTb.Text;
         }
         private void BizToScreen(BizPosition positionBiz)
         {
@@ -464,8 +462,6 @@ namespace DeVes.Bazaar.Client.MdiForms
 
             this.m_posMaxPriceTb.Text = positionBiz.PriceMax.ToString();
             this.m_posMinPriceTb.Text = positionBiz.PriceMin.ToString();
-
-            this.m_posDescTb.Text = positionBiz.Memo;
         }
         private void ReloadManufComboBox()
         {

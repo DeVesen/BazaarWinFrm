@@ -99,7 +99,7 @@ namespace BHApp.Printing
                 _tableRectY = (e.PageBounds.Height * 20) / 100;
             }
 
-            var _mainTableFrameRect = new RectangleF(_leftMargin, _tableRectY, _maxRight - _leftMargin - 50, _maxBottom - _tableRectY - 100);
+            var _mainTableFrameRect = new RectangleF(_leftMargin, _tableRectY, _maxRight - _leftMargin - 50, _maxBottom - _tableRectY - 125);
 
             if (this.m_tablesToPrint != null)
             {
