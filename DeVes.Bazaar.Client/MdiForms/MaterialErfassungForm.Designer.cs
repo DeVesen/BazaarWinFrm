@@ -63,7 +63,6 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.label4 = new System.Windows.Forms.Label();
             this.m_importOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.m_supplierSelection = new DeVes.Bazaar.Client.CustControls.SupplierSelection();
-            ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).BeginInit();
             this.m_positionGb.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,12 +71,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.titelBarCtrl1.Margin = new System.Windows.Forms.Padding(43, 33, 43, 33);
             this.titelBarCtrl1.Size = new System.Drawing.Size(2704, 141);
             this.titelBarCtrl1.TitelText = "Material Erfassung";
-            // 
-            // m_frmPb
-            // 
-            this.m_frmPb.Image = global::DeVes.Bazaar.Client.Properties.Resources.note_32x32;
-            this.m_frmPb.Margin = new System.Windows.Forms.Padding(21, 17, 21, 17);
-            this.m_frmPb.Size = new System.Drawing.Size(341, 272);
+            this.titelBarCtrl1.TitelImage = global::DeVes.Bazaar.Client.Properties.Resources.note_32x32;
             // 
             // m_positionGb
             // 
@@ -371,7 +365,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             // m_posMaxPriceTb
             // 
             this.m_posMaxPriceTb.AllowSpace = false;
-            this.m_posMaxPriceTb.BackColor = System.Drawing.Color.PapayaWhip;
+            this.m_posMaxPriceTb.BackColor = System.Drawing.Color.Orange;
             this.m_posMaxPriceTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_posMaxPriceTb.IsMargin = true;
             this.m_posMaxPriceTb.Location = new System.Drawing.Point(1168, 253);
@@ -396,7 +390,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             // 
             // m_posCatCb
             // 
-            this.m_posCatCb.BackColor = System.Drawing.Color.PapayaWhip;
+            this.m_posCatCb.BackColor = System.Drawing.Color.Orange;
             this.m_posCatCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_posCatCb.FormattingEnabled = true;
             this.m_posCatCb.IsMargin = true;
@@ -422,7 +416,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             // m_posTitelTb
             // 
             this.m_posTitelTb.AllowSpace = false;
-            this.m_posTitelTb.BackColor = System.Drawing.Color.PapayaWhip;
+            this.m_posTitelTb.BackColor = System.Drawing.Color.Orange;
             this.m_posTitelTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_posTitelTb.IsMargin = true;
             this.m_posTitelTb.Location = new System.Drawing.Point(411, 112);
@@ -448,7 +442,7 @@ namespace DeVes.Bazaar.Client.MdiForms
             // m_posNrTb
             // 
             this.m_posNrTb.AllowSpace = false;
-            this.m_posNrTb.BackColor = System.Drawing.Color.PapayaWhip;
+            this.m_posNrTb.BackColor = System.Drawing.Color.Orange;
             this.m_posNrTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_posNrTb.IsMargin = true;
             this.m_posNrTb.Location = new System.Drawing.Point(32, 112);
@@ -501,10 +495,8 @@ namespace DeVes.Bazaar.Client.MdiForms
             this.Text = "Material Erfassung";
             this.Load += new System.EventHandler(this.MaterialErfassungForm_Load);
             this.Controls.SetChildIndex(this.titelBarCtrl1, 0);
-            this.Controls.SetChildIndex(this.m_frmPb, 0);
             this.Controls.SetChildIndex(this.m_positionGb, 0);
             this.Controls.SetChildIndex(this.m_supplierSelection, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).EndInit();
             this.m_positionGb.ResumeLayout(false);
             this.m_positionGb.PerformLayout();
             this.ResumeLayout(false);

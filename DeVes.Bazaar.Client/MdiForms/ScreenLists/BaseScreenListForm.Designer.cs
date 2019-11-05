@@ -29,16 +29,11 @@
         private void InitializeComponent()
         {
             this.m_screenLv = new System.Windows.Forms.ListView();
-            ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).BeginInit();
             this.SuspendLayout();
             // 
             // titelBarCtrl1
             // 
             this.titelBarCtrl1.Size = new System.Drawing.Size(867, 59);
-            // 
-            // m_frmPb
-            // 
-            this.m_frmPb.Image = global::DeVes.Bazaar.Client.Properties.Resources.table_sql_32x32;
             // 
             // m_screenLv
             // 
@@ -67,9 +62,7 @@
             this.Name = "BaseScreenListForm";
             this.Load += new System.EventHandler(this.BaseScreenListForm_Load);
             this.Controls.SetChildIndex(this.titelBarCtrl1, 0);
-            this.Controls.SetChildIndex(this.m_frmPb, 0);
             this.Controls.SetChildIndex(this.m_screenLv, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).EndInit();
             this.ResumeLayout(false);
 
         }

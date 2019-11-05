@@ -42,19 +42,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.m_machineNameTb = new DeVes.Bazaar.Client.CustControls.DvTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).BeginInit();
             this.bkGroupBox1.SuspendLayout();
             this.bkGroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // titelBarCtrl1
             // 
-            this.titelBarCtrl1.Size = new System.Drawing.Size(816, 59);
+            this.titelBarCtrl1.Margin = new System.Windows.Forms.Padding(43, 33, 43, 33);
+            this.titelBarCtrl1.Size = new System.Drawing.Size(2176, 141);
             this.titelBarCtrl1.TitelText = "Einstellungen";
-            // 
-            // m_frmPb
-            // 
-            this.m_frmPb.Image = global::DeVes.Bazaar.Client.Properties.Resources.harddisk_network_32x32;
+            this.titelBarCtrl1.TitelImage = global::DeVes.Bazaar.Client.Properties.Resources.harddisk_network_32x32;
             // 
             // bkGroupBox1
             // 
@@ -68,9 +65,11 @@
             this.bkGroupBox1.Controls.Add(this.label1);
             this.bkGroupBox1.Controls.Add(this.m_serverIpTb);
             this.bkGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bkGroupBox1.Location = new System.Drawing.Point(5, 189);
+            this.bkGroupBox1.Location = new System.Drawing.Point(13, 451);
+            this.bkGroupBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.bkGroupBox1.Name = "bkGroupBox1";
-            this.bkGroupBox1.Size = new System.Drawing.Size(632, 179);
+            this.bkGroupBox1.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.bkGroupBox1.Size = new System.Drawing.Size(1685, 427);
             this.bkGroupBox1.TabIndex = 2;
             this.bkGroupBox1.TabStop = false;
             this.bkGroupBox1.Text = "Verbindung zum Server:";
@@ -79,9 +78,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(7, 70);
+            this.label3.Location = new System.Drawing.Point(19, 167);
+            this.label3.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 16);
+            this.label3.Size = new System.Drawing.Size(340, 38);
             this.label3.TabIndex = 11;
             this.label3.Text = "Komunikationsstream:";
             // 
@@ -89,11 +89,12 @@
             // 
             this.m_httpComStremTb.AllowSpace = false;
             this.m_httpComStremTb.IsMargin = false;
-            this.m_httpComStremTb.Location = new System.Drawing.Point(10, 89);
+            this.m_httpComStremTb.Location = new System.Drawing.Point(27, 212);
+            this.m_httpComStremTb.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.m_httpComStremTb.Name = "m_httpComStremTb";
             this.m_httpComStremTb.ReadOnly = true;
             this.m_httpComStremTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
-            this.m_httpComStremTb.Size = new System.Drawing.Size(398, 22);
+            this.m_httpComStremTb.Size = new System.Drawing.Size(1055, 44);
             this.m_httpComStremTb.TabIndex = 10;
             // 
             // button1
@@ -102,10 +103,10 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::DeVes.Bazaar.Client.Properties.Resources.refresh_32x32;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(212, 125);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(565, 298);
+            this.button1.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(196, 41);
+            this.button1.Size = new System.Drawing.Size(523, 98);
             this.button1.TabIndex = 9;
             this.button1.Text = "Verbindungstest";
             this.button1.UseVisualStyleBackColor = true;
@@ -115,9 +116,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(209, 23);
+            this.label2.Location = new System.Drawing.Point(557, 55);
+            this.label2.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 16);
+            this.label2.Size = new System.Drawing.Size(192, 38);
             this.label2.TabIndex = 3;
             this.label2.Text = "Server Port:";
             // 
@@ -125,10 +127,11 @@
             // 
             this.m_serverPortTb.AllowSpace = false;
             this.m_serverPortTb.IsMargin = false;
-            this.m_serverPortTb.Location = new System.Drawing.Point(212, 42);
+            this.m_serverPortTb.Location = new System.Drawing.Point(565, 100);
+            this.m_serverPortTb.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.m_serverPortTb.Name = "m_serverPortTb";
             this.m_serverPortTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
-            this.m_serverPortTb.Size = new System.Drawing.Size(196, 22);
+            this.m_serverPortTb.Size = new System.Drawing.Size(516, 44);
             this.m_serverPortTb.TabIndex = 2;
             this.m_serverPortTb.TextChanged += new System.EventHandler(this.OnServerAdressCtrlsChanged);
             // 
@@ -136,9 +139,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(7, 23);
+            this.label1.Location = new System.Drawing.Point(19, 55);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 16);
+            this.label1.Size = new System.Drawing.Size(276, 38);
             this.label1.TabIndex = 1;
             this.label1.Text = "Server Name / IP:";
             // 
@@ -146,10 +150,11 @@
             // 
             this.m_serverIpTb.AllowSpace = false;
             this.m_serverIpTb.IsMargin = false;
-            this.m_serverIpTb.Location = new System.Drawing.Point(10, 42);
+            this.m_serverIpTb.Location = new System.Drawing.Point(27, 100);
+            this.m_serverIpTb.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.m_serverIpTb.Name = "m_serverIpTb";
             this.m_serverIpTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
-            this.m_serverIpTb.Size = new System.Drawing.Size(196, 22);
+            this.m_serverIpTb.Size = new System.Drawing.Size(516, 44);
             this.m_serverIpTb.TabIndex = 0;
             this.m_serverIpTb.TextChanged += new System.EventHandler(this.OnServerAdressCtrlsChanged);
             // 
@@ -159,10 +164,10 @@
             this.m_saveSettingsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_saveSettingsBtn.Image = global::DeVes.Bazaar.Client.Properties.Resources.disk_blue_32x32;
             this.m_saveSettingsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.m_saveSettingsBtn.Location = new System.Drawing.Point(644, 65);
-            this.m_saveSettingsBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.m_saveSettingsBtn.Location = new System.Drawing.Point(1717, 155);
+            this.m_saveSettingsBtn.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
             this.m_saveSettingsBtn.Name = "m_saveSettingsBtn";
-            this.m_saveSettingsBtn.Size = new System.Drawing.Size(166, 60);
+            this.m_saveSettingsBtn.Size = new System.Drawing.Size(443, 143);
             this.m_saveSettingsBtn.TabIndex = 8;
             this.m_saveSettingsBtn.Text = "Speichern";
             this.m_saveSettingsBtn.UseVisualStyleBackColor = true;
@@ -177,9 +182,11 @@
             this.bkGroupBox2.Controls.Add(this.label6);
             this.bkGroupBox2.Controls.Add(this.m_machineNameTb);
             this.bkGroupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bkGroupBox2.Location = new System.Drawing.Point(5, 65);
+            this.bkGroupBox2.Location = new System.Drawing.Point(13, 155);
+            this.bkGroupBox2.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.bkGroupBox2.Name = "bkGroupBox2";
-            this.bkGroupBox2.Size = new System.Drawing.Size(632, 120);
+            this.bkGroupBox2.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.bkGroupBox2.Size = new System.Drawing.Size(1685, 286);
             this.bkGroupBox2.TabIndex = 9;
             this.bkGroupBox2.TabStop = false;
             this.bkGroupBox2.Text = "Verbindung zum Server:";
@@ -187,19 +194,21 @@
             // m_ipListLb
             // 
             this.m_ipListLb.FormattingEnabled = true;
-            this.m_ipListLb.ItemHeight = 16;
-            this.m_ipListLb.Location = new System.Drawing.Point(178, 42);
+            this.m_ipListLb.ItemHeight = 37;
+            this.m_ipListLb.Location = new System.Drawing.Point(475, 100);
+            this.m_ipListLb.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.m_ipListLb.Name = "m_ipListLb";
-            this.m_ipListLb.Size = new System.Drawing.Size(210, 68);
+            this.m_ipListLb.Size = new System.Drawing.Size(553, 152);
             this.m_ipListLb.TabIndex = 6;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(175, 23);
+            this.label5.Location = new System.Drawing.Point(467, 55);
+            this.label5.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 16);
+            this.label5.Size = new System.Drawing.Size(192, 38);
             this.label5.TabIndex = 3;
             this.label5.Text = "Server Port:";
             // 
@@ -207,9 +216,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(7, 23);
+            this.label6.Location = new System.Drawing.Point(19, 55);
+            this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 16);
+            this.label6.Size = new System.Drawing.Size(276, 38);
             this.label6.TabIndex = 1;
             this.label6.Text = "Server Name / IP:";
             // 
@@ -217,30 +227,30 @@
             // 
             this.m_machineNameTb.AllowSpace = false;
             this.m_machineNameTb.IsMargin = false;
-            this.m_machineNameTb.Location = new System.Drawing.Point(10, 42);
+            this.m_machineNameTb.Location = new System.Drawing.Point(27, 100);
+            this.m_machineNameTb.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.m_machineNameTb.Name = "m_machineNameTb";
             this.m_machineNameTb.ReadOnly = true;
             this.m_machineNameTb.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
-            this.m_machineNameTb.Size = new System.Drawing.Size(151, 22);
+            this.m_machineNameTb.Size = new System.Drawing.Size(396, 44);
             this.m_machineNameTb.TabIndex = 0;
             // 
             // PropertyManageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(816, 511);
+            this.ClientSize = new System.Drawing.Size(2176, 1219);
             this.Controls.Add(this.bkGroupBox2);
             this.Controls.Add(this.m_saveSettingsBtn);
             this.Controls.Add(this.bkGroupBox1);
+            this.Margin = new System.Windows.Forms.Padding(21, 17, 21, 17);
             this.Name = "PropertyManageForm";
             this.Text = "Einstellungen";
             this.Load += new System.EventHandler(this.PropertyManageForm_Load);
             this.Controls.SetChildIndex(this.bkGroupBox1, 0);
             this.Controls.SetChildIndex(this.titelBarCtrl1, 0);
-            this.Controls.SetChildIndex(this.m_frmPb, 0);
             this.Controls.SetChildIndex(this.m_saveSettingsBtn, 0);
             this.Controls.SetChildIndex(this.bkGroupBox2, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).EndInit();
             this.bkGroupBox1.ResumeLayout(false);
             this.bkGroupBox1.PerformLayout();
             this.bkGroupBox2.ResumeLayout(false);

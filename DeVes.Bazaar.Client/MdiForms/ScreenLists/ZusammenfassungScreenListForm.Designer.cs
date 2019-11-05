@@ -36,7 +36,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).BeginInit();
             this.SuspendLayout();
             // 
             // m_screenLv
@@ -57,6 +56,7 @@
             // 
             this.titelBarCtrl1.Size = new System.Drawing.Size(1024, 59);
             this.titelBarCtrl1.TitelText = "Statistik: Verkauft";
+            this.titelBarCtrl1.TitelImage = global::DeVes.Bazaar.Client.Properties.Resources.table_sql_32x32;
             // 
             // columnHeader1
             // 
@@ -110,7 +110,6 @@
             this.Name = "ZusammenfassungScreenListForm";
             this.Text = "Statistik: Verkauft";
             this.Load += new System.EventHandler(this.ZusammenfassungScreenListForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.m_frmPb)).EndInit();
             this.ResumeLayout(false);
 
         }

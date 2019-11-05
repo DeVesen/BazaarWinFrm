@@ -8,6 +8,7 @@ namespace DeVes.Bazaar.Client.CustControls
     public partial class TitelBarCtrl : UserControl
     {
         public string TitelText { get; set; }
+        public Image TitelImage { get; set; } = null;
 
         public TitelBarCtrl()
         {
@@ -36,7 +37,12 @@ namespace DeVes.Bazaar.Client.CustControls
             DrawVerticalGradientRectangle(e.Graphics,
                         new Rectangle(0, 0, this.Width, this.Height), 30, Color.AliceBlue, Color.AliceBlue, Color.FromArgb(255, 187, 223, 255));
 
-            using(Brush _textBrush = new SolidBrush(Color.Black))
+            if (TitelImage != null)
+            {
+                e.Graphics.DrawImage(TitelImage, new Rectangle(0, 0, 50, this.Bounds.Height));
+            }
+
+            using (Brush _textBrush = new SolidBrush(Color.Black))
             {
                 var _rF = new RectangleF(60, 0, this.Bounds.Width - 100, this.Bounds.Height);
                 var _sf = new StringFormat();
