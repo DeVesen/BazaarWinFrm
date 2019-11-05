@@ -40,6 +40,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.bkGroupBox1.SuspendLayout();
             this.bkGroupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -179,11 +180,26 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(29, 1215);
+            this.button2.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(104, 72);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "U";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // ImportPositionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2306, 1388);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bkGroupBox2);
             this.Controls.Add(this.bkGroupBox1);
@@ -213,5 +229,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Label m_lbErrorMsg;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -16,14 +16,14 @@ namespace DeVes.Bazaar.Client.SubForms
 
             public PositionLvi(BizPosition position)
             {
-                this.DataObj = position;
+                DataObj = position;
 
-                this.Text = position.PositionNo.ToString();
-                this.SubItems.Add(position.Material);
-                this.SubItems.Add(position.Category);
-                this.SubItems.Add(position.Manufacturer);
-                this.SubItems.Add(position.PriceMax.ToString());
-                this.SubItems.Add(position.PriceMin.ToString());
+                Text = position.PositionNo.ToString();
+                SubItems.Add(position.Material);
+                SubItems.Add(position.Category);
+                SubItems.Add(position.Manufacturer);
+                SubItems.Add(position.PriceMax.ToString());
+                SubItems.Add(position.PriceMin.ToString());
             }
         }
 
@@ -40,110 +40,110 @@ namespace DeVes.Bazaar.Client.SubForms
 
         private void ImportPositionForm_Load(object sender, EventArgs e)
         {
-            this.m_lbErrorMsg.ResetText();
+            m_lbErrorMsg.ResetText();
 
-            foreach (DataRow _row in this.m_importTable.Rows)
+            foreach (DataRow _row in m_importTable.Rows)
             {
-                var _bizPos = this.ConvertFromDataRow(_row);
+                var _bizPos = ConvertFromDataRow(_row);
                 if (_bizPos != null)
                 {
-                    this.m_globalList.Add(new PositionLvi(_bizPos));
-                    this.m_matlPosLv.Items.Add(new PositionLvi(_bizPos));
+                    m_globalList.Add(new PositionLvi(_bizPos));
+                    m_matlPosLv.Items.Add(new PositionLvi(_bizPos));
                 }
             }
         }
 
         private void dvTextBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            this.m_lbErrorMsg.ResetText();
-            this.m_lbErrorMsg.BackColor = Color.Transparent;
+            m_lbErrorMsg.ResetText();
+            m_lbErrorMsg.BackColor = Color.Transparent;
 
             if (e.KeyCode == Keys.Return)
             {
-                if (this.m_matlPosLv.Items.Count > 1)
+                if (m_matlPosLv.Items.Count > 1)
                 {
-                    foreach (ListViewItem _lvItem in this.m_matlPosLv.Items)
+                    foreach (ListViewItem _lvItem in m_matlPosLv.Items)
                     {
                         var _posItem = _lvItem as PositionLvi;
-                        if (_posItem != null && _posItem.DataObj.PositionNo.ToString() == this.dvTextBox1.Text)
+                        if (_posItem != null && _posItem.DataObj.PositionNo.ToString() == dvTextBox1.Text)
                         {
-                            this.ImportLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
-                            this.PlayGoodSound();
+                            ImportLineToSupplier(m_matlPosLv.Items[0] as PositionLvi);
+                            PlayGoodSound();
                             break;
                         }
                         else
                         {
-                            this.dvTextBox1.Focus();
-                            this.dvTextBox1.SelectAll();
-                            this.PlayBadSound();
+                            dvTextBox1.Focus();
+                            dvTextBox1.SelectAll();
+                            PlayBadSound();
                         }
                     }
                 }
-                else if (this.m_matlPosLv.Items.Count == 1 && this.m_matlPosLv.Items[0] is PositionLvi)
+                else if (m_matlPosLv.Items.Count == 1 && m_matlPosLv.Items[0] is PositionLvi)
                 {
-                    this.ImportLineToSupplier(this.m_matlPosLv.Items[0] as PositionLvi);
+                    ImportLineToSupplier(m_matlPosLv.Items[0] as PositionLvi);
                 }
                 else
                 {
                     var _posNum = 0;
-                    if (!int.TryParse(this.dvTextBox1.Text, out _posNum))
+                    if (!int.TryParse(dvTextBox1.Text, out _posNum))
                         _posNum = 0;
 
                     if (GParams.Instance.BasarCom.PositionGet(_posNum, true) == null)
                     {
-                        this.m_lbErrorMsg.Text = @"Positionsnummer nicht gefunden!";
+                        m_lbErrorMsg.Text = @"Positionsnummer nicht gefunden!";
                     }
                     else
                     {
-                        this.m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
+                        m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
                     }
-                    this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 255, 100, 100);
+                    m_lbErrorMsg.BackColor = Color.FromArgb(255, 255, 100, 100);
 
-                    this.dvTextBox1.Focus();
-                    this.dvTextBox1.SelectAll();
-                    this.PlayBadSound();
+                    dvTextBox1.Focus();
+                    dvTextBox1.SelectAll();
+                    PlayBadSound();
                 }
             }
         }
         private void dvTextBox1_TextChanged(object sender, EventArgs e)
         {
-            this.m_matlPosLv.Items.Clear();
+            m_matlPosLv.Items.Clear();
 
-            var _enteredValue = this.dvTextBox1.Text.ToLower().Trim();
+            var _enteredValue = dvTextBox1.Text.ToLower().Trim();
 
             if (!string.IsNullOrEmpty(_enteredValue))
             {
                 var _items =
-                    from _ in this.m_globalList
+                    from _ in m_globalList
                     where _.DataObj.PositionNo.ToString().IndexOf(_enteredValue) >= 0 ||
                           _.DataObj.Material.ToString().ToLower().IndexOf(_enteredValue) >= 0
                     select _;
 
                 foreach (var _row in _items)
                 {
-                    this.m_matlPosLv.Items.Add(_row);
+                    m_matlPosLv.Items.Add(_row);
                 }
             }
             else
             {
-                foreach (var _row in this.m_globalList)
+                foreach (var _row in m_globalList)
                 {
-                    this.m_matlPosLv.Items.Add(_row);
+                    m_matlPosLv.Items.Add(_row);
                 }
             }
         }
 
         private void m_matlPosLv_DoubleClick(object sender, EventArgs e)
         {
-            if (this.m_matlPosLv.SelectedItems.Count == 1 && this.m_matlPosLv.SelectedItems[0] is PositionLvi)
+            if (m_matlPosLv.SelectedItems.Count == 1 && m_matlPosLv.SelectedItems[0] is PositionLvi)
             {
-                this.ImportLineToSupplier(this.m_matlPosLv.SelectedItems[0] as PositionLvi);
+                ImportLineToSupplier(m_matlPosLv.SelectedItems[0] as PositionLvi);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
 
 
         }
@@ -207,15 +207,15 @@ namespace DeVes.Bazaar.Client.SubForms
         }
         private bool ReadPositonCsv(string filePath)
         {
-            this.m_importTable.TableName = "Positions";
-            this.m_importTable.Columns.Add("SupplierId", typeof(string));
-            this.m_importTable.Columns.Add("PositionNo", typeof(int));
-            this.m_importTable.Columns.Add("Material", typeof(string));
-            this.m_importTable.Columns.Add("Category", typeof(string));
-            this.m_importTable.Columns.Add("Manufacturer", typeof(string));
-            this.m_importTable.Columns.Add("PriceMin", typeof(double));
-            this.m_importTable.Columns.Add("PriceMax", typeof(double));
-            this.m_importTable.Columns.Add("Memo", typeof(string));
+            m_importTable.TableName = "Positions";
+            m_importTable.Columns.Add("SupplierId", typeof(string));
+            m_importTable.Columns.Add("PositionNo", typeof(int));
+            m_importTable.Columns.Add("Material", typeof(string));
+            m_importTable.Columns.Add("Category", typeof(string));
+            m_importTable.Columns.Add("Manufacturer", typeof(string));
+            m_importTable.Columns.Add("PriceMin", typeof(double));
+            m_importTable.Columns.Add("PriceMax", typeof(double));
+            m_importTable.Columns.Add("Memo", typeof(string));
 
             var _impCols = new List<string>() { "PositionNo", "Material", "Category", "Manufacturer", "PriceMax", "PriceMin" };
             System.IO.StreamReader _streamReader = null;
@@ -234,10 +234,10 @@ namespace DeVes.Bazaar.Client.SubForms
                         var _columns = _line.Split(new string[] { ";" }, StringSplitOptions.None);
                         if (_columns != null && _columns.Length >= _impCols.Count)
                         {
-                            if (!this.IsHeadLine(_columns))
+                            if (!IsHeadLine(_columns))
                             {
                                 var _hadOneEx = false;
-                                var _newRow = this.m_importTable.NewRow();
+                                var _newRow = m_importTable.NewRow();
 
                                 for (var _colIndex = 0; _colIndex < _impCols.Count; _colIndex++)
                                 {
@@ -245,7 +245,7 @@ namespace DeVes.Bazaar.Client.SubForms
                                     {
                                         if (_columns[_colIndex] != null && !string.IsNullOrEmpty(_columns[_colIndex].Trim()))
                                         {
-                                            var _dataCol = this.m_importTable.Columns[_impCols[_colIndex]];
+                                            var _dataCol = m_importTable.Columns[_impCols[_colIndex]];
 
                                             if (_dataCol.DataType.FullName == typeof(string).FullName)
                                             {
@@ -270,7 +270,7 @@ namespace DeVes.Bazaar.Client.SubForms
 
                                 if (!_hadOneEx)
                                 {
-                                    this.m_importTable.Rows.Add(_newRow);
+                                    m_importTable.Rows.Add(_newRow);
                                 }
                             }
                         }
@@ -290,29 +290,29 @@ namespace DeVes.Bazaar.Client.SubForms
                 _streamReader = null;
             }
 
-            return this.m_importTable.Rows.Count > 0;
+            return m_importTable.Rows.Count > 0;
         }
         private bool ReadPositionXml(string filePath)
         {
-            this.m_importTable.TableName = "Positions";
-            this.m_importTable.Columns.Add("SupplierId", typeof(string));
-            this.m_importTable.Columns.Add("PositionNo", typeof(int));
-            this.m_importTable.Columns.Add("Material", typeof(string));
-            this.m_importTable.Columns.Add("Category", typeof(string));
-            this.m_importTable.Columns.Add("Manufacturer", typeof(string));
-            this.m_importTable.Columns.Add("PriceMin", typeof(double));
-            this.m_importTable.Columns.Add("PriceMax", typeof(double));
-            this.m_importTable.Columns.Add("Memo", typeof(string));
+            m_importTable.TableName = "Positions";
+            m_importTable.Columns.Add("SupplierId", typeof(string));
+            m_importTable.Columns.Add("PositionNo", typeof(int));
+            m_importTable.Columns.Add("Material", typeof(string));
+            m_importTable.Columns.Add("Category", typeof(string));
+            m_importTable.Columns.Add("Manufacturer", typeof(string));
+            m_importTable.Columns.Add("PriceMin", typeof(double));
+            m_importTable.Columns.Add("PriceMax", typeof(double));
+            m_importTable.Columns.Add("Memo", typeof(string));
 
             try
             {
-                this.m_importTable.ReadXml(filePath);
+                m_importTable.ReadXml(filePath);
             }
             catch(Exception _ex)
             {
                 return false;
             }
-            return this.m_importTable.Rows.Count > 0;
+            return m_importTable.Rows.Count > 0;
         }
         private void ImportLineToSupplier(PositionLvi line)
         {
@@ -322,7 +322,7 @@ namespace DeVes.Bazaar.Client.SubForms
             try
             {
                 var _newPosition = line.DataObj;
-                _newPosition.SupplierId = this.m_supplier.SupplierId;
+                _newPosition.SupplierId = m_supplier.SupplierId;
 
                 if (GParams.Instance.BasarCom.PositionGet(_newPosition.PositionNo, true) == null)
                 {
@@ -333,28 +333,28 @@ namespace DeVes.Bazaar.Client.SubForms
 
                     if (_created && _createdSpec)
                     {
-                        this.m_lbErrorMsg.Text = @"Position angenommen...";
-                        this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 100, 255, 100);
+                        m_lbErrorMsg.Text = @"Position angenommen...";
+                        m_lbErrorMsg.BackColor = Color.FromArgb(255, 100, 255, 100);
 
-                        this.m_globalList.Remove(line);
-                        this.PlayConfirmedSound();
+                        m_globalList.Remove(line);
+                        PlayConfirmedSound();
                     }
                     else
                     {
-                        this.m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
-                        this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 100, 255, 100);
+                        m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
+                        m_lbErrorMsg.BackColor = Color.FromArgb(255, 100, 255, 100);
 
-                        this.m_globalList.Remove(line);
-                        this.PlayBadSound();
+                        m_globalList.Remove(line);
+                        PlayBadSound();
                     }
                 }
                 else
                 {
-                    this.m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
-                    this.m_lbErrorMsg.BackColor = Color.FromArgb(255, 255, 100, 100);
+                    m_lbErrorMsg.Text = @"Positionsnummer existiert bereits!";
+                    m_lbErrorMsg.BackColor = Color.FromArgb(255, 255, 100, 100);
 
-                    this.m_globalList.Remove(line);
-                    this.PlayBadSound();
+                    m_globalList.Remove(line);
+                    PlayBadSound();
                 }
             }
             catch(Exception _ex)
@@ -362,8 +362,8 @@ namespace DeVes.Bazaar.Client.SubForms
                 MessageBox.Show(_ex.Message);
             }
 
-            this.dvTextBox1.Focus();
-            this.dvTextBox1.SelectAll();
+            dvTextBox1.Focus();
+            dvTextBox1.SelectAll();
         }
 
 
@@ -397,6 +397,15 @@ namespace DeVes.Bazaar.Client.SubForms
                 }
             }
             return DialogResult.None;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            m_globalList = m_globalList
+                .Where(p => GParams.Instance.BasarCom.PositionGet(p.DataObj.PositionNo, true) != null)
+                .ToList();
+
+            dvTextBox1_TextChanged(sender, e);
         }
     }
 }
