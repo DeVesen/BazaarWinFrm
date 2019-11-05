@@ -1,10 +1,13 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using System.Drawing;
 
 namespace DeVes.Bazaar.Client.CustControls
 {
     public class DvComboBox : ComboBox
     {
+        private static Color _isMandatoryColor = Color.Orange;
+
         private Color m_orgBkColor;
         private bool m_isMargin;
         public bool IsMargin
@@ -20,7 +23,7 @@ namespace DeVes.Bazaar.Client.CustControls
                 if (value)
                 {
                     this.m_orgBkColor = this.BackColor;
-                    this.BackColor = Color.PapayaWhip;
+                    this.BackColor = _isMandatoryColor;
                 }
                 else
                 {
@@ -47,6 +50,16 @@ namespace DeVes.Bazaar.Client.CustControls
                 {
 
                 }
+            }
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            if (m_isMargin)
+            {
+                BackColor = string.IsNullOrWhiteSpace(Text) ? _isMandatoryColor : m_orgBkColor;
             }
         }
 

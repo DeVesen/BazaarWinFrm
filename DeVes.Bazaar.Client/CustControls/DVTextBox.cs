@@ -7,6 +7,8 @@ namespace DeVes.Bazaar.Client.CustControls
 {
     public class DvTextBox : TextBox
     {
+        private static Color _isMandatoryColor = Color.Orange;
+
         public enum ResultTypes
         {
             String,
@@ -21,20 +23,20 @@ namespace DeVes.Bazaar.Client.CustControls
         {
             get
             {
-                return this.m_isMargin;
+                return m_isMargin;
             }
             set
             {
-                this.m_isMargin = value;
+                m_isMargin = value;
 
                 if (value)
                 {
-                    this.m_orgBkColor = this.BackColor;
-                    this.BackColor = Color.PapayaWhip;
+                    m_orgBkColor = BackColor;
+                    BackColor = _isMandatoryColor;
                 }
                 else
                 {
-                    this.BackColor = this.m_orgBkColor;
+                    BackColor = m_orgBkColor;
                 }
             }
         }
@@ -44,11 +46,11 @@ namespace DeVes.Bazaar.Client.CustControls
         {
             get
             {
-                return this.m_resultType;
+                return m_resultType;
             }
             set
             {
-                this.m_resultType = value;
+                m_resultType = value;
             }
         }
 
@@ -58,19 +60,19 @@ namespace DeVes.Bazaar.Client.CustControls
             {
                 var _result = true;
 
-                switch (this.m_resultType)
+                switch (m_resultType)
                 {
                     case ResultTypes.String:
                         _result = true;
                         break;
                     case ResultTypes.Int32:
-                        _result = GParams.ToInt32(this.Text).HasValue;
+                        _result = GParams.ToInt32(Text).HasValue;
                         break;
                     case ResultTypes.Double:
-                        _result = GParams.ToDouble(this.Text).HasValue;
+                        _result = GParams.ToDouble(Text).HasValue;
                         break;
                     case ResultTypes.DateTime:
-                        _result = GParams.ToDateTime(this.Text).HasValue;
+                        _result = GParams.ToDateTime(Text).HasValue;
                         break;
                 }
 
@@ -82,9 +84,9 @@ namespace DeVes.Bazaar.Client.CustControls
         {
             get
             {
-                if (!string.IsNullOrEmpty(this.Text) && !string.IsNullOrEmpty(this.Text.Trim()))
+                if (!string.IsNullOrEmpty(Text) && !string.IsNullOrEmpty(Text.Trim()))
                 {
-                    return this.IsValueLikeWish;
+                    return IsValueLikeWish;
                 }
                 return false;
             }
@@ -97,7 +99,7 @@ namespace DeVes.Bazaar.Client.CustControls
             {
                 try
                 {
-                    return Convert.ToInt32(this.Text);
+                    return Convert.ToInt32(Text);
                 }
                 catch
                 {
@@ -113,7 +115,7 @@ namespace DeVes.Bazaar.Client.CustControls
             {
                 try
                 {
-                    return Convert.ToDouble(this.Text);
+                    return Convert.ToDouble(Text);
                 }
                 catch
                 {
@@ -128,28 +130,27 @@ namespace DeVes.Bazaar.Client.CustControls
         {
             set
             {
-                this._allowSpace = value;
+                _allowSpace = value;
             }
 
             get
             {
-                return this._allowSpace;
+                return _allowSpace;
             }
         }
 
 
         public DvTextBox()
         {
-            this.m_resultType = ResultTypes.String;
+            m_resultType = ResultTypes.String;
         }
-
 
 
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
             base.OnKeyPress(e);
 
-            if (this.m_resultType == ResultTypes.Double || this.m_resultType == ResultTypes.Int32)
+            if (m_resultType == ResultTypes.Double || m_resultType == ResultTypes.Int32)
             {
                 var _numberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
                 var _decimalSeparator = _numberFormatInfo.NumberDecimalSeparator;
@@ -162,7 +163,7 @@ namespace DeVes.Bazaar.Client.CustControls
                 {
                     // Digits are OK
                 }
-                else if (this.m_resultType == ResultTypes.Double &&
+                else if (m_resultType == ResultTypes.Double &&
                         (_keyInput.Equals(_decimalSeparator) || _keyInput.Equals(_groupSeparator) || _keyInput.Equals(_negativeSign)))
                 {
                     // Decimal separator is OK
@@ -175,7 +176,7 @@ namespace DeVes.Bazaar.Client.CustControls
                 //    {
                 //     // Let the edit control handle control and alt key combinations
                 //    }
-                else if (this._allowSpace && e.KeyChar == ' ')
+                else if (_allowSpace && e.KeyChar == ' ')
                 {
 
                 }
@@ -185,6 +186,16 @@ namespace DeVes.Bazaar.Client.CustControls
                     e.Handled = true;
                     //    MessageBeep();
                 }
+            }
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            if (m_isMargin)
+            {
+                BackColor = string.IsNullOrWhiteSpace(Text) ? _isMandatoryColor : m_orgBkColor;
             }
         }
     }
