@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bkGroupBox1 = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
-            this.m_lbErrorMsg = new System.Windows.Forms.Label();
-            this.dvTextBox1 = new DeVes.Bazaar.Client.CustControls.DvTextBox();
+            this.SyncListWithDbBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.bkGroupBox2 = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
             this.m_matlPosLv = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,58 +38,41 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.bkGroupBox1.SuspendLayout();
+            this.bkGroupBox1 = new DeVes.Bazaar.Client.CustControls.BkGroupBox();
+            this.m_lbErrorMsg = new System.Windows.Forms.Label();
+            this.dvTextBox1 = new DeVes.Bazaar.Client.CustControls.DvTextBox();
             this.bkGroupBox2.SuspendLayout();
+            this.bkGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // bkGroupBox1
+            // SyncListWithDbBtn
             // 
-            this.bkGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bkGroupBox1.Controls.Add(this.m_lbErrorMsg);
-            this.bkGroupBox1.Controls.Add(this.dvTextBox1);
-            this.bkGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bkGroupBox1.Location = new System.Drawing.Point(13, 12);
-            this.bkGroupBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.bkGroupBox1.Name = "bkGroupBox1";
-            this.bkGroupBox1.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.bkGroupBox1.Size = new System.Drawing.Size(2274, 424);
-            this.bkGroupBox1.TabIndex = 0;
-            this.bkGroupBox1.TabStop = false;
-            this.bkGroupBox1.Text = "Positionseingabe";
+            this.SyncListWithDbBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SyncListWithDbBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SyncListWithDbBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SyncListWithDbBtn.Location = new System.Drawing.Point(17, 1263);
+            this.SyncListWithDbBtn.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.SyncListWithDbBtn.Name = "SyncListWithDbBtn";
+            this.SyncListWithDbBtn.Size = new System.Drawing.Size(104, 72);
+            this.SyncListWithDbBtn.TabIndex = 3;
+            this.SyncListWithDbBtn.Text = "U";
+            this.SyncListWithDbBtn.UseVisualStyleBackColor = true;
+            this.SyncListWithDbBtn.Click += new System.EventHandler(this.OnSyncListWithDbBtnClick);
             // 
-            // m_lbErrorMsg
+            // button1
             // 
-            this.m_lbErrorMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_lbErrorMsg.BackColor = System.Drawing.Color.Transparent;
-            this.m_lbErrorMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_lbErrorMsg.Location = new System.Drawing.Point(19, 184);
-            this.m_lbErrorMsg.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.m_lbErrorMsg.Name = "m_lbErrorMsg";
-            this.m_lbErrorMsg.Size = new System.Drawing.Size(2210, 203);
-            this.m_lbErrorMsg.TabIndex = 1;
-            this.m_lbErrorMsg.Text = "Positionsnummer existiert bereits!";
-            this.m_lbErrorMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dvTextBox1
-            // 
-            this.dvTextBox1.AllowSpace = false;
-            this.dvTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dvTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dvTextBox1.IsMargin = false;
-            this.dvTextBox1.Location = new System.Drawing.Point(32, 50);
-            this.dvTextBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.dvTextBox1.Name = "dvTextBox1";
-            this.dvTextBox1.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
-            this.dvTextBox1.Size = new System.Drawing.Size(2190, 121);
-            this.dvTextBox1.TabIndex = 0;
-            this.dvTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.dvTextBox1.TextChanged += new System.EventHandler(this.dvTextBox1_TextChanged);
-            this.dvTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dvTextBox1_KeyUp);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::DeVes.Bazaar.Client.Properties.Resources.delete2_32x32;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(1847, 1242);
+            this.button1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(427, 141);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Schließen";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // bkGroupBox2
             // 
@@ -165,52 +147,70 @@
             this.columnHeader7.Text = "Min. Preis";
             this.columnHeader7.Width = 81;
             // 
-            // button1
+            // bkGroupBox1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::DeVes.Bazaar.Client.Properties.Resources.delete2_32x32;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1847, 1242);
-            this.button1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(427, 141);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Schließen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bkGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bkGroupBox1.Controls.Add(this.m_lbErrorMsg);
+            this.bkGroupBox1.Controls.Add(this.dvTextBox1);
+            this.bkGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bkGroupBox1.Location = new System.Drawing.Point(13, 12);
+            this.bkGroupBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.bkGroupBox1.Name = "bkGroupBox1";
+            this.bkGroupBox1.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.bkGroupBox1.Size = new System.Drawing.Size(2274, 424);
+            this.bkGroupBox1.TabIndex = 0;
+            this.bkGroupBox1.TabStop = false;
+            this.bkGroupBox1.Text = "Positionseingabe";
             // 
-            // button2
+            // m_lbErrorMsg
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(29, 1215);
-            this.button2.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 72);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "U";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.m_lbErrorMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.m_lbErrorMsg.BackColor = System.Drawing.Color.Transparent;
+            this.m_lbErrorMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_lbErrorMsg.Location = new System.Drawing.Point(19, 184);
+            this.m_lbErrorMsg.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.m_lbErrorMsg.Name = "m_lbErrorMsg";
+            this.m_lbErrorMsg.Size = new System.Drawing.Size(2210, 203);
+            this.m_lbErrorMsg.TabIndex = 1;
+            this.m_lbErrorMsg.Text = "Positionsnummer existiert bereits!";
+            this.m_lbErrorMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dvTextBox1
+            // 
+            this.dvTextBox1.AllowSpace = false;
+            this.dvTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dvTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dvTextBox1.IsMargin = false;
+            this.dvTextBox1.Location = new System.Drawing.Point(32, 50);
+            this.dvTextBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.dvTextBox1.Name = "dvTextBox1";
+            this.dvTextBox1.ResultType = DeVes.Bazaar.Client.CustControls.DvTextBox.ResultTypes.String;
+            this.dvTextBox1.Size = new System.Drawing.Size(2190, 121);
+            this.dvTextBox1.TabIndex = 0;
+            this.dvTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.dvTextBox1.TextChanged += new System.EventHandler(this.dvTextBox1_TextChanged);
+            this.dvTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dvTextBox1_KeyUp);
             // 
             // ImportPositionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2306, 1388);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SyncListWithDbBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bkGroupBox2);
             this.Controls.Add(this.bkGroupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Margin = new System.Windows.Forms.Padding(21, 17, 21, 17);
             this.Name = "ImportPositionForm";
             this.Text = "Positions Import";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ImportPositionForm_Load);
+            this.bkGroupBox2.ResumeLayout(false);
             this.bkGroupBox1.ResumeLayout(false);
             this.bkGroupBox1.PerformLayout();
-            this.bkGroupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -229,6 +229,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Label m_lbErrorMsg;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SyncListWithDbBtn;
     }
 }

@@ -138,6 +138,7 @@ namespace DeVes.Bazaar.Client.SubForms
             if (m_matlPosLv.SelectedItems.Count == 1 && m_matlPosLv.SelectedItems[0] is PositionLvi)
             {
                 ImportLineToSupplier(m_matlPosLv.SelectedItems[0] as PositionLvi);
+                OnSyncListWithDbBtnClick(sender, e);
             }
         }
 
@@ -399,10 +400,10 @@ namespace DeVes.Bazaar.Client.SubForms
             return DialogResult.None;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void OnSyncListWithDbBtnClick(object sender, EventArgs e)
         {
             m_globalList = m_globalList
-                .Where(p => GParams.Instance.BasarCom.PositionGet(p.DataObj.PositionNo, true) != null)
+                .Where(p => GParams.Instance.BasarCom.PositionGet(p.DataObj.PositionNo, true) == null)
                 .ToList();
 
             dvTextBox1_TextChanged(sender, e);
